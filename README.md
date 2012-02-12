@@ -9,21 +9,34 @@ Calculate sunrise, sunset, and twilight times for a given location.
         * may not be on that day
     * Sunset date and time for that location
         * may not be on that day
-    * Twilight times for that location:
+    * Sunrise/Sunset times for that location:
         * Official
         * Civil
         * Nautical
         * Astronomical
 2. Allow the user to disable some calculations (e.g., only calculate Official Twilight) when run.
 3. Provide an easy way to get the information out.
+4. Allow the user to view in local to the geolocation time or device time? (not sure about this yet)
 
 ## API
 
 There is only one class: `FESSolarCalculator`
 
-### Usage Examples
-
-
+* need: basic calculation object with `-init`
+    * can be given date and location objects later
+* need: pass in date and time to get back new object with `-initWithDate:andLocation:`
+* property readwrite: NSDate date
+* property readwrite: CLLocation location
+* property readonly: NSDate sunrise (Official)
+* property readonly: NSDate sunset (Official)
+* property readonly: NSDate civilSunrise
+* property readonly: NSDate civilSunset
+* property readonly: NSDate nauticalSunrise
+* property readonly: NSDate nauticalSunset
+* property readonly: NSDate astronomicalSunrise
+* property readonly: NSDate astronomicalSunset
+* setting new date or location invalidates the current calculations
+* provide isSunUp() method? Needs modification based on which zenith
 
 ## Automatic Reference Counting (ARC)
 
