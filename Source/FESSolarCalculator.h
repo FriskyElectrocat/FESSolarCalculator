@@ -24,7 +24,32 @@
 //  THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface FESSolarCalculator : NSObject
+/*{
+    NSDate *startDate;
+    CLLocation *location;
+    NSDate *sunrise;
+    NSDate *sunset;
+    NSDate *civilSunrise;
+    NSDate *civilSunset;
+    NSDate *nauticalSunrise;
+    NSDate *nauticalSunset;
+    NSDate *astronomicalSunrise;
+    NSDate *astronomicalSunset;
+
+}*/
+
+@property (nonatomic, readwrite, strong, setter=setStartDate:) NSDate *startDate;
+@property (nonatomic, readwrite, strong, setter=setLocation:) CLLocation *location;
+@property (nonatomic, readonly, strong) NSDate *sunrise;
+@property (nonatomic, readonly, strong) NSDate *sunset;
+@property (nonatomic, readonly, strong) NSDate *civilSunrise;
+@property (nonatomic, readonly, strong) NSDate *civilSunset;
+@property (nonatomic, readonly, strong) NSDate *nauticalSunrise;
+@property (nonatomic, readonly, strong) NSDate *nauticalSunset;
+@property (nonatomic, readonly, strong) NSDate *astronomicalSunrise;
+@property (nonatomic, readonly, strong) NSDate *astronomicalSunset;
 
 @end

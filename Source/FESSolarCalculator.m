@@ -24,8 +24,55 @@
 //  THE SOFTWARE.
 //
 
+#if ! __has_feature(objc_arc)
+#error This file must be compiled with ARC.
+#endif
+
 #import "FESSolarCalculator.h"
 
+@interface FESSolarCalculator ( )
+
+@property (nonatomic, readwrite, strong) NSDate *sunrise;
+@property (nonatomic, readwrite, strong) NSDate *sunset;
+@property (nonatomic, readwrite, strong) NSDate *civilSunrise;
+@property (nonatomic, readwrite, strong) NSDate *civilSunset;
+@property (nonatomic, readwrite, strong) NSDate *nauticalSunrise;
+@property (nonatomic, readwrite, strong) NSDate *nauticalSunset;
+@property (nonatomic, readwrite, strong) NSDate *astronomicalSunrise;
+@property (nonatomic, readwrite, strong) NSDate *astronomicalSunset;
+
+@end
+
 @implementation FESSolarCalculator
+
+@synthesize startDate=_startDate;
+@synthesize location=_location;
+@synthesize sunrise=_sunrise;
+@synthesize sunset=_sunset;
+@synthesize civilSunrise=_civilSunrise;
+@synthesize civilSunset=_civilSunset;
+@synthesize nauticalSunrise=_nauticalSunrise;
+@synthesize nauticalSunset=_nauticalSunset;
+@synthesize astronomicalSunrise=_astronomicalSunrise;
+@synthesize astronomicalSunset=_astronomicalSunset;
+
+
+-(void)invalidateResults
+{
+    
+}
+
+-(void)setStartDate:(NSDate *)startDate
+{
+    // override the default setter for startDate so that we can invalidate previous results
+    [self invalidateResults];
+}
+
+-(void)setLocation:(CLLocation *)location
+{
+    // override the default setter for location so that we can invalidate previous results
+    [self invalidateResults];
+}
+
 
 @end
