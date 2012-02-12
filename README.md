@@ -37,7 +37,7 @@ THE SOFTWARE.
         * Official
         * Civil
         * Nautical
-        * Atsronomical
+        * Astronomical
 2. Allow the user to disable some calculations (e.g., only calculate Official Twilight) when run.
 3. Provide an easy way to get the information out.
 
@@ -46,7 +46,6 @@ THE SOFTWARE.
 There is only one class: `FESSolarCalculator`
 
 ### Usage Examples
-
 
 
 
