@@ -34,12 +34,13 @@
 
 @property (nonatomic, readwrite, strong) NSDate *sunrise;
 @property (nonatomic, readwrite, strong) NSDate *sunset;
-@property (nonatomic, readwrite, strong) NSDate *civilSunrise;
-@property (nonatomic, readwrite, strong) NSDate *civilSunset;
-@property (nonatomic, readwrite, strong) NSDate *nauticalSunrise;
-@property (nonatomic, readwrite, strong) NSDate *nauticalSunset;
-@property (nonatomic, readwrite, strong) NSDate *astronomicalSunrise;
-@property (nonatomic, readwrite, strong) NSDate *astronomicalSunset;
+@property (nonatomic, readwrite, strong) NSDate *solarNoon;
+@property (nonatomic, readwrite, strong) NSDate *civilDawn;
+@property (nonatomic, readwrite, strong) NSDate *civilDusk;
+@property (nonatomic, readwrite, strong) NSDate *nauticalDawn;
+@property (nonatomic, readwrite, strong) NSDate *nauticalDusk;
+@property (nonatomic, readwrite, strong) NSDate *astronomicalDawn;
+@property (nonatomic, readwrite, strong) NSDate *astronomicalDusk;
 
 - (void)invalidateResults;
 
@@ -52,12 +53,13 @@
 @synthesize location=_location;
 @synthesize sunrise=_sunrise;
 @synthesize sunset=_sunset;
-@synthesize civilSunrise=_civilSunrise;
-@synthesize civilSunset=_civilSunset;
-@synthesize nauticalSunrise=_nauticalSunrise;
-@synthesize nauticalSunset=_nauticalSunset;
-@synthesize astronomicalSunrise=_astronomicalSunrise;
-@synthesize astronomicalSunset=_astronomicalSunset;
+@synthesize solarNoon=_solarNoon;
+@synthesize civilDawn=_civilDawn;
+@synthesize civilDusk=_civilDusk;
+@synthesize nauticalDawn=_nauticalDawn;
+@synthesize nauticalDusk=_nauticalDusk;
+@synthesize astronomicalDawn=_astronomicalDawn;
+@synthesize astronomicalDusk=_astronomicalDusk;
 
 #pragma mark -
 #pragma mark Initializers

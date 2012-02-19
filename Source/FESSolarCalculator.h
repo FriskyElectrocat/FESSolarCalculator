@@ -42,12 +42,13 @@ typedef NSUInteger FESSolarCalculation;
 @property (nonatomic, readwrite, strong, setter=setLocation:) CLLocation *location;
 @property (nonatomic, readonly, strong) NSDate *sunrise; // AKA Official
 @property (nonatomic, readonly, strong) NSDate *sunset;  // AKA Official
-@property (nonatomic, readonly, strong) NSDate *civilSunrise;
-@property (nonatomic, readonly, strong) NSDate *civilSunset;
-@property (nonatomic, readonly, strong) NSDate *nauticalSunrise;
-@property (nonatomic, readonly, strong) NSDate *nauticalSunset;
-@property (nonatomic, readonly, strong) NSDate *astronomicalSunrise;
-@property (nonatomic, readonly, strong) NSDate *astronomicalSunset;
+@property (nonatomic, readonly, strong) NSDate *solarNoon;  // AKA Official
+@property (nonatomic, readonly, strong) NSDate *civilDawn;
+@property (nonatomic, readonly, strong) NSDate *civilDusk;
+@property (nonatomic, readonly, strong) NSDate *nauticalDawn;
+@property (nonatomic, readonly, strong) NSDate *nauticalDusk;
+@property (nonatomic, readonly, strong) NSDate *astronomicalDawn;
+@property (nonatomic, readonly, strong) NSDate *astronomicalDusk;
 
 - (id)initWithDate:(NSDate *)inDate andLocation:(CLLocation *)inLocation;
 - (void)calculate;
