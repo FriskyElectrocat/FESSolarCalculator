@@ -41,10 +41,13 @@
 @property (nonatomic, readwrite, strong) NSDate *astronomicalSunrise;
 @property (nonatomic, readwrite, strong) NSDate *astronomicalSunset;
 
+- (void)invalidateResults;
+
 @end
 
 @implementation FESSolarCalculator
 
+@synthesize operationsMask=_operationsMask;
 @synthesize startDate=_startDate;
 @synthesize location=_location;
 @synthesize sunrise=_sunrise;
@@ -56,23 +59,70 @@
 @synthesize astronomicalSunrise=_astronomicalSunrise;
 @synthesize astronomicalSunset=_astronomicalSunset;
 
+#pragma mark -
+#pragma mark Initializers
 
--(void)invalidateResults
+
+- (id)init
 {
-    
+    self = [super init];
+    if (self) {
+        // set our default operations mask
+        _operationsMask = FESSolarCalculationAll;
+        [self invalidateResults];
+    }
+    return self;
 }
 
--(void)setStartDate:(NSDate *)startDate
+- (id)initWithDate:(NSDate *)inDate andLocation:(CLLocation *)inLocation
+{
+    self = [self init];
+    if (self) {
+        [self setStartDate:inDate];
+        [self setLocation:inLocation];
+    }
+    return self;
+}
+
+#pragma mark -
+#pragma mark Property Ops
+
+- (void)setStartDate:(NSDate *)inDate
 {
     // override the default setter for startDate so that we can invalidate previous results
     [self invalidateResults];
+    _startDate = inDate;
 }
 
--(void)setLocation:(CLLocation *)location
+- (void)setLocation:(CLLocation *)inLocation
 {
     // override the default setter for location so that we can invalidate previous results
     [self invalidateResults];
+    _location = inLocation;
 }
 
+- (void)invalidateResults
+{
+    // when users set new inputs the output values need to be invalidated
+    _sunrise = nil;
+    _sunset = nil;
+    _civilSunrise = nil;
+    _civilSunset = nil;
+    _nauticalSunrise = nil;
+    _nauticalSunset = nil;
+    _astronomicalSunrise = nil;
+    _astronomicalSunset = nil;
+}
+
+#pragma mark -
+#pragma mark User Facing Methods
+
+- (void)calculate
+{
+    // run the calculations based on the users criteria
+}
+
+#pragma mark -
+#pragma mark Calculation Ops
 
 @end

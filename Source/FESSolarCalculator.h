@@ -26,30 +26,30 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
+enum {
+    FESSolarCalculationOfficial     = 1 << 0, // zenith 90° 50'
+    FESSolarCalculationCivil        = 1 << 1, // zenith 96°
+    FESSolarCalculationNautical     = 1 << 2, // zenith 102°
+    FESSolarCalculationAstronomical = 1 << 3, // zenith 108°
+    FESSolarCalculationAll          = ~0      // all calculations
+};
+typedef NSUInteger FESSolarCalculation;
+
 @interface FESSolarCalculator : NSObject
-/*{
-    NSDate *startDate;
-    CLLocation *location;
-    NSDate *sunrise;
-    NSDate *sunset;
-    NSDate *civilSunrise;
-    NSDate *civilSunset;
-    NSDate *nauticalSunrise;
-    NSDate *nauticalSunset;
-    NSDate *astronomicalSunrise;
-    NSDate *astronomicalSunset;
 
-}*/
-
+@property (nonatomic, readwrite) FESSolarCalculation operationsMask;  
 @property (nonatomic, readwrite, strong, setter=setStartDate:) NSDate *startDate;
 @property (nonatomic, readwrite, strong, setter=setLocation:) CLLocation *location;
-@property (nonatomic, readonly, strong) NSDate *sunrise;
-@property (nonatomic, readonly, strong) NSDate *sunset;
+@property (nonatomic, readonly, strong) NSDate *sunrise; // AKA Official
+@property (nonatomic, readonly, strong) NSDate *sunset;  // AKA Official
 @property (nonatomic, readonly, strong) NSDate *civilSunrise;
 @property (nonatomic, readonly, strong) NSDate *civilSunset;
 @property (nonatomic, readonly, strong) NSDate *nauticalSunrise;
 @property (nonatomic, readonly, strong) NSDate *nauticalSunset;
 @property (nonatomic, readonly, strong) NSDate *astronomicalSunrise;
 @property (nonatomic, readonly, strong) NSDate *astronomicalSunset;
+
+- (id)initWithDate:(NSDate *)inDate andLocation:(CLLocation *)inLocation;
+- (void)calculate;
 
 @end
