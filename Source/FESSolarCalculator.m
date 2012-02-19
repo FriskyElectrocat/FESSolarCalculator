@@ -108,12 +108,12 @@
     // when users set new inputs the output values need to be invalidated
     _sunrise = nil;
     _sunset = nil;
-    _civilSunrise = nil;
-    _civilSunset = nil;
-    _nauticalSunrise = nil;
-    _nauticalSunset = nil;
-    _astronomicalSunrise = nil;
-    _astronomicalSunset = nil;
+    _civilDawn = nil;
+    _civilDusk = nil;
+    _nauticalDawn = nil;
+    _nauticalDusk = nil;
+    _astronomicalDawn = nil;
+    _astronomicalDusk = nil;
 }
 
 #pragma mark -
