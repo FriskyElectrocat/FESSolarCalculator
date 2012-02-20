@@ -50,7 +50,8 @@ typedef NSUInteger FESSolarCalculation;
 @property (nonatomic, readonly, strong) NSDate *astronomicalDawn;
 @property (nonatomic, readonly, strong) NSDate *astronomicalDusk;
 
-- (id)initWithDate:(NSDate *)inDate andLocation:(CLLocation *)inLocation;
+- (id)initWithDate:(NSDate *)inDate location:(CLLocation *)inLocation;
+- (id)initWithDate:(NSDate *)inDate location:(CLLocation *)inLocation mask:(FESSolarCalculation)inMask;
 - (void)calculate;
 
 @end

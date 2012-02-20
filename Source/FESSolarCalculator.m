@@ -76,12 +76,21 @@
     return self;
 }
 
-- (id)initWithDate:(NSDate *)inDate andLocation:(CLLocation *)inLocation
+- (id)initWithDate:(NSDate *)inDate location:(CLLocation *)inLocation
 {
     self = [self init];
     if (self) {
         [self setStartDate:inDate];
         [self setLocation:inLocation];
+    }
+    return self;
+}
+
+- (id)initWithDate:(NSDate *)inDate location:(CLLocation *)inLocation mask:(FESSolarCalculation)inMask
+{
+    self = [self initWithDate:inDate location:inLocation];
+    if (self) {
+        [self setOperationsMask:inMask];
     }
     return self;
 }
@@ -108,6 +117,7 @@
     // when users set new inputs the output values need to be invalidated
     _sunrise = nil;
     _sunset = nil;
+    _solarNoon = nil;
     _civilDawn = nil;
     _civilDusk = nil;
     _nauticalDawn = nil;
