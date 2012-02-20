@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3716CA7114F1C49300417EDD /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3716CA7014F1C49300417EDD /* CoreLocation.framework */; };
+		3716CA7214F1C49A00417EDD /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3716CA7014F1C49300417EDD /* CoreLocation.framework */; };
 		377E29B614E75E2700FF0388 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 377E29B514E75E2700FF0388 /* UIKit.framework */; };
 		377E29B814E75E2700FF0388 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 377E29B714E75E2700FF0388 /* Foundation.framework */; };
 		377E29BA14E75E2700FF0388 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 377E29B914E75E2700FF0388 /* CoreGraphics.framework */; };
@@ -35,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3716CA7014F1C49300417EDD /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		377E29B114E75E2700FF0388 /* SolarCalculatorExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SolarCalculatorExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		377E29B514E75E2700FF0388 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		377E29B714E75E2700FF0388 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -64,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3716CA7214F1C49A00417EDD /* CoreLocation.framework in Frameworks */,
 				377E29B614E75E2700FF0388 /* UIKit.framework in Frameworks */,
 				377E29B814E75E2700FF0388 /* Foundation.framework in Frameworks */,
 				377E29BA14E75E2700FF0388 /* CoreGraphics.framework in Frameworks */,
@@ -74,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3716CA7114F1C49300417EDD /* CoreLocation.framework in Frameworks */,
 				377E29D714E75E2700FF0388 /* SenTestingKit.framework in Frameworks */,
 				377E29D814E75E2700FF0388 /* UIKit.framework in Frameworks */,
 				377E29D914E75E2700FF0388 /* Foundation.framework in Frameworks */,
@@ -86,6 +91,7 @@
 		377E29A614E75E2600FF0388 = {
 			isa = PBXGroup;
 			children = (
+				3716CA7014F1C49300417EDD /* CoreLocation.framework */,
 				377E29ED14E75EAC00FF0388 /* FESSolarCalculator */,
 				377E29BB14E75E2700FF0388 /* SolarCalculatorExample */,
 				377E29DC14E75E2700FF0388 /* SolarCalculatorExampleTests */,
