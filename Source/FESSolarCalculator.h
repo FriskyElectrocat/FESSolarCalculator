@@ -33,11 +33,13 @@ enum {
     FESSolarCalculationAstronomical = 1 << 3, // zenith 108°
     FESSolarCalculationAll          = ~0      // all calculations
 };
-typedef NSUInteger FESSolarCalculation;
+typedef NSUInteger FESSolarCalculationType;
 
+enum {
+    FESSolarCalculationRising  = 1 << 0,
 @interface FESSolarCalculator : NSObject
 
-@property (nonatomic, readwrite) FESSolarCalculation operationsMask;  
+@property (nonatomic, readwrite) FESSolarCalculationType operationsMask;  
 @property (nonatomic, readwrite, strong, setter=setStartDate:) NSDate *startDate;
 @property (nonatomic, readwrite, strong, setter=setLocation:) CLLocation *location;
 @property (nonatomic, readonly, strong) NSDate *sunrise; // AKA Official
@@ -51,7 +53,7 @@ typedef NSUInteger FESSolarCalculation;
 @property (nonatomic, readonly, strong) NSDate *astronomicalDusk;
 
 - (id)initWithDate:(NSDate *)inDate location:(CLLocation *)inLocation;
-- (id)initWithDate:(NSDate *)inDate location:(CLLocation *)inLocation mask:(FESSolarCalculation)inMask;
+- (id)initWithDate:(NSDate *)inDate location:(CLLocation *)inLocation mask:(FESSolarCalculationType)inMask;
 - (void)calculate;
 
 @end

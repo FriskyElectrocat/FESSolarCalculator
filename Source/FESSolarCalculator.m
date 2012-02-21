@@ -86,7 +86,7 @@
     return self;
 }
 
-- (id)initWithDate:(NSDate *)inDate location:(CLLocation *)inLocation mask:(FESSolarCalculation)inMask
+- (id)initWithDate:(NSDate *)inDate location:(CLLocation *)inLocation mask:(FESSolarCalculationType)inMask
 {
     self = [self initWithDate:inDate location:inLocation];
     if (self) {
