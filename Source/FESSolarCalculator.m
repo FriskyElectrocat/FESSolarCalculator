@@ -29,6 +29,7 @@
 #endif
 
 #import "FESSolarCalculator.h"
+#include "math.h"
 
 @interface FESSolarCalculator ( )
 
@@ -132,9 +133,50 @@
 - (void)calculate
 {
     // run the calculations based on the users criteria
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSUInteger numberDayOfYear = [gregorian ordinalityOfUnit:NSDayCalendarUnit inUnit:NSYearCalendarUnit forDate:[NSDate date]];
+    
+    NSLog(@"blah %i", numberDayOfYear);
 }
 
 #pragma mark -
 #pragma mark Calculation Ops
+
+- (float)approximateTimeFromDayOfYear:(NSUInteger)dayOfYear longitude:(CLLocationDegrees)longitude direction:(FESSolarCalculationDirection)direction
+{
+    float longitudeHour = longitude / 15.0;
+    float baseTime = 6;
+    if ((direction & FESSolarCalculationSetting) == FESSolarCalculationSetting) {
+        baseTime = 18;
+    } 
+    // t = N + ((18 - lngHour) / 24)
+    float approximateTime = dayOfYear + ((baseTime - longitudeHour) / 24.0);
+    return approximateTime;
+}
+
+- (float)sunsMeanAnomolyFromApproximateTime:(float)approximateTime
+{
+    // M = (0.9856 * t) - 3.289
+    float sunsMeanAnomoly = (0.9856 * approximateTime) - 3.289;
+    return sunsMeanAnomoly;
+}
+
+- (float)sunsTrueLongitudeFromMeanAnomoly:(float)meanAnomoly
+{
+    // L = M + (1.916 * sin(M)) + (0.020 * sin(2 * M)) + 282.634
+    float meanAnomolyinRadians = meanAnomoly * M_PI / 180;
+    float trueLongitude = meanAnomoly + (1.916 * sin(meanAnomolyinRadians)) + (0.020 * sin(2 * meanAnomolyinRadians)) + 282.634;
+    if (trueLongitude > 360.0) {
+        trueLongitude -= 360.0;
+    } else if (trueLongitude < 0.0) {
+        trueLongitude += 360.0;        
+    }
+    return trueLongitude;
+}
+
+//- (float)sunsRightAscensionFromTrueLongitude:(float)trueLongitude
+//{
+//    
+//}
 
 @end
