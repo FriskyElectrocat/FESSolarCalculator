@@ -30,6 +30,8 @@
 
 @implementation SolarCalculatorExampleTests
 
+@synthesize solarCalculation=_solarCalculation;
+
 - (void)setUp
 {
     [super setUp];
@@ -42,37 +44,68 @@
     // Tear-down code here.
     
     [super tearDown];
+    _solarCalculation = nil;
 }
 
-- (void)testInvalidateResults
+- (void)testResultsNotNil
 {
     NSDate *startDate = [NSDate date];
     CLLocation *startLocation = [[CLLocation alloc] initWithLatitude:27.771667 longitude:-122.223333];
-    FESSolarCalculator *solarCalculation = [[FESSolarCalculator alloc] initWithDate:startDate location:startLocation];
-    [solarCalculation calculate];
+    _solarCalculation = [[FESSolarCalculator alloc] initWithDate:startDate location:startLocation];
+    [[self solarCalculation] calculate];
 
-    STAssertNotNil([solarCalculation sunrise], @"sunrise is nil after calculation run");
-    STAssertNotNil([solarCalculation sunset], @"sunset is nil after calculation run");
-    STAssertNotNil([solarCalculation solarNoon], @"solarNoon is nil after calculation run");
-    STAssertNotNil([solarCalculation civilDawn], @"civilDawn is nil after calculation run");
-    STAssertNotNil([solarCalculation civilDusk], @"civilDusk is nil after calculation run");
-    STAssertNotNil([solarCalculation nauticalDawn], @"nauticalDawn is nil after calculation run");
-    STAssertNotNil([solarCalculation nauticalDusk], @"nauticalDusk is nil after calculation run");
-    STAssertNotNil([solarCalculation astronomicalDawn], @"astronomicalDawn is nil after calculation run");
-    STAssertNotNil([solarCalculation astronomicalDusk], @"astronomicalDusk is nil after calculation run");
+    STAssertNotNil([[self solarCalculation] sunrise], @"sunrise is nil after calculation run");
+    STAssertNotNil([[self solarCalculation] sunset], @"sunset is nil after calculation run");
+    STAssertNotNil([[self solarCalculation] solarNoon], @"solarNoon is nil after calculation run");
+    STAssertNotNil([[self solarCalculation] civilDawn], @"civilDawn is nil after calculation run");
+    STAssertNotNil([[self solarCalculation] civilDusk], @"civilDusk is nil after calculation run");
+    STAssertNotNil([[self solarCalculation] nauticalDawn], @"nauticalDawn is nil after calculation run");
+    STAssertNotNil([[self solarCalculation] nauticalDusk], @"nauticalDusk is nil after calculation run");
+    STAssertNotNil([[self solarCalculation] astronomicalDawn], @"astronomicalDawn is nil after calculation run");
+    STAssertNotNil([[self solarCalculation] astronomicalDusk], @"astronomicalDusk is nil after calculation run");
 
+}
+
+- (void)testInvalidateResultsByDate
+{
+    NSDate *startDate = [NSDate date];
+    CLLocation *startLocation = [[CLLocation alloc] initWithLatitude:27.771667 longitude:-122.223333];
+    _solarCalculation = [[FESSolarCalculator alloc] initWithDate:startDate location:startLocation];
+    [[self solarCalculation] calculate];
     // setting the date should invalidate the previous results
-    [solarCalculation setStartDate:startDate];
+    STAssertNotNil([[self solarCalculation] sunrise], @"sunrise is nil after calculation run");
+    [[self solarCalculation] setStartDate:startDate];
     
-    STAssertEqualObjects([solarCalculation sunrise], nil, @"- invalidateResults did not set sunrise to nil");
-    STAssertEqualObjects([solarCalculation sunset], nil, @"- invalidateResults did not set sunset to nil");
-    STAssertEqualObjects([solarCalculation solarNoon], nil, @"- invalidateResults did not set solarNoon to nil");
-    STAssertEqualObjects([solarCalculation civilDawn], nil, @"- invalidateResults did not set civilDawn to nil");
-    STAssertEqualObjects([solarCalculation civilDusk], nil, @"- invalidateResults did not set civilDusk to nil");
-    STAssertEqualObjects([solarCalculation nauticalDawn], nil, @"- invalidateResults did not set nauticalDawn to nil");
-    STAssertEqualObjects([solarCalculation nauticalDusk], nil, @"- invalidateResults did not set nauticalDusk to nil");
-    STAssertEqualObjects([solarCalculation astronomicalDawn], nil, @"- invalidateResults did not set astronomicalDawn to nil");
-    STAssertEqualObjects([solarCalculation astronomicalDusk], nil, @"- invalidateResults did not set astronomicalDusk to nil");
+    STAssertEqualObjects([[self solarCalculation] sunrise], nil, @"resetting date did not set sunrise to nil");
+    STAssertEqualObjects([[self solarCalculation] sunset], nil, @"resetting date did not set sunset to nil");
+    STAssertEqualObjects([[self solarCalculation] solarNoon], nil, @"resetting date did not set solarNoon to nil");
+    STAssertEqualObjects([[self solarCalculation] civilDawn], nil, @"resetting date did not set civilDawn to nil");
+    STAssertEqualObjects([[self solarCalculation] civilDusk], nil, @"resetting date did not set civilDusk to nil");
+    STAssertEqualObjects([[self solarCalculation] nauticalDawn], nil, @"resetting date did not set nauticalDawn to nil");
+    STAssertEqualObjects([[self solarCalculation] nauticalDusk], nil, @"resetting date did not set nauticalDusk to nil");
+    STAssertEqualObjects([[self solarCalculation] astronomicalDawn], nil, @"resetting date did not set astronomicalDawn to nil");
+    STAssertEqualObjects([[self solarCalculation] astronomicalDusk], nil, @"resetting date did not set astronomicalDusk to nil");
+}
+
+- (void)testInvalidateResultsByLocation
+{
+    NSDate *startDate = [NSDate date];
+    CLLocation *startLocation = [[CLLocation alloc] initWithLatitude:27.771667 longitude:-122.223333];
+    _solarCalculation = [[FESSolarCalculator alloc] initWithDate:startDate location:startLocation];
+    [[self solarCalculation] calculate];
+    // setting the date should invalidate the previous results
+    STAssertNotNil([[self solarCalculation] sunrise], @"sunrise is nil after calculation run");
+    [[self solarCalculation] setLocation:startLocation];
+    
+    STAssertEqualObjects([[self solarCalculation] sunrise], nil, @"resetting date did not set sunrise to nil");
+    STAssertEqualObjects([[self solarCalculation] sunset], nil, @"resetting date did not set sunset to nil");
+    STAssertEqualObjects([[self solarCalculation] solarNoon], nil, @"resetting date did not set solarNoon to nil");
+    STAssertEqualObjects([[self solarCalculation] civilDawn], nil, @"resetting date did not set civilDawn to nil");
+    STAssertEqualObjects([[self solarCalculation] civilDusk], nil, @"resetting date did not set civilDusk to nil");
+    STAssertEqualObjects([[self solarCalculation] nauticalDawn], nil, @"resetting date did not set nauticalDawn to nil");
+    STAssertEqualObjects([[self solarCalculation] nauticalDusk], nil, @"resetting date did not set nauticalDusk to nil");
+    STAssertEqualObjects([[self solarCalculation] astronomicalDawn], nil, @"resetting date did not set astronomicalDawn to nil");
+    STAssertEqualObjects([[self solarCalculation] astronomicalDusk], nil, @"resetting date did not set astronomicalDusk to nil");
 }
 
 - (void)testKnownDateLocation_0
