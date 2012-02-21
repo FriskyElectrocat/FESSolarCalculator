@@ -26,6 +26,11 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
+extern float const FESSolarCalculationZenithOfficial;
+extern float const FESSolarCalculationZenithCivil;
+extern float const FESSolarCalculationZenithNautical;
+extern float const FESSolarCalculationZenithAstronomical;
+
 enum {
     FESSolarCalculationOfficial     = 1 << 0, // zenith 90° 50'
     FESSolarCalculationCivil        = 1 << 1, // zenith 96°

@@ -31,6 +31,11 @@
 #import "FESSolarCalculator.h"
 #include "math.h"
 
+float const FESSolarCalculatorZenithOfficial = 90.8333;
+float const FESSolarCalculatorZenithCivil = 96.0;
+float const FESSolarCalculatorZenithNautical = 102.0;
+float const FESSolarCalculatorZenithAstronomical = 108.0;
+
 @interface FESSolarCalculator ( )
 
 @property (nonatomic, readwrite, strong) NSDate *sunrise;
@@ -165,7 +170,7 @@
 {
     // L = M + (1.916 * sin(M)) + (0.020 * sin(2 * M)) + 282.634
     float meanAnomolyinRadians = meanAnomoly * M_PI / 180;
-    float trueLongitude = meanAnomoly + (1.916 * sin(meanAnomolyinRadians)) + (0.020 * sin(2 * meanAnomolyinRadians)) + 282.634;
+    float trueLongitude = meanAnomoly + (1.916 * sinf(meanAnomolyinRadians)) + (0.020 * sinf(2 * meanAnomolyinRadians)) + 282.634;
     if (trueLongitude > 360.0) {
         trueLongitude -= 360.0;
     } else if (trueLongitude < 0.0) {
@@ -174,9 +179,55 @@
     return trueLongitude;
 }
 
-//- (float)sunsRightAscensionFromTrueLongitude:(float)trueLongitude
-//{
-//    
-//}
+- (float)sunsRightAscensionFromTrueLongitude:(float)trueLongitude
+{
+    // RA = atan(0.91764 * tan(L))
+    // Lquadrant  = (floor( L/90)) * 90
+	// RAquadrant = (floor(RA/90)) * 90
+	// RA = RA + (Lquadrant - RAquadrant)
+    // RA = RA / 15
+    
+    float rightAscension = atanf(0.91764  * tanf(trueLongitude));
+    float Lquadrant = floorf(trueLongitude/90) * 90;
+    float RAquadrant = floorf(rightAscension/90) *90;
+    rightAscension = rightAscension + (Lquadrant - RAquadrant);
+    rightAscension = rightAscension / 15.0;
+    return rightAscension;
+}
+
+- (float)sunsLocalHourAngleFromTrueLongitude:(float)trueLongitude latitude:(CLLocationDegrees)latitude zenith:(float)zenith direction:(FESSolarCalculationDirection)direction
+{
+    // sinDec = 0.39782 * sin(L)
+	// cosDec = cos(asin(sinDec))
+    
+    float sinDeclination = 0.39782 * sinf(trueLongitude * M_PI / 180);
+    float cosDeclination = cos(asin(sinDeclination));
+    
+    // cosH = (cos(zenith) - (sinDec * sin(latitude))) / (cosDec * cos(latitude))
+
+    float latitudeInRadians = latitude * M_PI / 180;
+    float cosH = (cosf(zenith) - (sinDeclination * sinf(latitudeInRadians))) / (cosDeclination * cosf(latitudeInRadians));
+
+	// if (cosH >  1) 
+	//  the sun never rises on this location (on the specified date)
+	// if (cosH < -1)
+	//  the sun never sets on this location (on the specified date)
+
+    // TODO: figure out how to specify the sun never rises or sets (find the next day it does?)
+
+    // if rising time is desired:
+	//   H = 360 - acos(cosH)
+	// if setting time is desired:
+	//   H = acos(cosH)
+
+    float sunsLocalHourAngle = acosf(cosH);
+    if ((direction & FESSolarCalculationRising) == FESSolarCalculationRising) {
+        sunsLocalHourAngle = 360.0 - sunsLocalHourAngle;
+    }
+	
+    // H = H / 15
+    sunsLocalHourAngle = sunsLocalHourAngle / 15.0;
+
+}
 
 @end
