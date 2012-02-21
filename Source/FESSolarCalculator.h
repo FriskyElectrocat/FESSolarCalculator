@@ -37,6 +37,14 @@ typedef NSUInteger FESSolarCalculationType;
 
 enum {
     FESSolarCalculationRising  = 1 << 0,
+    FESSolarCalculationSetting = 1 << 1
+};
+typedef NSUInteger FESSolarCalculationDirection;
+
+//#if __has_feature(objc_fixed_enum)
+//typedef enum : unsigned char { Red, Green, Blue } Color;
+//#endif
+
 @interface FESSolarCalculator : NSObject
 
 @property (nonatomic, readwrite) FESSolarCalculationType operationsMask;  
