@@ -25,7 +25,10 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
+#import "FESSolarCalculator.h"
 
 @interface SolarCalculatorExampleTests : SenTestCase
+
+@property (nonatomic, readwrite, strong) FESSolarCalculator *solarCalculation;
 
 @end

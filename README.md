@@ -9,7 +9,7 @@ Calculate sunrise, sunset, and twilight times for a given location.
         * may not be on that day
     * Sunset date and time for that location
         * may not be on that day
-    * Sunrise/Sunset times for that location:
+    * Dawn and Dusk times for that location:
         * Official
         * Civil
         * Nautical
@@ -29,12 +29,13 @@ There is only one class: `FESSolarCalculator`
 * property readwrite: CLLocation location
 * property readonly: NSDate sunrise (Official)
 * property readonly: NSDate sunset (Official)
-* property readonly: NSDate civilSunrise
-* property readonly: NSDate civilSunset
-* property readonly: NSDate nauticalSunrise
-* property readonly: NSDate nauticalSunset
-* property readonly: NSDate astronomicalSunrise
-* property readonly: NSDate astronomicalSunset
+* property readonly: NSDate solarNoon
+* property readonly: NSDate civilDawn
+* property readonly: NSDate civilDusk
+* property readonly: NSDate nauticalDawn
+* property readonly: NSDate nauticalDusk
+* property readonly: NSDate astronomicalDawn
+* property readonly: NSDate astronomicalDusk
 * setting new date or location invalidates the current calculations
 * provide isSunUp() method? Needs modification based on which zenith
 
