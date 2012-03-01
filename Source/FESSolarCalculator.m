@@ -231,4 +231,24 @@ double const FESSolarCalculatorZenithAstronomical = 108.0;
     return sunsLocalHourAngle;
 }
 
+- (double)calculateLocalMeanTimeFromLocalHourAngle:(double)localHourAngle rightAscension:(double)rightAscension approximateTime:(double)approximateTime
+{
+    // T = H + RA - (0.06571 * t) - 6.622
+    double localMeanTime = localHourAngle + rightAscension - (0.06571 * approximateTime) - 6.622;
+    return localMeanTime;
+}
+
+- (double)convertToUTCFromLocalMeanTime:(double)localMeanTime longitudeHour:(double)longitudeHour
+{
+    // UT = T - lngHour
+    // NOTE: UT potentially needs to be adjusted into the range [0,24) by adding/subtracting 24
+    double timeinUTC = localMeanTime - longitudeHour;
+    if (timeinUTC > 24.0) {
+        timeinUTC -= 24.0;
+    } else if (timeinUTC < 0.0) {
+        timeinUTC += 24.0;
+    }
+    return timeinUTC;
+}
+
 @end
