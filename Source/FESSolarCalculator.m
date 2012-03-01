@@ -31,10 +31,10 @@
 #import "FESSolarCalculator.h"
 #include "math.h"
 
-float const FESSolarCalculatorZenithOfficial = 90.8333;
-float const FESSolarCalculatorZenithCivil = 96.0;
-float const FESSolarCalculatorZenithNautical = 102.0;
-float const FESSolarCalculatorZenithAstronomical = 108.0;
+double const FESSolarCalculatorZenithOfficial = 90.8333;
+double const FESSolarCalculatorZenithCivil = 96.0;
+double const FESSolarCalculatorZenithNautical = 102.0;
+double const FESSolarCalculatorZenithAstronomical = 108.0;
 
 @interface FESSolarCalculator ( )
 
@@ -147,30 +147,30 @@ float const FESSolarCalculatorZenithAstronomical = 108.0;
 #pragma mark -
 #pragma mark Calculation Ops
 
-- (float)approximateTimeFromDayOfYear:(NSUInteger)dayOfYear longitude:(CLLocationDegrees)longitude direction:(FESSolarCalculationDirection)direction
+- (double)approximateTimeFromDayOfYear:(NSUInteger)dayOfYear longitude:(CLLocationDegrees)longitude direction:(FESSolarCalculationDirection)direction
 {
-    float longitudeHour = longitude / 15.0;
-    float baseTime = 6;
+    double longitudeHour = longitude / 15.0;
+    double baseTime = 6;
     if ((direction & FESSolarCalculationSetting) == FESSolarCalculationSetting) {
         baseTime = 18;
     } 
     // t = N + ((18 - lngHour) / 24)
-    float approximateTime = dayOfYear + ((baseTime - longitudeHour) / 24.0);
+    double approximateTime = dayOfYear + ((baseTime - longitudeHour) / 24.0);
     return approximateTime;
 }
 
-- (float)sunsMeanAnomolyFromApproximateTime:(float)approximateTime
+- (double)sunsMeanAnomolyFromApproximateTime:(double)approximateTime
 {
     // M = (0.9856 * t) - 3.289
-    float sunsMeanAnomoly = (0.9856 * approximateTime) - 3.289;
+    double sunsMeanAnomoly = (0.9856 * approximateTime) - 3.289;
     return sunsMeanAnomoly;
 }
 
-- (float)sunsTrueLongitudeFromMeanAnomoly:(float)meanAnomoly
+- (double)sunsTrueLongitudeFromMeanAnomoly:(double)meanAnomoly
 {
     // L = M + (1.916 * sin(M)) + (0.020 * sin(2 * M)) + 282.634
-    float meanAnomolyinRadians = meanAnomoly * M_PI / 180;
-    float trueLongitude = meanAnomoly + (1.916 * sinf(meanAnomolyinRadians)) + (0.020 * sinf(2 * meanAnomolyinRadians)) + 282.634;
+    double meanAnomolyinRadians = meanAnomoly * M_PI / 180;
+    double trueLongitude = meanAnomoly + (1.916 * sin(meanAnomolyinRadians)) + (0.020 * sin(2 * meanAnomolyinRadians)) + 282.634;
     if (trueLongitude > 360.0) {
         trueLongitude -= 360.0;
     } else if (trueLongitude < 0.0) {
@@ -179,7 +179,7 @@ float const FESSolarCalculatorZenithAstronomical = 108.0;
     return trueLongitude;
 }
 
-- (float)sunsRightAscensionFromTrueLongitude:(float)trueLongitude
+- (double)sunsRightAscensionFromTrueLongitude:(double)trueLongitude
 {
     // RA = atan(0.91764 * tan(L))
     // Lquadrant  = (floor( L/90)) * 90
@@ -187,26 +187,26 @@ float const FESSolarCalculatorZenithAstronomical = 108.0;
 	// RA = RA + (Lquadrant - RAquadrant)
     // RA = RA / 15
     
-    float rightAscension = atanf(0.91764  * tanf(trueLongitude));
-    float Lquadrant = floorf(trueLongitude/90) * 90;
-    float RAquadrant = floorf(rightAscension/90) *90;
+    double rightAscension = atan(0.91764  * tan(trueLongitude));
+    double Lquadrant = floor(trueLongitude/90) * 90;
+    double RAquadrant = floor(rightAscension/90) *90;
     rightAscension = rightAscension + (Lquadrant - RAquadrant);
     rightAscension = rightAscension / 15.0;
     return rightAscension;
 }
 
-- (float)sunsLocalHourAngleFromTrueLongitude:(float)trueLongitude latitude:(CLLocationDegrees)latitude zenith:(float)zenith direction:(FESSolarCalculationDirection)direction
+- (double)sunsLocalHourAngleFromTrueLongitude:(double)trueLongitude latitude:(CLLocationDegrees)latitude zenith:(double)zenith direction:(FESSolarCalculationDirection)direction
 {
     // sinDec = 0.39782 * sin(L)
 	// cosDec = cos(asin(sinDec))
     
-    float sinDeclination = 0.39782 * sinf(trueLongitude * M_PI / 180);
-    float cosDeclination = cos(asin(sinDeclination));
+    double sinDeclination = 0.39782 * sin(trueLongitude * M_PI / 180);
+    double cosDeclination = cos(asin(sinDeclination));
     
     // cosH = (cos(zenith) - (sinDec * sin(latitude))) / (cosDec * cos(latitude))
 
-    float latitudeInRadians = latitude * M_PI / 180;
-    float cosH = (cosf(zenith) - (sinDeclination * sinf(latitudeInRadians))) / (cosDeclination * cosf(latitudeInRadians));
+    double latitudeInRadians = latitude * M_PI / 180;
+    double cosH = (cos(zenith) - (sinDeclination * sin(latitudeInRadians))) / (cosDeclination * cos(latitudeInRadians));
 
 	// if (cosH >  1) 
 	//  the sun never rises on this location (on the specified date)
@@ -220,7 +220,7 @@ float const FESSolarCalculatorZenithAstronomical = 108.0;
 	// if setting time is desired:
 	//   H = acos(cosH)
 
-    float sunsLocalHourAngle = acosf(cosH);
+    double sunsLocalHourAngle = acos(cosH);
     if ((direction & FESSolarCalculationRising) == FESSolarCalculationRising) {
         sunsLocalHourAngle = 360.0 - sunsLocalHourAngle;
     }
@@ -228,6 +228,7 @@ float const FESSolarCalculatorZenithAstronomical = 108.0;
     // H = H / 15
     sunsLocalHourAngle = sunsLocalHourAngle / 15.0;
 
+    return sunsLocalHourAngle;
 }
 
 @end
