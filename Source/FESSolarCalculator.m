@@ -36,6 +36,9 @@ double const FESSolarCalculationZenithCivil = 96.0;
 double const FESSolarCalculationZenithNautical = 102.0;
 double const FESSolarCalculationZenithAstronomical = 108.0;
 
+double const toRadians = M_PI / 180;
+double const toDegrees = 180 / M_PI;
+
 @interface FESSolarCalculator ( )
 
 @property (nonatomic, readwrite, strong) NSDate *sunrise;
@@ -190,7 +193,7 @@ double const FESSolarCalculationZenithAstronomical = 108.0;
 - (double)sunsTrueLongitudeFromMeanAnomoly:(double)meanAnomoly
 {
     // L = M + (1.916 * sin(M)) + (0.020 * sin(2 * M)) + 282.634
-    double meanAnomolyinRadians = meanAnomoly * M_PI / 180;
+    double meanAnomolyinRadians = meanAnomoly * toRadians;
     double trueLongitude = meanAnomoly + (1.916 * sin(meanAnomolyinRadians)) + (0.020 * sin(2 * meanAnomolyinRadians)) + 282.634;
     if (trueLongitude > 360.0) {
         trueLongitude -= 360.0;
@@ -208,9 +211,9 @@ double const FESSolarCalculationZenithAstronomical = 108.0;
 	// RA = RA + (Lquadrant - RAquadrant)
     // RA = RA / 15
     
-    double tanL = tan(trueLongitude * M_PI/180);
+    double tanL = tan(trueLongitude * toRadians);
     NSLog(@"  ==> tanL: %f", tanL);
-    double rightAscension = atan(0.91764 * tanL) * 180 / M_PI;
+    double rightAscension = atan(0.91764 * tanL) * toDegrees;
     NSLog(@"  ==> RA: %f", rightAscension);
     double Lquadrant = floor(trueLongitude/90) * 90;
     NSLog(@"  ==> Lquad: %f", Lquadrant);
@@ -226,13 +229,13 @@ double const FESSolarCalculationZenithAstronomical = 108.0;
     // sinDec = 0.39782 * sin(L)
 	// cosDec = cos(asin(sinDec))
     
-    double sinDeclination = 0.39782 * sin(trueLongitude * M_PI / 180);
+    double sinDeclination = 0.39782 * sin(trueLongitude * toRadians);
     double cosDeclination = cos(asin(sinDeclination));
     
     // cosH = (cos(zenith) - (sinDec * sin(latitude))) / (cosDec * cos(latitude))
 
-    double latitudeInRadians = latitude * M_PI / 180;
-    double cosH = (cos(zenith * M_PI/180) - (sinDeclination * sin(latitudeInRadians))) / (cosDeclination * cos(latitudeInRadians));
+    double latitudeInRadians = latitude * toRadians;
+    double cosH = (cos(zenith * toRadians) - (sinDeclination * sin(latitudeInRadians))) / (cosDeclination * cos(latitudeInRadians));
 
 	// if (cosH >  1) 
 	//  the sun never rises on this location (on the specified date)
@@ -248,7 +251,7 @@ double const FESSolarCalculationZenithAstronomical = 108.0;
 	// if setting time is desired:
 	//   H = acos(cosH)
 
-    double sunsLocalHourAngle = acos(cosH) * 180 / M_PI;
+    double sunsLocalHourAngle = acos(cosH) * toDegrees;
     NSLog(@"  ==> local hour angle: %f", sunsLocalHourAngle);
     if ((direction & FESSolarCalculationRising) == FESSolarCalculationRising) {
         sunsLocalHourAngle = 360.0 - sunsLocalHourAngle;
