@@ -31,6 +31,15 @@
 #import "FESSolarCalculator.h"
 #include "math.h"
 
+//#if defined(FESSOLARCALCULATOR_DEBUG) && (FESSOLARCALCULATOR_DEBUG == 1)
+#if defined(DEBUG) && (DEBUG == 1)
+    #define dNSLog( a, var_args1... ) NSLog( a, ## var_args1 )
+    #define dElseNSLog( a, var_args1...) else NSLog( a, ## var_args1 )
+#else
+    #define dNSLog( a, var_args...)
+    #define dElseNSLog( a, var_args1...)
+#endif
+
 double const FESSolarCalculationZenithOfficial = 90.8333;
 double const FESSolarCalculationZenithCivil = 96.0;
 double const FESSolarCalculationZenithNautical = 102.0;
@@ -144,23 +153,23 @@ double const toDegrees = 180 / M_PI;
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSUInteger numberDayOfYear = [gregorian ordinalityOfUnit:NSDayCalendarUnit inUnit:NSYearCalendarUnit forDate:self.startDate];
     
-    NSLog(@"number day of year: %i", numberDayOfYear);
+    dNSLog(@"number day of year: %i", numberDayOfYear);
     double longitudeHour = [self longitudeHourFromLongitude:self.location.coordinate.longitude];
-    NSLog(@"longitude hour: %f", longitudeHour);
+    dNSLog(@"longitude hour: %f", longitudeHour);
     double approximateTime = [self approximateTimeFromDayOfYear:numberDayOfYear longitudeHour:longitudeHour direction:FESSolarCalculationRising];
-    NSLog(@"approximate time: %f", approximateTime);
+    dNSLog(@"approximate time: %f", approximateTime);
     double meanAnomoly = [self sunsMeanAnomolyFromApproximateTime:approximateTime];
-    NSLog(@"mean anomoly: %f", meanAnomoly);
+    dNSLog(@"mean anomoly: %f", meanAnomoly);
     double trueLongitude = [self sunsTrueLongitudeFromMeanAnomoly:meanAnomoly];
-    NSLog(@"true longitude: %f", trueLongitude);
+    dNSLog(@"true longitude: %f", trueLongitude);
     double rightAscension = [self sunsRightAscensionFromTrueLongitude:trueLongitude];
-    NSLog(@"right ascension: %f", rightAscension);
+    dNSLog(@"right ascension: %f", rightAscension);
     double localHourAngle = [self sunsLocalHourAngleFromTrueLongitude:trueLongitude latitude:self.location.coordinate.latitude zenith:FESSolarCalculationZenithOfficial direction:FESSolarCalculationRising];
-    NSLog(@"local hour angle: %f", localHourAngle);
+    dNSLog(@"local hour angle: %f", localHourAngle);
     double localMeanTime = [self calculateLocalMeanTimeFromLocalHourAngle:localHourAngle rightAscension:rightAscension approximateTime:approximateTime];
-    NSLog(@"local mean time: %f", localMeanTime);
+    dNSLog(@"local mean time: %f", localMeanTime);
     double timeInUTC = [self convertToUTCFromLocalMeanTime:localMeanTime longitudeHour:longitudeHour];
-    NSLog(@"time in UTC: %f", timeInUTC);
+    dNSLog(@"time in UTC: %f", timeInUTC);
 }
 
 #pragma mark -
@@ -212,13 +221,13 @@ double const toDegrees = 180 / M_PI;
     // RA = RA / 15
     
     double tanL = tan(trueLongitude * toRadians);
-    NSLog(@"  ==> tanL: %f", tanL);
+    dNSLog(@"  ==> tanL: %f", tanL);
     double rightAscension = atan(0.91764 * tanL) * toDegrees;
-    NSLog(@"  ==> RA: %f", rightAscension);
+    dNSLog(@"  ==> RA: %f", rightAscension);
     double Lquadrant = floor(trueLongitude/90) * 90;
-    NSLog(@"  ==> Lquad: %f", Lquadrant);
+    dNSLog(@"  ==> Lquad: %f", Lquadrant);
     double RAquadrant = floor(rightAscension/90) * 90;
-    NSLog(@"  ==> RAquad: %f", RAquadrant);
+    dNSLog(@"  ==> RAquad: %f", RAquadrant);
     rightAscension += (Lquadrant - RAquadrant);
     rightAscension /=  15.0;
     return rightAscension;
@@ -242,7 +251,7 @@ double const toDegrees = 180 / M_PI;
 	// if (cosH < -1)
 	//  the sun never sets on this location (on the specified date)
 
-    NSLog(@"  ==> cosH: %f", cosH);
+    dNSLog(@"  ==> cosH: %f", cosH);
     
     // TODO: figure out how to specify the sun never rises or sets (find the next day it does?)
 
@@ -252,15 +261,15 @@ double const toDegrees = 180 / M_PI;
 	//   H = acos(cosH)
 
     double sunsLocalHourAngle = acos(cosH) * toDegrees;
-    NSLog(@"  ==> local hour angle: %f", sunsLocalHourAngle);
+    dNSLog(@"  ==> local hour angle: %f", sunsLocalHourAngle);
     if ((direction & FESSolarCalculationRising) == FESSolarCalculationRising) {
         sunsLocalHourAngle = 360.0 - sunsLocalHourAngle;
     }
-    NSLog(@"  ==> local hour angle: %f", sunsLocalHourAngle);
+    dNSLog(@"  ==> local hour angle: %f", sunsLocalHourAngle);
 	
     // H = H / 15
     sunsLocalHourAngle = sunsLocalHourAngle / 15.0;
-    NSLog(@"  ==> local hour angle: %f", sunsLocalHourAngle);
+    dNSLog(@"  ==> local hour angle: %f", sunsLocalHourAngle);
 
     return sunsLocalHourAngle;
 }

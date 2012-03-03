@@ -391,6 +391,7 @@
 		377E29E814E75E2700FF0388 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FESSOLARCALCULATOR_DEBUG = "FESSOLARCALCULATOR_DEBUG=1";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SolarCalculatorExample/SolarCalculatorExample-Prefix.pch";
 				INFOPLIST_FILE = "SolarCalculatorExample/SolarCalculatorExample-Info.plist";
@@ -402,6 +403,7 @@
 		377E29E914E75E2700FF0388 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FESSOLARCALCULATOR_DEBUG = "FESSOLARCALCULATOR_DEBUG=0";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SolarCalculatorExample/SolarCalculatorExample-Prefix.pch";
 				INFOPLIST_FILE = "SolarCalculatorExample/SolarCalculatorExample-Info.plist";
@@ -414,6 +416,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SolarCalculatorExample.app/SolarCalculatorExample";
+				FESSOLARCALCULATOR_DEBUG = "FESSOLARCALCULATOR_DEBUG=1";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
@@ -431,6 +434,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SolarCalculatorExample.app/SolarCalculatorExample";
+				FESSOLARCALCULATOR_DEBUG = "FESSOLARCALCULATOR_DEBUG=1";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
