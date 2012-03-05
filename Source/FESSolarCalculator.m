@@ -24,7 +24,7 @@
 //  THE SOFTWARE.
 //
 
-// math source: http://williams.best.vwh.net/sunrise_sunset_example.htm
+// math source: http://williams.best.vwh.net/sunrise_sunset_algorithm.htm
 
 #if ! __has_feature(objc_arc)
 #error This file must be compiled with ARC.
@@ -178,8 +178,10 @@ double const toDegrees = 180 / M_PI;
         double localHourAngle = [self sunsLocalHourAngleFromTrueLongitude:trueLongitude latitude:self.location.coordinate.latitude zenith:zenith direction:direction];
         double localMeanTime = [self calculateLocalMeanTimeFromLocalHourAngle:localHourAngle rightAscension:rightAscension approximateTime:approximateTime];
         double timeInUTC = [self convertToUTCFromLocalMeanTime:localMeanTime longitudeHour:longitudeHour];
-        
-        NSDateComponents *components = [gregorian components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSTimeZoneCalendarUnit) fromDate:self.startDate];
+
+        NSLog(@"local hour: %f", localHourAngle);
+        NSLog(@"time in UTC: %f", timeInUTC);
+        NSDateComponents *components = [gregorian components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:self.startDate];
         [components setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
         [components setHour:(int)round(timeInUTC)];
         double minutes = (timeInUTC - round(timeInUTC)) * 60;
@@ -187,6 +189,9 @@ double const toDegrees = 180 / M_PI;
         [components setSecond:(int)((minutes - round(minutes)) * 60)];
         
         NSDate *setDate = [gregorian dateFromComponents:components];
+        NSLog(@"start: %@", self.startDate);
+        NSLog(@"set: %@", setDate);
+        
         if ((calculationType & FESSolarCalculationOfficial) == FESSolarCalculationOfficial) {
             if ((direction & FESSolarCalculationRising) == FESSolarCalculationRising) {
                 _sunrise = setDate;
@@ -223,7 +228,7 @@ double const toDegrees = 180 / M_PI;
         computeSolarData(FESSolarCalculationOfficial, FESSolarCalculationSetting, FESSolarCalculationZenithOfficial);
         NSLog(@"sunrise: %@", self.sunrise);
         NSLog(@"sunset: %@", self.sunset);
-        NSTimeInterval dayLength = [self.sunset timeIntervalSinceDate:self.sunrise] / 60 / 60;
+        NSTimeInterval dayLength = [self.sunset timeIntervalSinceDate:self.sunrise] / 60.0 / 60.0;
         NSLog(@"day length: %f", dayLength);
         double halfDayLength = dayLength / 2.0;
         NSDateComponents *components = [gregorian components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSTimeZoneCalendarUnit) fromDate:self.sunrise];
@@ -301,6 +306,11 @@ double const toDegrees = 180 / M_PI;
     double tanL = tan(trueLongitude * toRadians);
 //    dNSLog(@"  ==> tanL: %f", tanL);
     double rightAscension = atan(0.91764 * tanL) * toDegrees;
+    if (rightAscension > 360.0) {
+        rightAscension -= 360.0;
+    } else if (rightAscension < 0.0) {
+        rightAscension += 360.0;
+    }
 //    dNSLog(@"  ==> RA: %f", rightAscension);
     double Lquadrant = floor(trueLongitude/90) * 90;
 //    dNSLog(@"  ==> Lquad: %f", Lquadrant);
@@ -324,13 +334,13 @@ double const toDegrees = 180 / M_PI;
     double latitudeInRadians = latitude * toRadians;
     double cosH = (cos(zenith * toRadians) - (sinDeclination * sin(latitudeInRadians))) / (cosDeclination * cos(latitudeInRadians));
 
+    dNSLog(@"  ==> cosH: %f", cosH);
+    
 	// if (cosH >  1) 
 	//  the sun never rises on this location (on the specified date)
 	// if (cosH < -1)
 	//  the sun never sets on this location (on the specified date)
 
-//    dNSLog(@"  ==> cosH: %f", cosH);
-    
     // TODO: figure out how to specify the sun never rises or sets (find the next day it does?)
 
     // if rising time is desired:

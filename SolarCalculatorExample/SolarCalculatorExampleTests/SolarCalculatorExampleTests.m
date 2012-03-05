@@ -63,16 +63,29 @@
     [components setMinute:0];
     [components setSecond:0];
     NSDate *startDate = [gregorian dateFromComponents:components];
-    [components setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
-    [components setHour:9];
+    NSLog(@"startDate: %@", startDate);
+    _solarCalculation = [[FESSolarCalculator alloc] initWithDate:startDate location:startLocation mask:FESSolarCalculationOfficial];
+    [[self solarCalculation] calculate];
+
+    [components setTimeZone:[NSTimeZone timeZoneWithName:@"America/New_York"]];
+    [components setHour:5];
     [components setMinute:26];
     [components setSecond:29];
-    NSDate *sunriseDate = [gregorian dateFromComponents:components];\
-    _solarCalculation = [[FESSolarCalculator alloc] initWithDate:startDate location:startLocation];
-    [[self solarCalculation] calculate];
+    NSDate *sunriseDate = [gregorian dateFromComponents:components];
+
     NSLog(@"sunrise known: %@", sunriseDate);
     NSLog(@"sunrise calculated: %@", self.solarCalculation.sunrise);    
     STAssertEqualObjects(sunriseDate, [[self solarCalculation] sunrise], @"known and calculated almanac sunrise times don't match");
+
+    [components setTimeZone:[NSTimeZone timeZoneWithName:@"America/New_York"]];    
+    [components setHour:20];
+    [components setMinute:33];
+    [components setSecond:0];
+    NSDate *sunsetDate = [gregorian dateFromComponents:components];
+    
+    NSLog(@"sunset known: %@", sunsetDate);
+    NSLog(@"sunset calculated: %@", self.solarCalculation.sunset);    
+    STAssertEqualObjects(sunsetDate, [[self solarCalculation] sunset], @"known and calculated almanac sunset times don't match");
 }
 
 //- (void)testResultsNotNil
