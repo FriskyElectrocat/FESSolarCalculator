@@ -24,7 +24,9 @@
 //  THE SOFTWARE.
 //
 
-// math source: http://williams.best.vwh.net/sunrise_sunset_algorithm.htm
+// math sources: 
+// http://users.electromagnetic.net/bu/astro/sunrise-set.php
+// http://en.wikipedia.org/wiki/Julian_day
 
 #if ! __has_feature(objc_arc)
 #error This file must be compiled with ARC.
@@ -32,8 +34,6 @@
 
 #import "FESSolarCalculator.h"
 #include "math.h"
-#include "tgmath.h"
-
 
 //#if defined(FESSOLARCALCULATOR_DEBUG) && (FESSOLARCALCULATOR_DEBUG == 1)
 #if defined(DEBUG) && (DEBUG == 1)
@@ -154,118 +154,43 @@ double const toDegrees = 180 / M_PI;
 - (void)calculate
 {
     // run the calculations based on the users criteria
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSUInteger numberDayOfYear = [gregorian ordinalityOfUnit:NSDayCalendarUnit inUnit:NSYearCalendarUnit forDate:self.startDate];
-    
-    double longitudeHour = [self longitudeHourFromLongitude:self.location.coordinate.longitude];
-    double approximateTimeRising = [self approximateTimeFromDayOfYear:numberDayOfYear longitudeHour:longitudeHour direction:FESSolarCalculationRising];
-    double approximateTimeSetting = [self approximateTimeFromDayOfYear:numberDayOfYear longitudeHour:longitudeHour direction:FESSolarCalculationSetting];
-    double meanAnomolyRising = [self sunsMeanAnomolyFromApproximateTime:approximateTimeRising];
-    double meanAnomolySetting = [self sunsMeanAnomolyFromApproximateTime:approximateTimeSetting];
-    double trueLongitudeRising = [self sunsTrueLongitudeFromMeanAnomoly:meanAnomolyRising];
-    double trueLongitudeSetting = [self sunsTrueLongitudeFromMeanAnomoly:meanAnomolySetting];
-    double rightAscensionRising = [self sunsRightAscensionFromTrueLongitude:trueLongitudeRising];
-    double rightAscensionSetting = [self sunsRightAscensionFromTrueLongitude:trueLongitudeSetting];
-    
-    void (^computeSolarData)(FESSolarCalculationType, FESSolarCalculationDirection, double) = ^(FESSolarCalculationType calculationType, FESSolarCalculationDirection direction, double zenith) {
-        
-        double trueLongitude = trueLongitudeRising;
-        double rightAscension = rightAscensionRising;
-        double approximateTime = approximateTimeRising;
-        if ((direction & FESSolarCalculationSetting) == FESSolarCalculationSetting) {
-            trueLongitude = trueLongitudeSetting;
-            rightAscension = rightAscensionSetting;
-            approximateTime = approximateTimeSetting;
-        }
-        double localHourAngle = [self sunsLocalHourAngleFromTrueLongitude:trueLongitude latitude:self.location.coordinate.latitude zenith:zenith direction:direction];
-        double localMeanTime = [self calculateLocalMeanTimeFromLocalHourAngle:localHourAngle rightAscension:rightAscension approximateTime:approximateTime];
-        double timeInUTC = [self convertToUTCFromLocalMeanTime:localMeanTime longitudeHour:longitudeHour];
-
-        NSLog(@"local hour: %f", localHourAngle);
-        NSLog(@"time in UTC: %f", timeInUTC);
-        NSDateComponents *components = [gregorian components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:self.startDate];
-        [components setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
-        [components setHour:(int)round(timeInUTC)];
-        double minutes = (timeInUTC - round(timeInUTC)) * 60;
-        [components setMinute:(int)round(minutes)];
-        [components setSecond:(int)((minutes - round(minutes)) * 60)];
-        
-        NSDate *setDate = [gregorian dateFromComponents:components];
-        NSLog(@"start: %@", self.startDate);
-        NSLog(@"set: %@", setDate);
-        
-        if ((calculationType & FESSolarCalculationOfficial) == FESSolarCalculationOfficial) {
-            if ((direction & FESSolarCalculationRising) == FESSolarCalculationRising) {
-                _sunrise = setDate;
-            } else {
-                _sunset = setDate;
-            }
-        } else if ((calculationType & FESSolarCalculationCivil) == FESSolarCalculationCivil) {
-            if ((direction & FESSolarCalculationRising) == FESSolarCalculationRising) {
-                _civilDawn = setDate;
-            } else {
-                _civilDusk = setDate;
-            }
-        } else if ((calculationType & FESSolarCalculationNautical) == FESSolarCalculationNautical) {
-            if ((direction & FESSolarCalculationRising) == FESSolarCalculationRising) {
-                _nauticalDawn = setDate;
-            } else {
-                _nauticalDusk = setDate;
-            }
-        } else if ((calculationType & FESSolarCalculationAstronomical) == FESSolarCalculationAstronomical) {            
-            if ((direction & FESSolarCalculationRising) == FESSolarCalculationRising) {
-                _astronomicalDawn = setDate;
-            } else {
-                _astronomicalDusk = setDate;
-            }
-        }
-    };
-    
-    FESSolarCalculationType theseOps = self.operationsMask;
-    if ((self.operationsMask & FESSolarCalculationAll) == FESSolarCalculationAll) {
-        theseOps = FESSolarCalculationOfficial | FESSolarCalculationCivil | FESSolarCalculationNautical | FESSolarCalculationAstronomical;
-    }
-    if ((theseOps & FESSolarCalculationOfficial) == FESSolarCalculationOfficial) {
-        computeSolarData(FESSolarCalculationOfficial, FESSolarCalculationRising, FESSolarCalculationZenithOfficial);
-        computeSolarData(FESSolarCalculationOfficial, FESSolarCalculationSetting, FESSolarCalculationZenithOfficial);
-        NSLog(@"sunrise: %@", self.sunrise);
-        NSLog(@"sunset: %@", self.sunset);
-        NSTimeInterval dayLength = [self.sunset timeIntervalSinceDate:self.sunrise] / 60.0 / 60.0;
-        NSLog(@"day length: %f", dayLength);
-        double halfDayLength = dayLength / 2.0;
-        NSDateComponents *components = [gregorian components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSTimeZoneCalendarUnit) fromDate:self.sunrise];
-        [components setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];        
-//        [components setHour:components.hour + (int)round(halfDayLength)];
-//        double minutes = halfDayLength - (round(halfDayLength) * 60);
-//        [components setMinute:(int)round(minutes)];
-//        [components setSecond:(int)((minutes - round(minutes)) * 60)];
-        [components setSecond:(int)(round(halfDayLength))];
-        _solarNoon = [gregorian dateFromComponents:components];
-    }
-    if ((theseOps & FESSolarCalculationCivil) == FESSolarCalculationCivil) {
-        computeSolarData(FESSolarCalculationCivil, FESSolarCalculationRising, FESSolarCalculationZenithCivil);
-        computeSolarData(FESSolarCalculationCivil, FESSolarCalculationSetting, FESSolarCalculationZenithCivil);
-    }
-    if ((theseOps & FESSolarCalculationNautical) == FESSolarCalculationNautical) {
-        computeSolarData(FESSolarCalculationNautical, FESSolarCalculationRising, FESSolarCalculationZenithNautical);
-        computeSolarData(FESSolarCalculationNautical, FESSolarCalculationSetting, FESSolarCalculationZenithNautical);
-    }
-    if ((theseOps & FESSolarCalculationAstronomical) == FESSolarCalculationAstronomical) {
-        computeSolarData(FESSolarCalculationAstronomical, FESSolarCalculationRising, FESSolarCalculationZenithAstronomical);
-        computeSolarData(FESSolarCalculationAstronomical, FESSolarCalculationSetting, FESSolarCalculationZenithAstronomical);
-    }
-
+    int JulianDayNumber = [FESSolarCalculator julianDayNumberFromDate:self.startDate];
+    double westLongitude = self.location.coordinate.longitude * -1; // 75W = 75, 45E = -45
+    double ns = ((double)JulianDayNumber - 2451545 - 0.0009) - (westLongitude/360.0);
+    double n = round(ns);
+    double Js = 2451545 + 0.0009 + (westLongitude/360) + n;
+    double Ms = (357.5291 + 0.98560028 * (Js - 2451545));
+    double M = [FESSolarCalculator modValue:Ms with:360.0];
+    double C = (1.9148 * sin(M)) + (0.0200 * sin(2 * M)) + (0.0003 * sin(3 * M));
+    double eLs = (M + 102.9372 + C + 180);
+    double eL = [FESSolarCalculator modValue:eLs with:360.0];
+    double Jtransit = Js + (0.0053 * sin(M)) - (0.0069 * sin(2 * eL));
+    double hourAngle = asin( sin(eL) * sin(23.45) );
+    NSLog(@"hourAngle: %f", hourAngle);
+    double H = acos( (cos(FESSolarCalculationZenithOfficial * toRadians) - sin(self.location.coordinate.latitude * toRadians) * sin(hourAngle)) / (cos(self.location.coordinate.latitude * toRadians) * cos(hourAngle)) );
+    NSLog(@"H: %f", H);
+    double Jss = 2451545 + 0.0009 + ((H + westLongitude)/360) + n;
+    NSLog(@"Jss: %f", Jss);
+    double Jset = Jss + (0.0053 * sin(M)) - (0.0069 * sin(2 * eL));
+    double Jrise = Jtransit - (Jset - Jtransit);
+    NSLog(@"Jtransit: %f -> %@", Jtransit, [FESSolarCalculator gregorianDateFromJulianDayNumber:Jtransit]);
+    NSLog(@"Jrise: %f -> %@", Jrise, [FESSolarCalculator gregorianDateFromJulianDayNumber:Jrise]);
+    NSLog(@"Jset: %f -> %@", Jset, [FESSolarCalculator gregorianDateFromJulianDayNumber:Jset]);
 }
 
 #pragma mark -
 #pragma mark Class Methods
+
++ (double)modValue:(double)a with:(double)b
+{
+    return a - (a/b) + b;
+}
 
 + (int)julianDayNumberFromDate:(NSDate *)inDate
 {
     // calculation of Julian Day Number (http://en.wikipedia.org/wiki/Julian_day ) from Gregorian Date
     NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *components = [cal components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:inDate];
-    NSLog(@"components: %@", components);
     int a = (14 - (int)[components month]) / 12;
     int y = (int)[components year] +  4800 - a;
     int m = (int)[components month] + (12 * a) - 3;
@@ -274,10 +199,11 @@ double const toDegrees = 180 / M_PI;
     return JulianDayNumber;
 }
 
-+ (NSDate *)gregorianDateFromJulianDayNumber:(int)julianDayNumber
++ (NSDate *)gregorianDateFromJulianDayNumber:(double)julianDayValue
 {
     // calculation of Gregorian date from Julian Day Number ( http://en.wikipedia.org/wiki/Julian_day )
-    int J = floor(julianDayNumber + 0.5);
+    int JulianDayNumber = (int)julianDayValue;
+    int J = floor(JulianDayNumber + 0.5);
     int j = J + 32044;
     int g = j / 146097;
     int dg = j - (j/146097) * 146097;
@@ -295,9 +221,11 @@ double const toDegrees = 180 / M_PI;
     components.year = y - 4800 + (m + 2) / 12;
     components.month = ((m+2) - ((m+2)/12) * 12) + 1;
     components.day = d + 1;
-    components.hour = 12;
-    components.minute = 0;
-    components.second = 0;
+    double timeValue = ((julianDayValue - round(julianDayValue)) + 0.5) * 24;
+    components.hour = (int)round(timeValue);
+    double minutes = (timeValue - round(timeValue)) * 60;
+    components.minute = (int)round(minutes);
+    components.second = (int)((minutes - round(minutes)) * 60);
     NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     return [cal dateFromComponents:components];
 }
@@ -305,128 +233,5 @@ double const toDegrees = 180 / M_PI;
 #pragma mark -
 #pragma mark Calculation Ops
 
-- (double)longitudeHourFromLongitude:(CLLocationDegrees)longitude
-{
-    double longitudeHour = longitude / 15.0;
-    return longitudeHour;
-}
-
-- (double)approximateTimeFromDayOfYear:(NSUInteger)dayOfYear longitudeHour:(double)longitudeHour direction:(FESSolarCalculationDirection)direction
-{
-    double baseTime = 6;
-    if ((direction & FESSolarCalculationSetting) == FESSolarCalculationSetting) {
-        baseTime = 18;
-    } 
-    // t = N + ((baseTime - lngHour) / 24)
-    double approximateTime = dayOfYear + ((baseTime - longitudeHour) / 24.0);
-    return approximateTime;
-}
-
-- (double)sunsMeanAnomolyFromApproximateTime:(double)approximateTime
-{
-    // M = (0.9856 * t) - 3.289
-    double sunsMeanAnomoly = (0.9856 * approximateTime) - 3.289;
-    return sunsMeanAnomoly;
-}
-
-- (double)sunsTrueLongitudeFromMeanAnomoly:(double)meanAnomoly
-{
-    // L = M + (1.916 * sin(M)) + (0.020 * sin(2 * M)) + 282.634
-    double meanAnomolyinRadians = meanAnomoly * toRadians;
-    double trueLongitude = meanAnomoly + (1.916 * sin(meanAnomolyinRadians)) + (0.020 * sin(2 * meanAnomolyinRadians)) + 282.634;
-    if (trueLongitude > 360.0) {
-        trueLongitude -= 360.0;
-    } else if (trueLongitude < 0.0) {
-        trueLongitude += 360.0;        
-    }
-    return trueLongitude;
-}
-
-- (double)sunsRightAscensionFromTrueLongitude:(double)trueLongitude
-{
-    // RA = atan(0.91764 * tan(L))
-    // Lquadrant  = (floor( L/90)) * 90
-	// RAquadrant = (floor(RA/90)) * 90
-	// RA = RA + (Lquadrant - RAquadrant)
-    // RA = RA / 15
-    
-    double tanL = tan(trueLongitude * toRadians);
-//    dNSLog(@"  ==> tanL: %f", tanL);
-    double rightAscension = atan(0.91764 * tanL) * toDegrees;
-    if (rightAscension > 360.0) {
-        rightAscension -= 360.0;
-    } else if (rightAscension < 0.0) {
-        rightAscension += 360.0;
-    }
-//    dNSLog(@"  ==> RA: %f", rightAscension);
-    double Lquadrant = floor(trueLongitude/90) * 90;
-//    dNSLog(@"  ==> Lquad: %f", Lquadrant);
-    double RAquadrant = floor(rightAscension/90) * 90;
-//    dNSLog(@"  ==> RAquad: %f", RAquadrant);
-    rightAscension += (Lquadrant - RAquadrant);
-    rightAscension /=  15.0;
-    return rightAscension;
-}
-
-- (double)sunsLocalHourAngleFromTrueLongitude:(double)trueLongitude latitude:(CLLocationDegrees)latitude zenith:(double)zenith direction:(FESSolarCalculationDirection)direction
-{
-    // sinDec = 0.39782 * sin(L)
-	// cosDec = cos(asin(sinDec))
-    
-    double sinDeclination = 0.39782 * sin(trueLongitude * toRadians);
-    double cosDeclination = cos(asin(sinDeclination));
-    
-    // cosH = (cos(zenith) - (sinDec * sin(latitude))) / (cosDec * cos(latitude))
-
-    double latitudeInRadians = latitude * toRadians;
-    double cosH = (cos(zenith * toRadians) - (sinDeclination * sin(latitudeInRadians))) / (cosDeclination * cos(latitudeInRadians));
-
-    dNSLog(@"  ==> cosH: %f", cosH);
-    
-	// if (cosH >  1) 
-	//  the sun never rises on this location (on the specified date)
-	// if (cosH < -1)
-	//  the sun never sets on this location (on the specified date)
-
-    // TODO: figure out how to specify the sun never rises or sets (find the next day it does?)
-
-    // if rising time is desired:
-	//   H = 360 - acos(cosH)
-	// if setting time is desired:
-	//   H = acos(cosH)
-
-    double sunsLocalHourAngle = acos(cosH) * toDegrees;
-//    dNSLog(@"  ==> local hour angle: %f", sunsLocalHourAngle);
-    if ((direction & FESSolarCalculationRising) == FESSolarCalculationRising) {
-        sunsLocalHourAngle = 360.0 - sunsLocalHourAngle;
-    }
-//    dNSLog(@"  ==> local hour angle: %f", sunsLocalHourAngle);
-	
-    // H = H / 15
-    sunsLocalHourAngle = sunsLocalHourAngle / 15.0;
-//    dNSLog(@"  ==> local hour angle: %f", sunsLocalHourAngle);
-
-    return sunsLocalHourAngle;
-}
-
-- (double)calculateLocalMeanTimeFromLocalHourAngle:(double)localHourAngle rightAscension:(double)rightAscension approximateTime:(double)approximateTime
-{
-    // T = H + RA - (0.06571 * t) - 6.622
-    double localMeanTime = localHourAngle + rightAscension - (0.06571 * approximateTime) - 6.622;
-    return localMeanTime;
-}
-
-- (double)convertToUTCFromLocalMeanTime:(double)localMeanTime longitudeHour:(double)longitudeHour
-{
-    // UT = T - lngHour
-    // NOTE: UT potentially needs to be adjusted into the range [0,24) by adding/subtracting 24
-    double timeinUTC = localMeanTime - longitudeHour;
-    if (timeinUTC > 24.0) {
-        timeinUTC -= 24.0;
-    } else if (timeinUTC < 0.0) {
-        timeinUTC += 24.0;
-    }
-    return timeinUTC;
-}
 
 @end
