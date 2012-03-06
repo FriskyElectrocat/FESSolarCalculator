@@ -32,6 +32,8 @@
 
 #import "FESSolarCalculator.h"
 #include "math.h"
+#include "tgmath.h"
+
 
 //#if defined(FESSOLARCALCULATOR_DEBUG) && (FESSOLARCALCULATOR_DEBUG == 1)
 #if defined(DEBUG) && (DEBUG == 1)
@@ -253,6 +255,51 @@ double const toDegrees = 180 / M_PI;
         computeSolarData(FESSolarCalculationAstronomical, FESSolarCalculationSetting, FESSolarCalculationZenithAstronomical);
     }
 
+}
+
+#pragma mark -
+#pragma mark Class Methods
+
++ (int)julianDayNumberFromDate:(NSDate *)inDate
+{
+    // calculation of Julian Day Number (http://en.wikipedia.org/wiki/Julian_day ) from Gregorian Date
+    NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *components = [cal components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:inDate];
+    NSLog(@"components: %@", components);
+    int a = (14 - (int)[components month]) / 12;
+    int y = (int)[components year] +  4800 - a;
+    int m = (int)[components month] + (12 * a) - 3;
+    int JulianDayNumber = (int)[components day] + (((153 * m) + 2) / 5) + (365 * y) + (y/4) - (y/100) + (y/400) - 32045;
+    NSLog(@"JDN: %i", JulianDayNumber);
+    return JulianDayNumber;
+}
+
++ (NSDate *)gregorianDateFromJulianDayNumber:(int)julianDayNumber
+{
+    // calculation of Gregorian date from Julian Day Number ( http://en.wikipedia.org/wiki/Julian_day )
+    int J = floor(julianDayNumber + 0.5);
+    int j = J + 32044;
+    int g = j / 146097;
+    int dg = j - (j/146097) * 146097;
+    int c = (dg / 36524 + 1) * 3 / 4;
+    int dc = dg - c * 36524;
+    int b = dc / 1461;
+    int db = dc - (dc/1461) * 1461;
+    int a = (db / 365 + 1) * 3 / 4;
+    int da = db - a * 365;
+    int y = g * 400 + c * 100 + b * 4 + a;
+    int m = (da * 5 + 308) / 153 - 2;
+    int d = da - (m + 4) * 153 / 5 + 122;
+    NSDateComponents *components = [NSDateComponents new];
+    components.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
+    components.year = y - 4800 + (m + 2) / 12;
+    components.month = ((m+2) - ((m+2)/12) * 12) + 1;
+    components.day = d + 1;
+    components.hour = 12;
+    components.minute = 0;
+    components.second = 0;
+    NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    return [cal dateFromComponents:components];
 }
 
 #pragma mark -

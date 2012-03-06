@@ -57,7 +57,7 @@ typedef NSUInteger FESSolarCalculationDirection;
 @property (nonatomic, readwrite, strong, setter=setLocation:) CLLocation *location;
 @property (nonatomic, readonly, strong) NSDate *sunrise; // AKA Official
 @property (nonatomic, readonly, strong) NSDate *sunset;  // AKA Official
-@property (nonatomic, readonly, strong) NSDate *solarNoon;  // AKA Official
+@property (nonatomic, readonly, strong) NSDate *solarNoon;
 @property (nonatomic, readonly, strong) NSDate *civilDawn;
 @property (nonatomic, readonly, strong) NSDate *civilDusk;
 @property (nonatomic, readonly, strong) NSDate *nauticalDawn;
@@ -68,5 +68,8 @@ typedef NSUInteger FESSolarCalculationDirection;
 - (id)initWithDate:(NSDate *)inDate location:(CLLocation *)inLocation;
 - (id)initWithDate:(NSDate *)inDate location:(CLLocation *)inLocation mask:(FESSolarCalculationType)inMask;
 - (void)calculate;
+
++ (int)julianDayNumberFromDate:(NSDate *)inDate;
++ (NSDate *)gregorianDateFromJulianDayNumber:(int)julianDayNumber;
 
 @end
