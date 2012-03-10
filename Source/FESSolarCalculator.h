@@ -69,7 +69,7 @@ typedef NSUInteger FESSolarCalculationDirection;
 - (id)initWithDate:(NSDate *)inDate location:(CLLocation *)inLocation mask:(FESSolarCalculationType)inMask;
 - (void)calculate;
 
-+ (double)modValue:(double)a with:(double)b;
+//+ (double)modValue:(double)a with:(double)b;
 + (int)julianDayNumberFromDate:(NSDate *)inDate;
 + (NSDate *)gregorianDateFromJulianDayNumber:(double)julianDayNumber;
 

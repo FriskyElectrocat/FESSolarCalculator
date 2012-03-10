@@ -78,7 +78,7 @@
     [components setMinute:0];
     [components setSecond:0];
     NSDate *targetDate = [cal dateFromComponents:components];
-    NSDate *computeDate = [FESSolarCalculator gregorianDateFromJulianDayNumber:2451545];
+    NSDate *computeDate = [FESSolarCalculator gregorianDateFromJulianDayNumber:2451545.0];
     STAssertEqualObjects(targetDate, computeDate, @"Date converted from Julian Day Number does not match known date.");
 }
 
@@ -97,8 +97,25 @@
     NSDate *targetDate = [cal dateFromComponents:components];
     int JDN = [FESSolarCalculator julianDayNumberFromDate:targetDate];
     STAssertEquals(2451545, JDN, @"Known and computed Julian Dates don't match.");
-    NSDate *computeDate = [FESSolarCalculator gregorianDateFromJulianDayNumber:JDN];
+    NSDate *computeDate = [FESSolarCalculator gregorianDateFromJulianDayNumber:(double)JDN];
     STAssertEqualObjects(targetDate, computeDate, @"Date converted from Julian Day Number does not match known date.");
+}
+
+- (void)testJulianDayNumber_4
+{
+    // 2012-03-05 == JDN 2455992
+    NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *components = [NSDateComponents new];
+    [components setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+    [components setYear:2012];
+    [components setMonth:3];
+    [components setDay:5];
+    [components setHour:12];
+    [components setMinute:0];
+    [components setSecond:0];
+    NSDate *targetDate = [cal dateFromComponents:components];
+    int JDN = [FESSolarCalculator julianDayNumberFromDate:targetDate];
+    STAssertEquals(2455992, JDN, @"Known and computed Julian Dates don't match.");
 }
 
 //- (void)testAlmanacExampleSunriseOfficial
@@ -141,7 +158,7 @@
 //    NSLog(@"sunset calculated: %@", self.solarCalculation.sunset);    
 //    STAssertEqualObjects(sunsetDate, [[self solarCalculation] sunset], @"known and calculated almanac sunset times don't match");
 //}
-//
+
 //- (void)testResultsNotNil
 //{
 //    NSDate *startDate = [NSDate date];
@@ -203,36 +220,38 @@
 //    STAssertEqualObjects([[self solarCalculation] astronomicalDusk], nil, @"resetting date did not set astronomicalDusk to nil");
 //}
 //
-//- (void)testKnownDateLocation_0
-//{
-//    // run a calculation for a known date and location with recorded sunrise and sunet times
-//    // date: Sun 2012-02-19
-//    // location: Oakland, CA (37 46.3' N, 122 13.4' W) [37.771667 -122.223333]
-//    // Dawn, Astronomical: 05:27 PST
-//    // Dawn, Nautical: 05:58 PST
-//    // Dawn, Civil: 06:28 PST
-//    // Sunrise: 06:55 PST
-//    // Solar noon: 12:23 PST
-//    // Sunset: 17:51 PST
-//    // Dusk, Civil: 18:17 PST
-//    // Dusk, Nautical: 18:48 PST
-//    // Dusk, Astronomical: 19:18 PST
-//    
-//    CLLocation *startLocation = [[CLLocation alloc] initWithLatitude:27.771667 longitude:-122.223333];
-//    
-//    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-//    NSDateComponents *components = [[NSDateComponents alloc] init];
-//    [components setTimeZone:[NSTimeZone timeZoneWithName:@"America/Los_Angeles"]];
-//    [components setYear:2012];
+- (void)testKnownDateLocation_0
+{
+    // run a calculation for a known date and location with recorded sunrise and sunet times
+    // date: Sun 2012-02-19
+    // location: Oakland, CA (37 46.3' N, 122 13.4' W) [37.771667 -122.223333]
+    // Dawn, Astronomical: 05:27 PST
+    // Dawn, Nautical: 05:58 PST
+    // Dawn, Civil: 06:28 PST
+    // Sunrise: 06:55 PST
+    // Solar noon: 12:23 PST
+    // Sunset: 17:51 PST
+    // Dusk, Civil: 18:17 PST
+    // Dusk, Nautical: 18:48 PST
+    // Dusk, Astronomical: 19:18 PST
+    
+    CLLocation *startLocation = [[CLLocation alloc] initWithLatitude:37.771667 longitude:-122.223333];
+    
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *components = [[NSDateComponents alloc] init];
+    [components setTimeZone:[NSTimeZone timeZoneWithName:@"America/Los_Angeles"]];
+    [components setYear:2012];
 //    [components setMonth:2];
 //    [components setDay:19];
-//    [components setHour:12];
-//    [components setMinute:0];
-//    [components setSecond:0];
-//    NSDate *startDate = [gregorian dateFromComponents:components];
-//
-//    _solarCalculation = [[FESSolarCalculator alloc] initWithDate:startDate location:startLocation];
-//    [[self solarCalculation] calculate];
+    [components setMonth:3];
+    [components setDay:6];
+    [components setHour:12];
+    [components setMinute:0];
+    [components setSecond:0];
+    NSDate *startDate = [gregorian dateFromComponents:components];
+
+    _solarCalculation = [[FESSolarCalculator alloc] initWithDate:startDate location:startLocation];
+    [[self solarCalculation] calculate];
 //    
 //    NSDate *compareDate;
 //    // sunrise
@@ -291,6 +310,6 @@
 //    compareDate = [gregorian dateFromComponents:components];
 //    STAssertEqualObjects([[self solarCalculation] astronomicalDusk], compareDate, @"Known and generated astronomical dusk date/time don't match");
 //
-//}
+}
 
 @end

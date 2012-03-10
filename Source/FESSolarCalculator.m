@@ -153,38 +153,51 @@ double const toDegrees = 180 / M_PI;
 
 - (void)calculate
 {
+    NSDateFormatter *df = [NSDateFormatter new];
+    [df setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
     // run the calculations based on the users criteria
     int JulianDayNumber = [FESSolarCalculator julianDayNumberFromDate:self.startDate];
+    NSLog(@"Julian Date: %i", JulianDayNumber);
     double westLongitude = self.location.coordinate.longitude * -1; // 75W = 75, 45E = -45
     double ns = ((double)JulianDayNumber - 2451545 - 0.0009) - (westLongitude/360.0);
     double n = round(ns);
+    NSLog(@"n: %f", n);
     double Js = 2451545 + 0.0009 + (westLongitude/360) + n;
+    NSLog(@"Js: %f", Js);
     double Ms = (357.5291 + 0.98560028 * (Js - 2451545));
-    double M = [FESSolarCalculator modValue:Ms with:360.0];
-    double C = (1.9148 * sin(M)) + (0.0200 * sin(2 * M)) + (0.0003 * sin(3 * M));
+    NSLog(@"Ms: %f", Ms);
+    double M = fmod(Ms, 360.0);
+    NSLog(@"M: %f", M);
+    double C = (1.9148 * sin(M * toRadians)) + (0.0200 * sin(2 * M * toRadians)) + (0.0003 * sin(3 * M * toRadians));
+    NSLog(@"C: %f", C);
     double eLs = (M + 102.9372 + C + 180);
-    double eL = [FESSolarCalculator modValue:eLs with:360.0];
-    double Jtransit = Js + (0.0053 * sin(M)) - (0.0069 * sin(2 * eL));
-    double hourAngle = asin( sin(eL) * sin(23.45) );
-    NSLog(@"hourAngle: %f", hourAngle);
-    double H = acos( (cos(FESSolarCalculationZenithOfficial * toRadians) - sin(self.location.coordinate.latitude * toRadians) * sin(hourAngle)) / (cos(self.location.coordinate.latitude * toRadians) * cos(hourAngle)) );
+    double eL = fmod(eLs, 360.0);
+    NSLog(@"eLs: %f", eLs);
+    NSLog(@"eL: %f", eL);
+    double Jtransit = Js + (0.0053 * sin(M * toRadians)) - (0.0069 * sin(2 * eL * toRadians));
+    NSLog(@"Jtransit: %f -> %@", Jtransit, [df stringFromDate:[FESSolarCalculator gregorianDateFromJulianDayNumber:Jtransit]]);
+    double decl = asin( sin(eL * toRadians) * sin(23.45 * toRadians) ) * toDegrees;
+    NSLog(@"decl: %f", decl);
+    //double H = acos( (sin(-0.83 * toRadians) - sin(self.location.coordinate.latitude * toRadians) * sin(decl * toRadians)) / (cos(self.location.coordinate.latitude * toRadians) * cos(decl * toRadians)) ) * toDegrees;
+    double H = acos( (cos(FESSolarCalculationZenithOfficial * toRadians) - sin(self.location.coordinate.latitude * toRadians) * sin(decl * toRadians)) / (cos(self.location.coordinate.latitude * toRadians) * cos(decl * toRadians)) ) * toDegrees;
     NSLog(@"H: %f", H);
     double Jss = 2451545 + 0.0009 + ((H + westLongitude)/360) + n;
     NSLog(@"Jss: %f", Jss);
     double Jset = Jss + (0.0053 * sin(M)) - (0.0069 * sin(2 * eL));
     double Jrise = Jtransit - (Jset - Jtransit);
-    NSLog(@"Jtransit: %f -> %@", Jtransit, [FESSolarCalculator gregorianDateFromJulianDayNumber:Jtransit]);
-    NSLog(@"Jrise: %f -> %@", Jrise, [FESSolarCalculator gregorianDateFromJulianDayNumber:Jrise]);
-    NSLog(@"Jset: %f -> %@", Jset, [FESSolarCalculator gregorianDateFromJulianDayNumber:Jset]);
+    NSLog(@"Jtransit: %f -> %@", Jtransit, [df stringFromDate:[FESSolarCalculator gregorianDateFromJulianDayNumber:Jtransit]]);
+    NSLog(@"Jrise: %f -> %@", Jrise, [df stringFromDate:[FESSolarCalculator gregorianDateFromJulianDayNumber:Jrise]]);
+    NSLog(@"Jset: %f -> %@", Jset, [df stringFromDate:[FESSolarCalculator gregorianDateFromJulianDayNumber:Jset]]);
 }
 
 #pragma mark -
 #pragma mark Class Methods
 
-+ (double)modValue:(double)a with:(double)b
-{
-    return a - (a/b) + b;
-}
+// NOTE: converting to and from the Julian Day Number can be done with NSDateFormatter.
+// I debated doing that once I found the "g" format string, but then I discovered the 
+// NSDateFormatter returns and is based off of 08:00 GMT rather than noon/12:00 GMT.
+// A bug report has been filed with Apple, see http://openradar.appspot.com/11023565 
+// for details. These will be revisited when or if that bug is resolved.
 
 + (int)julianDayNumberFromDate:(NSDate *)inDate
 {
@@ -202,7 +215,7 @@ double const toDegrees = 180 / M_PI;
 + (NSDate *)gregorianDateFromJulianDayNumber:(double)julianDayValue
 {
     // calculation of Gregorian date from Julian Day Number ( http://en.wikipedia.org/wiki/Julian_day )
-    int JulianDayNumber = (int)julianDayValue;
+    int JulianDayNumber = (int)floor(julianDayValue);
     int J = floor(JulianDayNumber + 0.5);
     int j = J + 32044;
     int g = j / 146097;
@@ -227,7 +240,9 @@ double const toDegrees = 180 / M_PI;
     components.minute = (int)round(minutes);
     components.second = (int)((minutes - round(minutes)) * 60);
     NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    return [cal dateFromComponents:components];
+    //NSLog(@"greg components: %@", components);
+    NSDate *returnDate = [cal dateFromComponents:components];
+    return returnDate;
 }
 
 #pragma mark -
