@@ -15,6 +15,8 @@
 		373EEB02150D574800493CE8 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 373EEB00150D574800493CE8 /* Credits.rtf */; };
 		373EEB05150D574800493CE8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 373EEB04150D574800493CE8 /* AppDelegate.m */; };
 		373EEB08150D574900493CE8 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 373EEB06150D574900493CE8 /* MainMenu.xib */; };
+		373EEB0E150D580500493CE8 /* SolarCalculatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 373EEB0D150D580500493CE8 /* SolarCalculatorTests.m */; };
+		373EEB10150D582300493CE8 /* SolarCalculatorExampleTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 373EEB0F150D582300493CE8 /* SolarCalculatorExampleTests-Info.plist */; };
 		377E29B614E75E2700FF0388 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 377E29B514E75E2700FF0388 /* UIKit.framework */; };
 		377E29B814E75E2700FF0388 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 377E29B714E75E2700FF0388 /* Foundation.framework */; };
 		377E29BA14E75E2700FF0388 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 377E29B914E75E2700FF0388 /* CoreGraphics.framework */; };
@@ -27,8 +29,6 @@
 		377E29D714E75E2700FF0388 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 377E29D614E75E2700FF0388 /* SenTestingKit.framework */; };
 		377E29D814E75E2700FF0388 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 377E29B514E75E2700FF0388 /* UIKit.framework */; };
 		377E29D914E75E2700FF0388 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 377E29B714E75E2700FF0388 /* Foundation.framework */; };
-		377E29E114E75E2700FF0388 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 377E29DF14E75E2700FF0388 /* InfoPlist.strings */; };
-		377E29E414E75E2700FF0388 /* SolarCalculatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 377E29E314E75E2700FF0388 /* SolarCalculatorTests.m */; };
 		377E29F014E75EF000FF0388 /* FESSolarCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 377E29EF14E75EF000FF0388 /* FESSolarCalculator.m */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +57,9 @@
 		373EEB03150D574800493CE8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		373EEB04150D574800493CE8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		373EEB07150D574900493CE8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		373EEB0C150D580500493CE8 /* SolarCalculatorTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SolarCalculatorTests.h; path = SolarCalculatorTests/SolarCalculatorTests.h; sourceTree = SOURCE_ROOT; };
+		373EEB0D150D580500493CE8 /* SolarCalculatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SolarCalculatorTests.m; path = SolarCalculatorTests/SolarCalculatorTests.m; sourceTree = SOURCE_ROOT; };
+		373EEB0F150D582300493CE8 /* SolarCalculatorExampleTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "SolarCalculatorExampleTests-Info.plist"; path = "SolarCalculatorTests/SolarCalculatorExampleTests-Info.plist"; sourceTree = SOURCE_ROOT; };
 		377E29B114E75E2700FF0388 /* SolarCalculatorExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SolarCalculatorExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		377E29B514E75E2700FF0388 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		377E29B714E75E2700FF0388 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -71,12 +74,8 @@
 		377E29CB14E75E2700FF0388 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		377E29CD14E75E2700FF0388 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		377E29CE14E75E2700FF0388 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		377E29D514E75E2700FF0388 /* SolarCalculatorExampleTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SolarCalculatorExampleTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		377E29D514E75E2700FF0388 /* SolarCalculatorTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SolarCalculatorTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		377E29D614E75E2700FF0388 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		377E29DE14E75E2700FF0388 /* SolarCalculatorExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SolarCalculatorExampleTests-Info.plist"; sourceTree = "<group>"; };
-		377E29E014E75E2700FF0388 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		377E29E214E75E2700FF0388 /* SolarCalculatorTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SolarCalculatorTests.h; sourceTree = "<group>"; };
-		377E29E314E75E2700FF0388 /* SolarCalculatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SolarCalculatorTests.m; sourceTree = "<group>"; };
 		377E29EE14E75EF000FF0388 /* FESSolarCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FESSolarCalculator.h; path = ../Source/FESSolarCalculator.h; sourceTree = "<group>"; };
 		377E29EF14E75EF000FF0388 /* FESSolarCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FESSolarCalculator.m; path = ../Source/FESSolarCalculator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -165,7 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				377E29B114E75E2700FF0388 /* SolarCalculatorExample.app */,
-				377E29D514E75E2700FF0388 /* SolarCalculatorExampleTests.octest */,
+				377E29D514E75E2700FF0388 /* SolarCalculatorTests.octest */,
 				373EEAEF150D574800493CE8 /* MacOS_Example.app */,
 			);
 			name = Products;
@@ -213,8 +212,8 @@
 		377E29DC14E75E2700FF0388 /* SolarCalculatorTests */ = {
 			isa = PBXGroup;
 			children = (
-				377E29E214E75E2700FF0388 /* SolarCalculatorTests.h */,
-				377E29E314E75E2700FF0388 /* SolarCalculatorTests.m */,
+				373EEB0C150D580500493CE8 /* SolarCalculatorTests.h */,
+				373EEB0D150D580500493CE8 /* SolarCalculatorTests.m */,
 				377E29DD14E75E2700FF0388 /* Supporting Files */,
 			);
 			name = SolarCalculatorTests;
@@ -224,8 +223,7 @@
 		377E29DD14E75E2700FF0388 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				377E29DE14E75E2700FF0388 /* SolarCalculatorExampleTests-Info.plist */,
-				377E29DF14E75E2700FF0388 /* InfoPlist.strings */,
+				373EEB0F150D582300493CE8 /* SolarCalculatorExampleTests-Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -292,7 +290,7 @@
 			);
 			name = SolarCalculatorTests;
 			productName = SolarCalculatorExampleTests;
-			productReference = 377E29D514E75E2700FF0388 /* SolarCalculatorExampleTests.octest */;
+			productReference = 377E29D514E75E2700FF0388 /* SolarCalculatorTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -340,6 +338,7 @@
 				377E29C014E75E2700FF0388 /* InfoPlist.strings in Resources */,
 				377E29C914E75E2700FF0388 /* MainStoryboard_iPhone.storyboard in Resources */,
 				377E29CC14E75E2700FF0388 /* MainStoryboard_iPad.storyboard in Resources */,
+				373EEB10150D582300493CE8 /* SolarCalculatorExampleTests-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,7 +346,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				377E29E114E75E2700FF0388 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,6 +385,7 @@
 				377E29C614E75E2700FF0388 /* AppDelegate.m in Sources */,
 				377E29CF14E75E2700FF0388 /* ViewController.m in Sources */,
 				377E29F014E75EF000FF0388 /* FESSolarCalculator.m in Sources */,
+				373EEB0E150D580500493CE8 /* SolarCalculatorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,7 +393,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				377E29E414E75E2700FF0388 /* SolarCalculatorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,14 +453,6 @@
 				377E29CB14E75E2700FF0388 /* en */,
 			);
 			name = MainStoryboard_iPad.storyboard;
-			sourceTree = "<group>";
-		};
-		377E29DF14E75E2700FF0388 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				377E29E014E75E2700FF0388 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -594,7 +584,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SolarCalculatorExample/SolarCalculatorExample-Prefix.pch";
-				INFOPLIST_FILE = "SolarCalculatorExampleTests/SolarCalculatorExampleTests-Info.plist";
+				INFOPLIST_FILE = "SolarCalculatorTests/SolarCalculatorTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -612,7 +602,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SolarCalculatorExample/SolarCalculatorExample-Prefix.pch";
-				INFOPLIST_FILE = "SolarCalculatorExampleTests/SolarCalculatorExampleTests-Info.plist";
+				INFOPLIST_FILE = "SolarCalculatorTests/SolarCalculatorTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
