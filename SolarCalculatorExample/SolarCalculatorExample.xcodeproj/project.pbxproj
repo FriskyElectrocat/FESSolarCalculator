@@ -59,15 +59,15 @@
 		373EEB07150D574900493CE8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		373EEB0C150D580500493CE8 /* SolarCalculatorTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SolarCalculatorTests.h; path = SolarCalculatorTests/SolarCalculatorTests.h; sourceTree = SOURCE_ROOT; };
 		373EEB0D150D580500493CE8 /* SolarCalculatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SolarCalculatorTests.m; path = SolarCalculatorTests/SolarCalculatorTests.m; sourceTree = SOURCE_ROOT; };
-		373EEB0F150D582300493CE8 /* SolarCalculatorExampleTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "SolarCalculatorExampleTests-Info.plist"; path = "SolarCalculatorTests/SolarCalculatorExampleTests-Info.plist"; sourceTree = SOURCE_ROOT; };
+		373EEB0F150D582300493CE8 /* SolarCalculatorExampleTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "SolarCalculatorTests-Info.plist"; path = "SolarCalculatorTests/SolarCalculatorTests-Info.plist"; sourceTree = SOURCE_ROOT; };
 		377E29B114E75E2700FF0388 /* SolarCalculatorExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SolarCalculatorExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		377E29B514E75E2700FF0388 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		377E29B714E75E2700FF0388 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		377E29B914E75E2700FF0388 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		377E29BD14E75E2700FF0388 /* SolarCalculatorExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SolarCalculatorExample-Info.plist"; sourceTree = "<group>"; };
+		377E29BD14E75E2700FF0388 /* SolarCalculatorExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iOS_Example-Info.plist"; sourceTree = "<group>"; };
 		377E29BF14E75E2700FF0388 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		377E29C114E75E2700FF0388 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		377E29C314E75E2700FF0388 /* SolarCalculatorExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SolarCalculatorExample-Prefix.pch"; sourceTree = "<group>"; };
+		377E29C314E75E2700FF0388 /* SolarCalculatorExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOS_Example-Prefix.pch"; sourceTree = "<group>"; };
 		377E29C414E75E2700FF0388 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		377E29C514E75E2700FF0388 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		377E29C814E75E2700FF0388 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
