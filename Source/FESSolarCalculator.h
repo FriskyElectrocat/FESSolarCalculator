@@ -26,10 +26,10 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
-extern float const FESSolarCalculationZenithOfficial;
-extern float const FESSolarCalculationZenithCivil;
-extern float const FESSolarCalculationZenithNautical;
-extern float const FESSolarCalculationZenithAstronomical;
+extern double const FESSolarCalculationZenithOfficial;
+extern double const FESSolarCalculationZenithCivil;
+extern double const FESSolarCalculationZenithNautical;
+extern double const FESSolarCalculationZenithAstronomical;
 
 enum {
     FESSolarCalculationOfficial     = 1 << 0, // zenith 90° 50'
@@ -40,16 +40,6 @@ enum {
 };
 typedef NSUInteger FESSolarCalculationType;
 
-enum {
-    FESSolarCalculationRising  = 1 << 0,
-    FESSolarCalculationSetting = 1 << 1
-};
-typedef NSUInteger FESSolarCalculationDirection;
-
-//#if __has_feature(objc_fixed_enum)
-//typedef enum : unsigned char { Red, Green, Blue } Color;
-//#endif
-
 @interface FESSolarCalculator : NSObject
 
 @property (nonatomic, readwrite) FESSolarCalculationType operationsMask;  
@@ -57,7 +47,7 @@ typedef NSUInteger FESSolarCalculationDirection;
 @property (nonatomic, readwrite, strong, setter=setLocation:) CLLocation *location;
 @property (nonatomic, readonly, strong) NSDate *sunrise; // AKA Official
 @property (nonatomic, readonly, strong) NSDate *sunset;  // AKA Official
-@property (nonatomic, readonly, strong) NSDate *solarNoon;  // AKA Official
+@property (nonatomic, readonly, strong) NSDate *solarNoon;
 @property (nonatomic, readonly, strong) NSDate *civilDawn;
 @property (nonatomic, readonly, strong) NSDate *civilDusk;
 @property (nonatomic, readonly, strong) NSDate *nauticalDawn;
@@ -68,5 +58,11 @@ typedef NSUInteger FESSolarCalculationDirection;
 - (id)initWithDate:(NSDate *)inDate location:(CLLocation *)inLocation;
 - (id)initWithDate:(NSDate *)inDate location:(CLLocation *)inLocation mask:(FESSolarCalculationType)inMask;
 - (void)calculate;
+
+// the following conversion methods are provided because of a bug
+// in NSDateFormatter's Julian Day Number converter
+// see http://openradar.appspot.com/11023565
++ (int)julianDayNumberFromDate:(NSDate *)inDate;
++ (NSDate *)dateFromJulianDayNumber:(double)julianDayNumber;
 
 @end

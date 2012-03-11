@@ -4,7 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>SolarCalculatorExample.xcscheme</key>
+		<key>MacOS_Example.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>iOS_Example.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,6 +17,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>373EEAEE150D574800493CE8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>377E29B014E75E2700FF0388</key>
 		<dict>
 			<key>primary</key>

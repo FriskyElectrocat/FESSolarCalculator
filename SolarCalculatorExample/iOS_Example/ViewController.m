@@ -28,6 +28,20 @@
 
 @implementation ViewController
 
+@synthesize locationLabel;
+@synthesize startDateLabel;
+@synthesize sunriseLabel;
+@synthesize sunsetLabel;
+@synthesize solarNoonLabel;
+@synthesize civilDawnLabel;
+@synthesize civilDuskLabel;
+@synthesize nauticalDawnLabel;
+@synthesize nauticalDuskLabel;
+@synthesize astronomicalDawnLabel;
+@synthesize astronomicalDuskLabel;
+@synthesize solarCalculator=_solarCalculator;
+@synthesize locationManager=_locationManager;
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -40,6 +54,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    _locationManager = [CLLocationManager new];
+    _locationManager.delegate = self;
+    [self.locationManager startUpdatingLocation];
 }
 
 - (void)viewDidUnload
@@ -79,4 +96,37 @@
     }
 }
 
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    [self.locationManager stopUpdatingLocation];
+
+    _solarCalculator = [[FESSolarCalculator alloc] initWithDate:[NSDate date] location:newLocation];
+    [self.solarCalculator calculate];
+
+    NSDateFormatter *df = [NSDateFormatter new];
+    df.dateFormat = @"yyyy-MM-dd HH:mm:ss Z";
+    
+    // set the labels
+    self.locationLabel.text = [NSString stringWithFormat:@"%f %f", self.solarCalculator.location.coordinate.latitude, self.solarCalculator.location.coordinate.longitude];
+    self.startDateLabel.text = [df stringFromDate:self.solarCalculator.startDate];
+    self.sunriseLabel.text = [df stringFromDate:self.solarCalculator.sunrise];
+    self.sunsetLabel.text = [df stringFromDate:self.solarCalculator.sunset];
+    self.solarNoonLabel.text = [df stringFromDate:self.solarCalculator.solarNoon];
+
+    self.civilDawnLabel.text = [df stringFromDate:self.solarCalculator.civilDawn];
+    self.civilDuskLabel.text = [df stringFromDate:self.solarCalculator.civilDusk];
+
+    self.nauticalDawnLabel.text = [df stringFromDate:self.solarCalculator.nauticalDawn];
+    self.nauticalDuskLabel.text = [df stringFromDate:self.solarCalculator.nauticalDusk];
+
+    self.astronomicalDawnLabel.text = [df stringFromDate:self.solarCalculator.astronomicalDawn];
+    self.astronomicalDuskLabel.text = [df stringFromDate:self.solarCalculator.astronomicalDusk];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    
+    [self.locationManager stopUpdatingLocation];
+    
+    NSLog(@"ERROR : %@", error);
+}
 @end

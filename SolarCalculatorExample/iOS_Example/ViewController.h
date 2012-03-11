@@ -25,7 +25,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FESSolarCalculator.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <CLLocationManagerDelegate>
+
+@property (strong, nonatomic) IBOutlet UILabel *locationLabel;
+@property (strong, nonatomic) IBOutlet UILabel *startDateLabel;
+@property (strong, nonatomic) IBOutlet UILabel *sunriseLabel;
+@property (strong, nonatomic) IBOutlet UILabel *sunsetLabel;
+@property (strong, nonatomic) IBOutlet UILabel *solarNoonLabel;
+@property (strong, nonatomic) IBOutlet UILabel *civilDawnLabel;
+@property (strong, nonatomic) IBOutlet UILabel *civilDuskLabel;
+@property (strong, nonatomic) IBOutlet UILabel *nauticalDawnLabel;
+@property (strong, nonatomic) IBOutlet UILabel *nauticalDuskLabel;
+@property (strong, nonatomic) IBOutlet UILabel *astronomicalDawnLabel;
+@property (strong, nonatomic) IBOutlet UILabel *astronomicalDuskLabel;
+
+@property (strong, nonatomic) FESSolarCalculator *solarCalculator;
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end
