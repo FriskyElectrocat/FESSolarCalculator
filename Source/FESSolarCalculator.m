@@ -24,25 +24,12 @@
 //  THE SOFTWARE.
 //
 
-// math sources: 
-// http://users.electromagnetic.net/bu/astro/sunrise-set.php
-// http://en.wikipedia.org/wiki/Julian_day
-
 #if ! __has_feature(objc_arc)
 #error This file must be compiled with ARC.
 #endif
 
 #import "FESSolarCalculator.h"
 #include "math.h"
-
-//#if defined(FESSOLARCALCULATOR_DEBUG) && (FESSOLARCALCULATOR_DEBUG == 1)
-#if defined(DEBUG) && (DEBUG == 1)
-    #define dNSLog( a, var_args1... ) NSLog( a, ## var_args1 )
-    #define dElseNSLog( a, var_args1...) else NSLog( a, ## var_args1 )
-#else
-    #define dNSLog( a, var_args...)
-    #define dElseNSLog( a, var_args1...)
-#endif
 
 double const FESSolarCalculationZenithOfficial = 90.83;
 double const FESSolarCalculationZenithCivil = 96.0;
