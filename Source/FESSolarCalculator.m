@@ -44,7 +44,7 @@
     #define dElseNSLog( a, var_args1...)
 #endif
 
-double const FESSolarCalculationZenithOfficial = 90.8333;
+double const FESSolarCalculationZenithOfficial = 90.83;
 double const FESSolarCalculationZenithCivil = 96.0;
 double const FESSolarCalculationZenithNautical = 102.0;
 double const FESSolarCalculationZenithAstronomical = 108.0;
@@ -198,8 +198,7 @@ double const toDegrees = 180 / M_PI;
     
     double decl = asin( sin(eL * toRadians) * sin(23.45 * toRadians) ) * toDegrees;
     NSLog(@"decl: %0.10f", decl);
-    //double H1 = ((cos(FESSolarCalculationZenithOfficial * toRadians) - sin(self.location.coordinate.latitude * toRadians)) * sin(decl * toRadians));
-    double H1 = (sin(-1.0 * 0.83 * toRadians) - sin(self.location.coordinate.latitude * toRadians) * sin(decl * toRadians));
+    double H1 = (cos(FESSolarCalculationZenithOfficial * toRadians) - sin(self.location.coordinate.latitude * toRadians) * sin(decl * toRadians));
     double H2 = (cos(self.location.coordinate.latitude * toRadians) * cos(decl * toRadians));
     double H = acos( (H1  * toRadians) / (H2  * toRadians) ) * toDegrees;
     NSLog(@"H1: %0.10f", H1);
