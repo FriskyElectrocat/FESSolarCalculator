@@ -94,7 +94,7 @@
 				3716CA7014F1C49300417EDD /* CoreLocation.framework */,
 				377E29ED14E75EAC00FF0388 /* FESSolarCalculator */,
 				377E29BB14E75E2700FF0388 /* SolarCalculatorExample */,
-				377E29DC14E75E2700FF0388 /* SolarCalculatorExampleTests */,
+				377E29DC14E75E2700FF0388 /* SolarCalculatorTests */,
 				377E29B414E75E2700FF0388 /* Frameworks */,
 				377E29B214E75E2700FF0388 /* Products */,
 			);
@@ -145,13 +145,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		377E29DC14E75E2700FF0388 /* SolarCalculatorExampleTests */ = {
+		377E29DC14E75E2700FF0388 /* SolarCalculatorTests */ = {
 			isa = PBXGroup;
 			children = (
 				377E29E214E75E2700FF0388 /* SolarCalculatorTests.h */,
 				377E29E314E75E2700FF0388 /* SolarCalculatorTests.m */,
 				377E29DD14E75E2700FF0388 /* Supporting Files */,
 			);
+			name = SolarCalculatorTests;
 			path = SolarCalculatorExampleTests;
 			sourceTree = "<group>";
 		};
