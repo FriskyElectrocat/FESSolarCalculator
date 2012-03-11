@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "377E29B014E75E2700FF0388"
                BuildableName = "SolarCalculatorExample.app"
-               BlueprintName = "SolarCalculatorExample"
+               BlueprintName = "iOS_Example"
                ReferencedContainer = "container:SolarCalculatorExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -34,7 +34,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "377E29D414E75E2700FF0388"
                BuildableName = "SolarCalculatorExampleTests.octest"
-               BlueprintName = "SolarCalculatorExampleTests"
+               BlueprintName = "SolarCalculatorTests"
                ReferencedContainer = "container:SolarCalculatorExample.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -44,7 +44,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "377E29B014E75E2700FF0388"
             BuildableName = "SolarCalculatorExample.app"
-            BlueprintName = "SolarCalculatorExample"
+            BlueprintName = "iOS_Example"
             ReferencedContainer = "container:SolarCalculatorExample.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -63,7 +63,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "377E29B014E75E2700FF0388"
             BuildableName = "SolarCalculatorExample.app"
-            BlueprintName = "SolarCalculatorExample"
+            BlueprintName = "iOS_Example"
             ReferencedContainer = "container:SolarCalculatorExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -81,7 +81,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "377E29B014E75E2700FF0388"
             BuildableName = "SolarCalculatorExample.app"
-            BlueprintName = "SolarCalculatorExample"
+            BlueprintName = "iOS_Example"
             ReferencedContainer = "container:SolarCalculatorExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

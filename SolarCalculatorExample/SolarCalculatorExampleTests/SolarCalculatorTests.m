@@ -24,11 +24,11 @@
 //  THE SOFTWARE.
 //
 
-#import "SolarCalculatorExampleTests.h"
+#import "SolarCalculatorTests.h"
 #import <CoreLocation/CoreLocation.h>
 #import "FESSolarCalculator.h"
 
-@implementation SolarCalculatorExampleTests
+@implementation SolarCalculatorTests
 
 @synthesize solarCalculation=_solarCalculation;
 

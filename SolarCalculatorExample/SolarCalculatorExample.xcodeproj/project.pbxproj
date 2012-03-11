@@ -22,7 +22,7 @@
 		377E29D814E75E2700FF0388 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 377E29B514E75E2700FF0388 /* UIKit.framework */; };
 		377E29D914E75E2700FF0388 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 377E29B714E75E2700FF0388 /* Foundation.framework */; };
 		377E29E114E75E2700FF0388 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 377E29DF14E75E2700FF0388 /* InfoPlist.strings */; };
-		377E29E414E75E2700FF0388 /* SolarCalculatorExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 377E29E314E75E2700FF0388 /* SolarCalculatorExampleTests.m */; };
+		377E29E414E75E2700FF0388 /* SolarCalculatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 377E29E314E75E2700FF0388 /* SolarCalculatorTests.m */; };
 		377E29F014E75EF000FF0388 /* FESSolarCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 377E29EF14E75EF000FF0388 /* FESSolarCalculator.m */; };
 /* End PBXBuildFile section */
 
@@ -56,8 +56,8 @@
 		377E29D614E75E2700FF0388 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		377E29DE14E75E2700FF0388 /* SolarCalculatorExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SolarCalculatorExampleTests-Info.plist"; sourceTree = "<group>"; };
 		377E29E014E75E2700FF0388 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		377E29E214E75E2700FF0388 /* SolarCalculatorExampleTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SolarCalculatorExampleTests.h; sourceTree = "<group>"; };
-		377E29E314E75E2700FF0388 /* SolarCalculatorExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SolarCalculatorExampleTests.m; sourceTree = "<group>"; };
+		377E29E214E75E2700FF0388 /* SolarCalculatorTests.h */ = {isa = PBXFileReference; path = SolarCalculatorTests.h; sourceTree = "<group>"; };
+		377E29E314E75E2700FF0388 /* SolarCalculatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SolarCalculatorTests.m; sourceTree = "<group>"; };
 		377E29EE14E75EF000FF0388 /* FESSolarCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FESSolarCalculator.h; path = ../Source/FESSolarCalculator.h; sourceTree = "<group>"; };
 		377E29EF14E75EF000FF0388 /* FESSolarCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FESSolarCalculator.m; path = ../Source/FESSolarCalculator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -148,8 +148,8 @@
 		377E29DC14E75E2700FF0388 /* SolarCalculatorExampleTests */ = {
 			isa = PBXGroup;
 			children = (
-				377E29E214E75E2700FF0388 /* SolarCalculatorExampleTests.h */,
-				377E29E314E75E2700FF0388 /* SolarCalculatorExampleTests.m */,
+				377E29E214E75E2700FF0388 /* SolarCalculatorTests.h */,
+				377E29E314E75E2700FF0388 /* SolarCalculatorTests.m */,
 				377E29DD14E75E2700FF0388 /* Supporting Files */,
 			);
 			path = SolarCalculatorExampleTests;
@@ -176,9 +176,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		377E29B014E75E2700FF0388 /* SolarCalculatorExample */ = {
+		377E29B014E75E2700FF0388 /* iOS_Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 377E29E714E75E2700FF0388 /* Build configuration list for PBXNativeTarget "SolarCalculatorExample" */;
+			buildConfigurationList = 377E29E714E75E2700FF0388 /* Build configuration list for PBXNativeTarget "iOS_Example" */;
 			buildPhases = (
 				377E29AD14E75E2700FF0388 /* Sources */,
 				377E29AE14E75E2700FF0388 /* Frameworks */,
@@ -188,14 +188,14 @@
 			);
 			dependencies = (
 			);
-			name = SolarCalculatorExample;
+			name = iOS_Example;
 			productName = SolarCalculatorExample;
 			productReference = 377E29B114E75E2700FF0388 /* SolarCalculatorExample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		377E29D414E75E2700FF0388 /* SolarCalculatorExampleTests */ = {
+		377E29D414E75E2700FF0388 /* SolarCalculatorTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 377E29EA14E75E2700FF0388 /* Build configuration list for PBXNativeTarget "SolarCalculatorExampleTests" */;
+			buildConfigurationList = 377E29EA14E75E2700FF0388 /* Build configuration list for PBXNativeTarget "SolarCalculatorTests" */;
 			buildPhases = (
 				377E29D014E75E2700FF0388 /* Sources */,
 				377E29D114E75E2700FF0388 /* Frameworks */,
@@ -207,7 +207,7 @@
 			dependencies = (
 				377E29DB14E75E2700FF0388 /* PBXTargetDependency */,
 			);
-			name = SolarCalculatorExampleTests;
+			name = SolarCalculatorTests;
 			productName = SolarCalculatorExampleTests;
 			productReference = 377E29D514E75E2700FF0388 /* SolarCalculatorExampleTests.octest */;
 			productType = "com.apple.product-type.bundle";
@@ -232,8 +232,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				377E29B014E75E2700FF0388 /* SolarCalculatorExample */,
-				377E29D414E75E2700FF0388 /* SolarCalculatorExampleTests */,
+				377E29B014E75E2700FF0388 /* iOS_Example */,
+				377E29D414E75E2700FF0388 /* SolarCalculatorTests */,
 			);
 		};
 /* End PBXProject section */
@@ -291,7 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				377E29E414E75E2700FF0388 /* SolarCalculatorExampleTests.m in Sources */,
+				377E29E414E75E2700FF0388 /* SolarCalculatorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,7 +300,7 @@
 /* Begin PBXTargetDependency section */
 		377E29DB14E75E2700FF0388 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 377E29B014E75E2700FF0388 /* SolarCalculatorExample */;
+			target = 377E29B014E75E2700FF0388 /* iOS_Example */;
 			targetProxy = 377E29DA14E75E2700FF0388 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -460,7 +460,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		377E29E714E75E2700FF0388 /* Build configuration list for PBXNativeTarget "SolarCalculatorExample" */ = {
+		377E29E714E75E2700FF0388 /* Build configuration list for PBXNativeTarget "iOS_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				377E29E814E75E2700FF0388 /* Debug */,
@@ -469,7 +469,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		377E29EA14E75E2700FF0388 /* Build configuration list for PBXNativeTarget "SolarCalculatorExampleTests" */ = {
+		377E29EA14E75E2700FF0388 /* Build configuration list for PBXNativeTarget "SolarCalculatorTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				377E29EB14E75E2700FF0388 /* Debug */,
