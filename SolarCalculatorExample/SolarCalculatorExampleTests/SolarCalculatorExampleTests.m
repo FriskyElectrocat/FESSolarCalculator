@@ -244,7 +244,8 @@
 //    [components setMonth:2];
 //    [components setDay:19];
     [components setMonth:3];
-    [components setDay:6];
+//    [components setDay:6];
+    [components setDay:10];
     [components setHour:12];
     [components setMinute:0];
     [components setSecond:0];

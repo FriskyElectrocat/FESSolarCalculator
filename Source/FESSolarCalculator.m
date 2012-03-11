@@ -158,36 +158,60 @@ double const toDegrees = 180 / M_PI;
     // run the calculations based on the users criteria
     int JulianDayNumber = [FESSolarCalculator julianDayNumberFromDate:self.startDate];
     NSLog(@"Julian Date: %i", JulianDayNumber);
-    double westLongitude = self.location.coordinate.longitude * -1; // 75W = 75, 45E = -45
-    double ns = ((double)JulianDayNumber - 2451545 - 0.0009) - (westLongitude/360.0);
-    double n = round(ns);
-    NSLog(@"n: %f", n);
-    double Js = 2451545 + 0.0009 + (westLongitude/360) + n;
-    NSLog(@"Js: %f", Js);
-    double Ms = (357.5291 + 0.98560028 * (Js - 2451545));
-    NSLog(@"Ms: %f", Ms);
-    double M = fmod(Ms, 360.0);
-    NSLog(@"M: %f", M);
-    double C = (1.9148 * sin(M * toRadians)) + (0.0200 * sin(2 * M * toRadians)) + (0.0003 * sin(3 * M * toRadians));
-    NSLog(@"C: %f", C);
-    double eLs = (M + 102.9372 + C + 180);
-    double eL = fmod(eLs, 360.0);
-    NSLog(@"eLs: %f", eLs);
-    NSLog(@"eL: %f", eL);
-    double Jtransit = Js + (0.0053 * sin(M * toRadians)) - (0.0069 * sin(2 * eL * toRadians));
-    NSLog(@"Jtransit: %f -> %@", Jtransit, [df stringFromDate:[FESSolarCalculator gregorianDateFromJulianDayNumber:Jtransit]]);
+    double westLongitude = self.location.coordinate.longitude * -1.0; // 75W = 75, 45E = -45
+    
+    double n = 0.0;
+    double eL = 0.0;
+    double M = 0.0;
+    double Mprev = -1.0;
+    double Jtransit = 0.0;
+    
+    while (M != Mprev) {
+        NSLog(@"-------------------------------------> running Jtransit calculation!");
+        Mprev = M;
+        double ns = ((double)JulianDayNumber - 2451545.0 - 0.0009) - (westLongitude/360.0);
+        n = roundf(ns);
+        NSLog(@"ns: %0.10f", ns);
+        NSLog(@"n: %0.10f", n);
+        double Js = 2451545.0 + 0.0009 + (westLongitude/360.0) + n;
+        if (Jtransit != 0.0) {
+            Js = Jtransit;
+        }
+        NSLog(@"Js: %0.10f", Js);
+        double Ms = (357.5291 + 0.98560028 * (Js - 2451545));
+        NSLog(@"Ms: %0.10f", Ms);
+        M = fmod(Ms, 360.0);
+        NSLog(@"M: %0.10f", M);
+        double C = (1.9148 * sin(M * toRadians)) + (0.0200 * sin(2.0 * (M * toRadians))) + (0.0003 * sin(3.0 * (M * toRadians)));
+        NSLog(@"C: %0.10f", C);
+        double eLs = (M + 102.9372 + C + 180.0);
+        eL = fmod(eLs, 360.0);
+        NSLog(@"eLs: %0.10f", eLs);
+        NSLog(@"eL: %0.10f", eL);
+        if (Jtransit == 0.0) {
+            Jtransit = Js + (0.0053 * sin(M * toRadians)) - (0.0069 * sin(2.0 * eL * toRadians));
+        }
+        NSLog(@"Jtransit: %0.10f -> %@", Jtransit, [df stringFromDate:[FESSolarCalculator gregorianDateFromJulianDayNumber:Jtransit]]);
+    }
+    
+    NSLog(@"------------------- done\nM: %0.10f\nMprev: %0.10f", M, Mprev);
+    
     double decl = asin( sin(eL * toRadians) * sin(23.45 * toRadians) ) * toDegrees;
-    NSLog(@"decl: %f", decl);
-    //double H = acos( (sin(-0.83 * toRadians) - sin(self.location.coordinate.latitude * toRadians) * sin(decl * toRadians)) / (cos(self.location.coordinate.latitude * toRadians) * cos(decl * toRadians)) ) * toDegrees;
-    double H = acos( (cos(FESSolarCalculationZenithOfficial * toRadians) - sin(self.location.coordinate.latitude * toRadians) * sin(decl * toRadians)) / (cos(self.location.coordinate.latitude * toRadians) * cos(decl * toRadians)) ) * toDegrees;
-    NSLog(@"H: %f", H);
-    double Jss = 2451545 + 0.0009 + ((H + westLongitude)/360) + n;
-    NSLog(@"Jss: %f", Jss);
-    double Jset = Jss + (0.0053 * sin(M)) - (0.0069 * sin(2 * eL));
+    NSLog(@"decl: %0.10f", decl);
+    //double H1 = ((cos(FESSolarCalculationZenithOfficial * toRadians) - sin(self.location.coordinate.latitude * toRadians)) * sin(decl * toRadians));
+    double H1 = (sin(-1.0 * 0.83 * toRadians) - sin(self.location.coordinate.latitude * toRadians) * sin(decl * toRadians));
+    double H2 = (cos(self.location.coordinate.latitude * toRadians) * cos(decl * toRadians));
+    double H = acos( (H1  * toRadians) / (H2  * toRadians) ) * toDegrees;
+    NSLog(@"H1: %0.10f", H1);
+    NSLog(@"H2: %0.10f", H2);
+    NSLog(@"H: %0.10f", H);
+    double Jss = 2451545.0 + 0.0009 + ((H + westLongitude)/360.0) + n;
+    NSLog(@"Jss: %0.10f", Jss);
+    double Jset = Jss + (0.0053 * sin(M * toRadians)) - (0.0069 * sin(2.0 * (eL * toRadians)));
     double Jrise = Jtransit - (Jset - Jtransit);
-    NSLog(@"Jtransit: %f -> %@", Jtransit, [df stringFromDate:[FESSolarCalculator gregorianDateFromJulianDayNumber:Jtransit]]);
-    NSLog(@"Jrise: %f -> %@", Jrise, [df stringFromDate:[FESSolarCalculator gregorianDateFromJulianDayNumber:Jrise]]);
-    NSLog(@"Jset: %f -> %@", Jset, [df stringFromDate:[FESSolarCalculator gregorianDateFromJulianDayNumber:Jset]]);
+    NSLog(@"Jtransit: %0.10f -> %@", Jtransit, [df stringFromDate:[FESSolarCalculator gregorianDateFromJulianDayNumber:Jtransit]]);
+    NSLog(@"Jrise: %0.10f -> %@", Jrise, [df stringFromDate:[FESSolarCalculator gregorianDateFromJulianDayNumber:Jrise]]);
+    NSLog(@"Jset: %0.10f -> %@", Jset, [df stringFromDate:[FESSolarCalculator gregorianDateFromJulianDayNumber:Jset]]);
 }
 
 #pragma mark -
