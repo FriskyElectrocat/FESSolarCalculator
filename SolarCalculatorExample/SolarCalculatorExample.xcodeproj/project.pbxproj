@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		3716CA7114F1C49300417EDD /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3716CA7014F1C49300417EDD /* CoreLocation.framework */; };
 		3716CA7214F1C49A00417EDD /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3716CA7014F1C49300417EDD /* CoreLocation.framework */; };
+		373EEAF2150D574800493CE8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373EEAF1150D574800493CE8 /* Cocoa.framework */; };
+		373EEAFC150D574800493CE8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 373EEAFA150D574800493CE8 /* InfoPlist.strings */; };
+		373EEAFE150D574800493CE8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 373EEAFD150D574800493CE8 /* main.m */; };
+		373EEB02150D574800493CE8 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 373EEB00150D574800493CE8 /* Credits.rtf */; };
+		373EEB05150D574800493CE8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 373EEB04150D574800493CE8 /* AppDelegate.m */; };
+		373EEB08150D574900493CE8 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 373EEB06150D574900493CE8 /* MainMenu.xib */; };
 		377E29B614E75E2700FF0388 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 377E29B514E75E2700FF0388 /* UIKit.framework */; };
 		377E29B814E75E2700FF0388 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 377E29B714E75E2700FF0388 /* Foundation.framework */; };
 		377E29BA14E75E2700FF0388 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 377E29B914E75E2700FF0388 /* CoreGraphics.framework */; };
@@ -38,6 +44,19 @@
 
 /* Begin PBXFileReference section */
 		3716CA7014F1C49300417EDD /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		373EEAEF150D574800493CE8 /* MacOS_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacOS_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		373EEAF1150D574800493CE8 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		373EEAF4150D574800493CE8 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		373EEAF5150D574800493CE8 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		373EEAF6150D574800493CE8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		373EEAF9150D574800493CE8 /* MacOS_Example-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MacOS_Example-Info.plist"; sourceTree = "<group>"; };
+		373EEAFB150D574800493CE8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		373EEAFD150D574800493CE8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		373EEAFF150D574800493CE8 /* MacOS_Example-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MacOS_Example-Prefix.pch"; sourceTree = "<group>"; };
+		373EEB01150D574800493CE8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		373EEB03150D574800493CE8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		373EEB04150D574800493CE8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		373EEB07150D574900493CE8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		377E29B114E75E2700FF0388 /* SolarCalculatorExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SolarCalculatorExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		377E29B514E75E2700FF0388 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		377E29B714E75E2700FF0388 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -56,13 +75,21 @@
 		377E29D614E75E2700FF0388 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		377E29DE14E75E2700FF0388 /* SolarCalculatorExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SolarCalculatorExampleTests-Info.plist"; sourceTree = "<group>"; };
 		377E29E014E75E2700FF0388 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		377E29E214E75E2700FF0388 /* SolarCalculatorTests.h */ = {isa = PBXFileReference; path = SolarCalculatorTests.h; sourceTree = "<group>"; };
+		377E29E214E75E2700FF0388 /* SolarCalculatorTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SolarCalculatorTests.h; sourceTree = "<group>"; };
 		377E29E314E75E2700FF0388 /* SolarCalculatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SolarCalculatorTests.m; sourceTree = "<group>"; };
 		377E29EE14E75EF000FF0388 /* FESSolarCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FESSolarCalculator.h; path = ../Source/FESSolarCalculator.h; sourceTree = "<group>"; };
 		377E29EF14E75EF000FF0388 /* FESSolarCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FESSolarCalculator.m; path = ../Source/FESSolarCalculator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		373EEAEC150D574800493CE8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				373EEAF2150D574800493CE8 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		377E29AE14E75E2700FF0388 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -88,12 +115,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		373EEAF3150D574800493CE8 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				373EEAF4150D574800493CE8 /* AppKit.framework */,
+				373EEAF5150D574800493CE8 /* CoreData.framework */,
+				373EEAF6150D574800493CE8 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		373EEAF7150D574800493CE8 /* MacOS_Example */ = {
+			isa = PBXGroup;
+			children = (
+				373EEB03150D574800493CE8 /* AppDelegate.h */,
+				373EEB04150D574800493CE8 /* AppDelegate.m */,
+				373EEB06150D574900493CE8 /* MainMenu.xib */,
+				373EEAF8150D574800493CE8 /* Supporting Files */,
+			);
+			path = MacOS_Example;
+			sourceTree = "<group>";
+		};
+		373EEAF8150D574800493CE8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				373EEAF9150D574800493CE8 /* MacOS_Example-Info.plist */,
+				373EEAFA150D574800493CE8 /* InfoPlist.strings */,
+				373EEAFD150D574800493CE8 /* main.m */,
+				373EEAFF150D574800493CE8 /* MacOS_Example-Prefix.pch */,
+				373EEB00150D574800493CE8 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		377E29A614E75E2600FF0388 = {
 			isa = PBXGroup;
 			children = (
 				3716CA7014F1C49300417EDD /* CoreLocation.framework */,
 				377E29ED14E75EAC00FF0388 /* FESSolarCalculator */,
-				377E29BB14E75E2700FF0388 /* SolarCalculatorExample */,
+				373EEAF7150D574800493CE8 /* MacOS_Example */,
+				377E29BB14E75E2700FF0388 /* iOS_Example */,
 				377E29DC14E75E2700FF0388 /* SolarCalculatorTests */,
 				377E29B414E75E2700FF0388 /* Frameworks */,
 				377E29B214E75E2700FF0388 /* Products */,
@@ -105,6 +166,7 @@
 			children = (
 				377E29B114E75E2700FF0388 /* SolarCalculatorExample.app */,
 				377E29D514E75E2700FF0388 /* SolarCalculatorExampleTests.octest */,
+				373EEAEF150D574800493CE8 /* MacOS_Example.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -116,11 +178,13 @@
 				377E29B714E75E2700FF0388 /* Foundation.framework */,
 				377E29B914E75E2700FF0388 /* CoreGraphics.framework */,
 				377E29D614E75E2700FF0388 /* SenTestingKit.framework */,
+				373EEAF1150D574800493CE8 /* Cocoa.framework */,
+				373EEAF3150D574800493CE8 /* Other Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		377E29BB14E75E2700FF0388 /* SolarCalculatorExample */ = {
+		377E29BB14E75E2700FF0388 /* iOS_Example */ = {
 			isa = PBXGroup;
 			children = (
 				377E29C414E75E2700FF0388 /* AppDelegate.h */,
@@ -131,6 +195,7 @@
 				377E29CE14E75E2700FF0388 /* ViewController.m */,
 				377E29BC14E75E2700FF0388 /* Supporting Files */,
 			);
+			name = iOS_Example;
 			path = SolarCalculatorExample;
 			sourceTree = "<group>";
 		};
@@ -177,6 +242,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		373EEAEE150D574800493CE8 /* MacOS_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 373EEB09150D574900493CE8 /* Build configuration list for PBXNativeTarget "MacOS_Example" */;
+			buildPhases = (
+				373EEAEB150D574800493CE8 /* Sources */,
+				373EEAEC150D574800493CE8 /* Frameworks */,
+				373EEAED150D574800493CE8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MacOS_Example;
+			productName = MacOS_Example;
+			productReference = 373EEAEF150D574800493CE8 /* MacOS_Example.app */;
+			productType = "com.apple.product-type.application";
+		};
 		377E29B014E75E2700FF0388 /* iOS_Example */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 377E29E714E75E2700FF0388 /* Build configuration list for PBXNativeTarget "iOS_Example" */;
@@ -234,12 +316,23 @@
 			projectRoot = "";
 			targets = (
 				377E29B014E75E2700FF0388 /* iOS_Example */,
+				373EEAEE150D574800493CE8 /* MacOS_Example */,
 				377E29D414E75E2700FF0388 /* SolarCalculatorTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		373EEAED150D574800493CE8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				373EEAFC150D574800493CE8 /* InfoPlist.strings in Resources */,
+				373EEB02150D574800493CE8 /* Credits.rtf in Resources */,
+				373EEB08150D574900493CE8 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		377E29AF14E75E2700FF0388 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -277,6 +370,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		373EEAEB150D574800493CE8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				373EEAFE150D574800493CE8 /* main.m in Sources */,
+				373EEB05150D574800493CE8 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		377E29AD14E75E2700FF0388 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -307,6 +409,30 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		373EEAFA150D574800493CE8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				373EEAFB150D574800493CE8 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		373EEB00150D574800493CE8 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				373EEB01150D574800493CE8 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		373EEB06150D574900493CE8 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				373EEB07150D574900493CE8 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
 		377E29BE14E75E2700FF0388 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -342,6 +468,50 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		373EEB0A150D574900493CE8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MacOS_Example/MacOS_Example-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "MacOS_Example/MacOS_Example-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		373EEB0B150D574900493CE8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MacOS_Example/MacOS_Example-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "MacOS_Example/MacOS_Example-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		377E29E514E75E2700FF0388 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -452,6 +622,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		373EEB09150D574900493CE8 /* Build configuration list for PBXNativeTarget "MacOS_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				373EEB0A150D574900493CE8 /* Debug */,
+				373EEB0B150D574900493CE8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		377E29AB14E75E2600FF0388 /* Build configuration list for PBXProject "SolarCalculatorExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
