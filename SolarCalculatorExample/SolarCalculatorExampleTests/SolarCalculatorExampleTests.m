@@ -78,7 +78,7 @@
     [components setMinute:0];
     [components setSecond:0];
     NSDate *targetDate = [cal dateFromComponents:components];
-    NSDate *computeDate = [FESSolarCalculator gregorianDateFromJulianDayNumber:2451545.0];
+    NSDate *computeDate = [FESSolarCalculator dateFromJulianDayNumber:2451545.0];
     STAssertEqualObjects(targetDate, computeDate, @"Date converted from Julian Day Number does not match known date.");
 }
 
@@ -97,7 +97,7 @@
     NSDate *targetDate = [cal dateFromComponents:components];
     int JDN = [FESSolarCalculator julianDayNumberFromDate:targetDate];
     STAssertEquals(2451545, JDN, @"Known and computed Julian Dates don't match.");
-    NSDate *computeDate = [FESSolarCalculator gregorianDateFromJulianDayNumber:(double)JDN];
+    NSDate *computeDate = [FESSolarCalculator dateFromJulianDayNumber:(double)JDN];
     STAssertEqualObjects(targetDate, computeDate, @"Date converted from Julian Day Number does not match known date.");
 }
 
@@ -245,7 +245,7 @@
 //    [components setDay:19];
     [components setMonth:3];
 //    [components setDay:6];
-    [components setDay:10];
+    [components setDay:11];
     [components setHour:12];
     [components setMinute:0];
     [components setSecond:0];

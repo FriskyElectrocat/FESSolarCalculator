@@ -40,16 +40,6 @@ enum {
 };
 typedef NSUInteger FESSolarCalculationType;
 
-enum {
-    FESSolarCalculationRising  = 1 << 0,
-    FESSolarCalculationSetting = 1 << 1
-};
-typedef NSUInteger FESSolarCalculationDirection;
-
-//#if __has_feature(objc_fixed_enum)
-//typedef enum : unsigned char { Red, Green, Blue } Color;
-//#endif
-
 @interface FESSolarCalculator : NSObject
 
 @property (nonatomic, readwrite) FESSolarCalculationType operationsMask;  
@@ -69,8 +59,10 @@ typedef NSUInteger FESSolarCalculationDirection;
 - (id)initWithDate:(NSDate *)inDate location:(CLLocation *)inLocation mask:(FESSolarCalculationType)inMask;
 - (void)calculate;
 
-//+ (double)modValue:(double)a with:(double)b;
+// the following conversion methods are provided because of a bug
+// in NSDateFormatter's Julian Day Number converter
+// see http://openradar.appspot.com/11023565
 + (int)julianDayNumberFromDate:(NSDate *)inDate;
-+ (NSDate *)gregorianDateFromJulianDayNumber:(double)julianDayNumber;
++ (NSDate *)dateFromJulianDayNumber:(double)julianDayNumber;
 
 @end
