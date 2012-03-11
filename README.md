@@ -6,9 +6,8 @@ Calculate sunrise, sunset, and twilight times for a given location.
 
 1. Given a location and a date provide:
     * Sunrise date and time for that location
-        * may not be on that day
     * Sunset date and time for that location
-        * may not be on that day
+    * Solar Noon date and time (when the sun is overhead)
     * Dawn and Dusk times for that location:
         * Official
         * Civil
@@ -16,7 +15,6 @@ Calculate sunrise, sunset, and twilight times for a given location.
         * Astronomical
 2. Allow the user to disable some calculations (e.g., only calculate Official Twilight) when run.
 3. Provide an easy way to get the information out.
-4. Allow the user to view in local to the geolocation time or device time? (not sure about this yet)
 
 ## API
 
@@ -24,7 +22,9 @@ There is only one class: `FESSolarCalculator`
 
 * need: basic calculation object with `-init`
     * can be given date and location objects later
-* need: pass in date and time to get back new object with `-initWithDate:andLocation:`
+* pass in date and time to get back new object with `-initWithDate:location:`
+* limit what calculations are done with `-initWithDate:location:mask:`
+    * see the `FESSolarCalculationType` enum for the types of calculations
 * property readwrite: NSDate date
 * property readwrite: CLLocation location
 * property readonly: NSDate sunrise (Official)
@@ -37,7 +37,6 @@ There is only one class: `FESSolarCalculator`
 * property readonly: NSDate astronomicalDawn
 * property readonly: NSDate astronomicalDusk
 * setting new date or location invalidates the current calculations
-* provide isSunUp() method? Needs modification based on which zenith
 
 ## Automatic Reference Counting (ARC)
 
@@ -46,7 +45,8 @@ The source code in this repository uses Automatic Reference Counting. No plans e
 
 ## License
 
-This code is licensed under the MIT license. A little attribution in an about box would be nice, but is not mandatory. The license is reproduced below:
+This code is licensed under the MIT license. The license is reproduced below.
+If a non-attribution license is required contact Dan Weeks for details:
 
 Copyright © 2012 Daniel Weeks.
 
