@@ -38,6 +38,10 @@ There is only one class: `FESSolarCalculator`
 * property readonly: NSDate astronomicalDusk
 * setting new date or location invalidates the current calculations
 
+## Precision
+
+The precision is likely around three minutes, mostly due to approximation. Also, this calculation does not take into account the effect of air temperature, altitude, etc. Together, these may affect the time by 5 minutes or more. This is likely not what you need if you are in need of a very precise solar calculation.
+
 ## Automatic Reference Counting (ARC)
 
 The source code in this repository uses Automatic Reference Counting. No plans exist to support non-ARC code at this time.
