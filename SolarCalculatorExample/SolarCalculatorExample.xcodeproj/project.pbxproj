@@ -19,20 +19,17 @@
 		377E29B614E75E2700FF0388 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 377E29B514E75E2700FF0388 /* UIKit.framework */; };
 		377E29B814E75E2700FF0388 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 377E29B714E75E2700FF0388 /* Foundation.framework */; };
 		377E29BA14E75E2700FF0388 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 377E29B914E75E2700FF0388 /* CoreGraphics.framework */; };
-		377E29C014E75E2700FF0388 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 377E29BE14E75E2700FF0388 /* InfoPlist.strings */; };
-		377E29C914E75E2700FF0388 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 377E29C714E75E2700FF0388 /* MainStoryboard_iPhone.storyboard */; };
-		377E29CC14E75E2700FF0388 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 377E29CA14E75E2700FF0388 /* MainStoryboard_iPad.storyboard */; };
 		377E29D714E75E2700FF0388 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 377E29D614E75E2700FF0388 /* SenTestingKit.framework */; };
 		377E29D814E75E2700FF0388 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 377E29B514E75E2700FF0388 /* UIKit.framework */; };
 		377E29D914E75E2700FF0388 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 377E29B714E75E2700FF0388 /* Foundation.framework */; };
 		37F80874150D5A02003B8DAA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37F80872150D5A02003B8DAA /* InfoPlist.strings */; };
-		37F80876150D5BAE003B8DAA /* FESSolarCalculator.h in Sources */ = {isa = PBXBuildFile; fileRef = 377E29EE14E75EF000FF0388 /* FESSolarCalculator.h */; };
 		37F80877150D5BAE003B8DAA /* FESSolarCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 377E29EF14E75EF000FF0388 /* FESSolarCalculator.m */; };
-		37F80878150D5BAE003B8DAA /* AppDelegate.h in Sources */ = {isa = PBXBuildFile; fileRef = 377E29C414E75E2700FF0388 /* AppDelegate.h */; };
-		37F80879150D5BAE003B8DAA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 377E29C514E75E2700FF0388 /* AppDelegate.m */; };
-		37F8087A150D5BAE003B8DAA /* ViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 377E29CD14E75E2700FF0388 /* ViewController.h */; };
-		37F8087B150D5BAE003B8DAA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 377E29CE14E75E2700FF0388 /* ViewController.m */; };
-		37F8087C150D5BAE003B8DAA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 377E29C114E75E2700FF0388 /* main.m */; };
+		37F8087F150D5CCD003B8DAA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F8087E150D5CCD003B8DAA /* ViewController.m */; };
+		37F80882150D5D04003B8DAA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F80880150D5D04003B8DAA /* main.m */; };
+		37F80883150D5D04003B8DAA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F80881150D5D04003B8DAA /* AppDelegate.m */; };
+		37F8088A150D5D6B003B8DAA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37F80884150D5D6B003B8DAA /* InfoPlist.strings */; };
+		37F8088C150D5D6B003B8DAA /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37F80888150D5D6B003B8DAA /* MainStoryboard_iPhone.storyboard */; };
+		37F8088D150D5E40003B8DAA /* FESSolarCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 377E29EF14E75EF000FF0388 /* FESSolarCalculator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,20 +65,19 @@
 		377E29B714E75E2700FF0388 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		377E29B914E75E2700FF0388 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		377E29BD14E75E2700FF0388 /* iOS_Example-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "iOS_Example-Info.plist"; path = "iOS_Example/iOS_Example-Info.plist"; sourceTree = "<group>"; };
-		377E29BF14E75E2700FF0388 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		377E29C114E75E2700FF0388 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = iOS_Example/main.m; sourceTree = "<group>"; };
-		377E29C314E75E2700FF0388 /* iOS_Example-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "iOS_Example-Info.plist"; path = "iOS_Example/iOS_Example-Info.plist"; sourceTree = "<group>"; };
 		377E29C414E75E2700FF0388 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = iOS_Example/AppDelegate.h; sourceTree = "<group>"; };
-		377E29C514E75E2700FF0388 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = iOS_Example/AppDelegate.m; sourceTree = "<group>"; };
-		377E29C814E75E2700FF0388 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		377E29CB14E75E2700FF0388 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		377E29CD14E75E2700FF0388 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = iOS_Example/ViewController.h; sourceTree = "<group>"; };
-		377E29CE14E75E2700FF0388 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = iOS_Example/ViewController.m; sourceTree = "<group>"; };
 		377E29D514E75E2700FF0388 /* SolarCalculatorTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SolarCalculatorTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		377E29D614E75E2700FF0388 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		377E29EE14E75EF000FF0388 /* FESSolarCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FESSolarCalculator.h; path = ../Source/FESSolarCalculator.h; sourceTree = "<group>"; };
 		377E29EF14E75EF000FF0388 /* FESSolarCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FESSolarCalculator.m; path = ../Source/FESSolarCalculator.m; sourceTree = "<group>"; };
 		37F80873150D5A02003B8DAA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = SolarCalculatorTests/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
+		37F8087D150D5CCD003B8DAA /* iOS_Example-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "iOS_Example-Prefix.pch"; path = "iOS_Example/iOS_Example-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		37F8087E150D5CCD003B8DAA /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = iOS_Example/ViewController.m; sourceTree = SOURCE_ROOT; };
+		37F80880150D5D04003B8DAA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = iOS_Example/main.m; sourceTree = SOURCE_ROOT; };
+		37F80881150D5D04003B8DAA /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = iOS_Example/AppDelegate.m; sourceTree = SOURCE_ROOT; };
+		37F80885150D5D6B003B8DAA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = iOS_Example/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
+		37F80889150D5D6B003B8DAA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = iOS_Example/en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,8 +152,8 @@
 			children = (
 				3716CA7014F1C49300417EDD /* CoreLocation.framework */,
 				377E29ED14E75EAC00FF0388 /* FESSolarCalculator */,
-				373EEAF7150D574800493CE8 /* MacOS_Example */,
 				377E29BB14E75E2700FF0388 /* iOS_Example */,
+				373EEAF7150D574800493CE8 /* MacOS_Example */,
 				377E29DC14E75E2700FF0388 /* SolarCalculatorTests */,
 				377E29B414E75E2700FF0388 /* Frameworks */,
 				377E29B214E75E2700FF0388 /* Products */,
@@ -190,12 +186,11 @@
 		377E29BB14E75E2700FF0388 /* iOS_Example */ = {
 			isa = PBXGroup;
 			children = (
+				37F80888150D5D6B003B8DAA /* MainStoryboard_iPhone.storyboard */,
 				377E29C414E75E2700FF0388 /* AppDelegate.h */,
-				377E29C514E75E2700FF0388 /* AppDelegate.m */,
-				377E29C714E75E2700FF0388 /* MainStoryboard_iPhone.storyboard */,
-				377E29CA14E75E2700FF0388 /* MainStoryboard_iPad.storyboard */,
+				37F80881150D5D04003B8DAA /* AppDelegate.m */,
 				377E29CD14E75E2700FF0388 /* ViewController.h */,
-				377E29CE14E75E2700FF0388 /* ViewController.m */,
+				37F8087E150D5CCD003B8DAA /* ViewController.m */,
 				377E29BC14E75E2700FF0388 /* Supporting Files */,
 			);
 			name = iOS_Example;
@@ -205,10 +200,10 @@
 		377E29BC14E75E2700FF0388 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				37F80880150D5D04003B8DAA /* main.m */,
+				37F8087D150D5CCD003B8DAA /* iOS_Example-Prefix.pch */,
 				377E29BD14E75E2700FF0388 /* iOS_Example-Info.plist */,
-				377E29BE14E75E2700FF0388 /* InfoPlist.strings */,
-				377E29C114E75E2700FF0388 /* main.m */,
-				377E29C314E75E2700FF0388 /* iOS_Example-Info.plist */,
+				37F80884150D5D6B003B8DAA /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -341,11 +336,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				377E29C014E75E2700FF0388 /* InfoPlist.strings in Resources */,
-				377E29C914E75E2700FF0388 /* MainStoryboard_iPhone.storyboard in Resources */,
-				377E29CC14E75E2700FF0388 /* MainStoryboard_iPad.storyboard in Resources */,
 				373EEB10150D582300493CE8 /* SolarCalculatorTests-Info.plist in Resources */,
 				37F80874150D5A02003B8DAA /* InfoPlist.strings in Resources */,
+				37F8088A150D5D6B003B8DAA /* InfoPlist.strings in Resources */,
+				37F8088C150D5D6B003B8DAA /* MainStoryboard_iPhone.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,6 +374,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				373EEAFE150D574800493CE8 /* main.m in Sources */,
+				37F8088D150D5E40003B8DAA /* FESSolarCalculator.m in Sources */,
 				373EEB05150D574800493CE8 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -388,13 +383,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37F80876150D5BAE003B8DAA /* FESSolarCalculator.h in Sources */,
 				37F80877150D5BAE003B8DAA /* FESSolarCalculator.m in Sources */,
-				37F80878150D5BAE003B8DAA /* AppDelegate.h in Sources */,
-				37F80879150D5BAE003B8DAA /* AppDelegate.m in Sources */,
-				37F8087A150D5BAE003B8DAA /* ViewController.h in Sources */,
-				37F8087B150D5BAE003B8DAA /* ViewController.m in Sources */,
-				37F8087C150D5BAE003B8DAA /* main.m in Sources */,
+				37F8087F150D5CCD003B8DAA /* ViewController.m in Sources */,
+				37F80882150D5D04003B8DAA /* main.m in Sources */,
+				37F80883150D5D04003B8DAA /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,39 +432,28 @@
 			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
-		377E29BE14E75E2700FF0388 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				377E29BF14E75E2700FF0388 /* en */,
-			);
-			name = InfoPlist.strings;
-			path = iOS_Example;
-			sourceTree = "<group>";
-		};
-		377E29C714E75E2700FF0388 /* MainStoryboard_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				377E29C814E75E2700FF0388 /* en */,
-			);
-			name = MainStoryboard_iPhone.storyboard;
-			path = iOS_Example;
-			sourceTree = "<group>";
-		};
-		377E29CA14E75E2700FF0388 /* MainStoryboard_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				377E29CB14E75E2700FF0388 /* en */,
-			);
-			name = MainStoryboard_iPad.storyboard;
-			path = iOS_Example;
-			sourceTree = "<group>";
-		};
 		37F80872150D5A02003B8DAA /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				37F80873150D5A02003B8DAA /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		37F80884150D5D6B003B8DAA /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				37F80885150D5D6B003B8DAA /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		37F80888150D5D6B003B8DAA /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				37F80889150D5D6B003B8DAA /* en */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -544,7 +525,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -564,7 +545,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
