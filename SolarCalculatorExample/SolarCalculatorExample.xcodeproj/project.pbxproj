@@ -38,6 +38,7 @@
 		57060E29150E7BEF000D9709 /* FESSolarCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 377E29EF14E75EF000FF0388 /* FESSolarCalculator.m */; };
 		57060E2A150E7BF8000D9709 /* SolarCalculatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 373EEB0D150D580500493CE8 /* SolarCalculatorTests.m */; };
 		57060E2C150E7C62000D9709 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57060E2B150E7C62000D9709 /* CoreLocation.framework */; };
+		57060E2D150E826E000D9709 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57060E2B150E7C62000D9709 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57060E2D150E826E000D9709 /* CoreLocation.framework in Frameworks */,
 				373EEAF2150D574800493CE8 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
