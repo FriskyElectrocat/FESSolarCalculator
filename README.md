@@ -1,6 +1,6 @@
 # FESSolarCalculator
 
-Calculate sunrise, sunset, and twilight times for a given location.
+Calculate sunrise, sunset, and twilight times for a given location and date.
 
 ## Goals
 
@@ -20,8 +20,6 @@ Calculate sunrise, sunset, and twilight times for a given location.
 
 There is only one class: `FESSolarCalculator`
 
-* need: basic calculation object with `-init`
-    * can be given date and location objects later
 * pass in date and time to get back new object with `-initWithDate:location:`
 * limit what calculations are done with `-initWithDate:location:mask:`
     * see the `FESSolarCalculationType` enum for the types of calculations
@@ -36,16 +34,16 @@ There is only one class: `FESSolarCalculator`
 * property readonly: NSDate nauticalDusk
 * property readonly: NSDate astronomicalDawn
 * property readonly: NSDate astronomicalDusk
-* setting new date or location invalidates the current calculations
 
 ## Precision
 
 The precision is likely around three minutes, mostly due to approximation. Also, this calculation does not take into account the effect of air temperature, altitude, etc. Together, these may affect the time by 5 minutes or more. This is likely not what you need if you are in need of a very precise solar calculation.
 
+Note that dates prior to 01 January 2000 GMT are not guarenteed to return correct results at this time.
+
 ## Automatic Reference Counting (ARC)
 
 The source code in this repository uses Automatic Reference Counting. No plans exist to support non-ARC code at this time.
-
 
 ## License
 
