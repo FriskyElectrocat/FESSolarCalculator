@@ -50,10 +50,11 @@ See the examples in the source. It is recommended that your start date is at noo
 
 ## Issues
 
-There are a couple of known issues. Check the [issues page for the project](https://github.com/danimal/FESSolarCalculator/issues) for the latest status.
+There one known issue:
 
-* [Mac OS X Example Code needed](https://github.com/danimal/FESSolarCalculator/issues/1)
 * [Need to handle the sun never rising or setting for a given location](https://github.com/danimal/FESSolarCalculator/issues/2)
+
+Check the [issues page for the project](https://github.com/danimal/FESSolarCalculator/issues) for the latest status.
 
 ## Precision
 
