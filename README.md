@@ -8,13 +8,12 @@ Calculate sunrise, sunset, and twilight times for a given location and date.
     * Sunrise date and time for that location
     * Sunset date and time for that location
     * Solar Noon date and time (when the sun is overhead)
-    * Dawn and Dusk times for that location:
+    * Dawn and Dusk (twilight) dates and times for that location:
         * Official
         * Civil
         * Nautical
         * Astronomical
-2. Allow the user to disable some calculations (e.g., only calculate Official Twilight) when run.
-3. Provide an easy way to get the information out.
+2. Allow the user to disable some calculations (e.g., only calculate Official) when run.
 
 ## API
 
@@ -23,8 +22,8 @@ There is only one class: `FESSolarCalculator`
 * pass in date and time to get back new object with `-initWithDate:location:`
 * limit what calculations are done with `-initWithDate:location:mask:`
     * see the `FESSolarCalculationType` enum for the types of calculations
-* property readwrite: NSDate date
-* property readwrite: CLLocation location
+* property readonly: NSDate startDate
+* property readonly: CLLocation location
 * property readonly: NSDate sunrise (Official)
 * property readonly: NSDate sunset (Official)
 * property readonly: NSDate solarNoon
@@ -35,20 +34,41 @@ There is only one class: `FESSolarCalculator`
 * property readonly: NSDate astronomicalDawn
 * property readonly: NSDate astronomicalDusk
 
+Note: Properties will be nil if the calculations have not been run or if they were outside the calculation mask.
+
+In addition there are two class methods that are provided as a utility:
+
+* `+julianDayNumberFromDate:`
+* `+dateFromJulianDayNumber:`
+
+These are provided to convert to and from [Julian Day Numbers](http://en.wikipedia.org/wiki/Julian_day). Normally one would just use the '_g_' format option to `NSDateFormatter`, however in developing this a bug
+was discovered that converts to and from the wrong hour on a given day. See [http://openradar.appspot.com/11023565](http://openradar.appspot.com/11023565)   for details. These will be revisited or removed when or if that bug is resolved.
+
+## Usage
+
+See the examples in the source. It is recommended that your start date is at noon, but it can be any time on a given day.
+
+## Issues
+
+There are a couple of known issues. Check the [issues page for the project](https://github.com/danimal/FESSolarCalculator/issues) for the latest status.
+
+* [Mac OS X Example Code needed](https://github.com/danimal/FESSolarCalculator/issues/1)
+* [Need to handle the sun never rising or setting for a given location](https://github.com/danimal/FESSolarCalculator/issues/2)
+
 ## Precision
 
 The precision is likely around three minutes, mostly due to approximation. Also, this calculation does not take into account the effect of air temperature, altitude, etc. Together, these may affect the time by 5 minutes or more. This is likely not what you need if you are in need of a very precise solar calculation.
 
-Note that dates prior to 01 January 2000 GMT are not guarenteed to return correct results at this time.
+Note that dates prior to 01 January 2000 GMT are not guarenteed to return correct results at this time (if ever).
 
 ## Automatic Reference Counting (ARC)
 
-The source code in this repository uses Automatic Reference Counting. No plans exist to support non-ARC code at this time.
+The source code in this repository uses Automatic Reference Counting. No plans exist to support non-ARC code. If your project requires non-ARC code compile these files with -fobjc-arc. See the [clang docs](http://clang.llvm.org/docs/AutomaticReferenceCounting.html) for more details.
 
 ## License
 
 This code is licensed under the MIT license. The license is reproduced below.
-If a non-attribution license is required contact Dan Weeks for details:
+If a non-attribution license is required contact Daniel Weeks for details:
 
 Copyright © 2012 Daniel Weeks.
 
