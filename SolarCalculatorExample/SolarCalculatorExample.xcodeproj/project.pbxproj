@@ -32,6 +32,13 @@
 		37F8088A150D5D6B003B8DAA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37F80884150D5D6B003B8DAA /* InfoPlist.strings */; };
 		37F8088C150D5D6B003B8DAA /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37F80888150D5D6B003B8DAA /* MainStoryboard_iPhone.storyboard */; };
 		37F8088D150D5E40003B8DAA /* FESSolarCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 377E29EF14E75EF000FF0388 /* FESSolarCalculator.m */; };
+		57060E1A150E7BC6000D9709 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 377E29D614E75E2700FF0388 /* SenTestingKit.framework */; };
+		57060E1B150E7BC6000D9709 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373EEAF1150D574800493CE8 /* Cocoa.framework */; };
+		57060E21150E7BC6000D9709 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 57060E1F150E7BC6000D9709 /* InfoPlist.strings */; };
+		57060E29150E7BEF000D9709 /* FESSolarCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 377E29EF14E75EF000FF0388 /* FESSolarCalculator.m */; };
+		57060E2A150E7BF8000D9709 /* SolarCalculatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 373EEB0D150D580500493CE8 /* SolarCalculatorTests.m */; };
+		57060E2C150E7C62000D9709 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57060E2B150E7C62000D9709 /* CoreLocation.framework */; };
+		57060E2D150E826E000D9709 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57060E2B150E7C62000D9709 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +87,13 @@
 		37F80881150D5D04003B8DAA /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = iOS_Example/AppDelegate.m; sourceTree = SOURCE_ROOT; };
 		37F80885150D5D6B003B8DAA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = iOS_Example/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
 		37F80889150D5D6B003B8DAA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = iOS_Example/en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = SOURCE_ROOT; };
+		57060E19150E7BC6000D9709 /* OSX_Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OSX_Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		57060E1E150E7BC6000D9709 /* OSX_Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OSX_Tests-Info.plist"; sourceTree = "<group>"; };
+		57060E20150E7BC6000D9709 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		57060E22150E7BC6000D9709 /* OSX_Tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSX_Tests.h; sourceTree = "<group>"; };
+		57060E23150E7BC6000D9709 /* OSX_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSX_Tests.m; sourceTree = "<group>"; };
+		57060E25150E7BC6000D9709 /* OSX_Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OSX_Tests-Prefix.pch"; sourceTree = "<group>"; };
+		57060E2B150E7C62000D9709 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57060E2D150E826E000D9709 /* CoreLocation.framework in Frameworks */,
 				373EEAF2150D574800493CE8 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -110,6 +125,16 @@
 				377E29D714E75E2700FF0388 /* SenTestingKit.framework in Frameworks */,
 				377E29D814E75E2700FF0388 /* UIKit.framework in Frameworks */,
 				377E29D914E75E2700FF0388 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		57060E15150E7BC6000D9709 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57060E2C150E7C62000D9709 /* CoreLocation.framework in Frameworks */,
+				57060E1A150E7BC6000D9709 /* SenTestingKit.framework in Frameworks */,
+				57060E1B150E7BC6000D9709 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,11 +177,13 @@
 		377E29A614E75E2600FF0388 = {
 			isa = PBXGroup;
 			children = (
+				57060E2B150E7C62000D9709 /* CoreLocation.framework */,
 				3716CA7014F1C49300417EDD /* CoreLocation.framework */,
 				377E29ED14E75EAC00FF0388 /* FESSolarCalculator */,
 				377E29BB14E75E2700FF0388 /* iOS_Example */,
 				373EEAF7150D574800493CE8 /* MacOS_Example */,
 				377E29DC14E75E2700FF0388 /* SolarCalculatorTests */,
+				57060E1C150E7BC6000D9709 /* OSX_Tests */,
 				377E29B414E75E2700FF0388 /* Frameworks */,
 				377E29B214E75E2700FF0388 /* Products */,
 			);
@@ -168,6 +195,7 @@
 				377E29B114E75E2700FF0388 /* iOS_Example.app */,
 				377E29D514E75E2700FF0388 /* SolarCalculatorTests.octest */,
 				373EEAEF150D574800493CE8 /* MacOS_Example.app */,
+				57060E19150E7BC6000D9709 /* OSX_Tests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -239,6 +267,26 @@
 			name = FESSolarCalculator;
 			sourceTree = "<group>";
 		};
+		57060E1C150E7BC6000D9709 /* OSX_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				57060E22150E7BC6000D9709 /* OSX_Tests.h */,
+				57060E23150E7BC6000D9709 /* OSX_Tests.m */,
+				57060E1D150E7BC6000D9709 /* Supporting Files */,
+			);
+			path = OSX_Tests;
+			sourceTree = "<group>";
+		};
+		57060E1D150E7BC6000D9709 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				57060E1E150E7BC6000D9709 /* OSX_Tests-Info.plist */,
+				57060E1F150E7BC6000D9709 /* InfoPlist.strings */,
+				57060E25150E7BC6000D9709 /* OSX_Tests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -276,9 +324,9 @@
 			productReference = 377E29B114E75E2700FF0388 /* iOS_Example.app */;
 			productType = "com.apple.product-type.application";
 		};
-		377E29D414E75E2700FF0388 /* SolarCalculatorTests */ = {
+		377E29D414E75E2700FF0388 /* iOS_Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 377E29EA14E75E2700FF0388 /* Build configuration list for PBXNativeTarget "SolarCalculatorTests" */;
+			buildConfigurationList = 377E29EA14E75E2700FF0388 /* Build configuration list for PBXNativeTarget "iOS_Tests" */;
 			buildPhases = (
 				377E29D014E75E2700FF0388 /* Sources */,
 				377E29D114E75E2700FF0388 /* Frameworks */,
@@ -290,9 +338,27 @@
 			dependencies = (
 				377E29DB14E75E2700FF0388 /* PBXTargetDependency */,
 			);
-			name = SolarCalculatorTests;
+			name = iOS_Tests;
 			productName = SolarCalculatorExampleTests;
 			productReference = 377E29D514E75E2700FF0388 /* SolarCalculatorTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+		57060E18150E7BC6000D9709 /* OSX_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 57060E26150E7BC6000D9709 /* Build configuration list for PBXNativeTarget "OSX_Tests" */;
+			buildPhases = (
+				57060E14150E7BC6000D9709 /* Sources */,
+				57060E15150E7BC6000D9709 /* Frameworks */,
+				57060E16150E7BC6000D9709 /* Resources */,
+				57060E17150E7BC6000D9709 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OSX_Tests;
+			productName = OSX_Tests;
+			productReference = 57060E19150E7BC6000D9709 /* OSX_Tests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -318,7 +384,8 @@
 			targets = (
 				377E29B014E75E2700FF0388 /* iOS_Example */,
 				373EEAEE150D574800493CE8 /* MacOS_Example */,
-				377E29D414E75E2700FF0388 /* SolarCalculatorTests */,
+				377E29D414E75E2700FF0388 /* iOS_Tests */,
+				57060E18150E7BC6000D9709 /* OSX_Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -352,10 +419,31 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		57060E16150E7BC6000D9709 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57060E21150E7BC6000D9709 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		377E29D314E75E2700FF0388 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		57060E17150E7BC6000D9709 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -398,6 +486,15 @@
 			files = (
 				377480AB150D7511003E139B /* SolarCalculatorTests.m in Sources */,
 				377480AD150D7513003E139B /* FESSolarCalculator.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		57060E14150E7BC6000D9709 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57060E29150E7BEF000D9709 /* FESSolarCalculator.m in Sources */,
+				57060E2A150E7BF8000D9709 /* SolarCalculatorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +555,14 @@
 				37F80889150D5D6B003B8DAA /* en */,
 			);
 			name = MainStoryboard_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		57060E1F150E7BC6000D9709 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				57060E20150E7BC6000D9709 /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -579,7 +684,7 @@
 		377E29EB14E75E2700FF0388 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SolarCalculatorExample.app/SolarCalculatorExample";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iOS_Example.app/iOS_Example";
 				FESSOLARCALCULATOR_DEBUG = "FESSOLARCALCULATOR_DEBUG=1";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -597,7 +702,7 @@
 		377E29EC14E75E2700FF0388 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SolarCalculatorExample.app/SolarCalculatorExample";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iOS_Example.app/iOS_Example";
 				FESSOLARCALCULATOR_DEBUG = "FESSOLARCALCULATOR_DEBUG=1";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -608,6 +713,44 @@
 				INFOPLIST_FILE = "SolarCalculatorTests/SolarCalculatorTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+		57060E27150E7BC6000D9709 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OSX_Tests/OSX_Tests-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "OSX_Tests/OSX_Tests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		57060E28150E7BC6000D9709 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OSX_Tests/OSX_Tests-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "OSX_Tests/OSX_Tests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
@@ -642,7 +785,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		377E29EA14E75E2700FF0388 /* Build configuration list for PBXNativeTarget "SolarCalculatorTests" */ = {
+		377E29EA14E75E2700FF0388 /* Build configuration list for PBXNativeTarget "iOS_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				377E29EB14E75E2700FF0388 /* Debug */,
@@ -650,6 +793,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		57060E26150E7BC6000D9709 /* Build configuration list for PBXNativeTarget "OSX_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				57060E27150E7BC6000D9709 /* Debug */,
+				57060E28150E7BC6000D9709 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

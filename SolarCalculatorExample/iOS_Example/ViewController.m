@@ -106,7 +106,7 @@
     df.dateFormat = @"yyyy-MM-dd HH:mm:ss Z";
     
     // set the labels
-    self.locationLabel.text = [NSString stringWithFormat:@"%f %f", self.solarCalculator.location.coordinate.latitude, self.solarCalculator.location.coordinate.longitude];
+    self.locationLabel.text = [NSString stringWithFormat:@"Lat: %f  Long: %f", self.solarCalculator.location.coordinate.latitude, self.solarCalculator.location.coordinate.longitude];
     self.startDateLabel.text = [df stringFromDate:self.solarCalculator.startDate];
     self.sunriseLabel.text = [df stringFromDate:self.solarCalculator.sunrise];
     self.sunsetLabel.text = [df stringFromDate:self.solarCalculator.sunset];
