@@ -25,6 +25,7 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
+#import <CoreLocation/CoreLocation.h>
 #import "FESSolarCalculator.h"
 
 @interface SolarCalculatorTests : SenTestCase
