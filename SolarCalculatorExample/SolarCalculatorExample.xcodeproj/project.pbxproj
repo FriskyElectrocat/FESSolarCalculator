@@ -16,6 +16,8 @@
 		373EEB05150D574800493CE8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 373EEB04150D574800493CE8 /* AppDelegate.m */; };
 		373EEB08150D574900493CE8 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 373EEB06150D574900493CE8 /* MainMenu.xib */; };
 		373EEB10150D582300493CE8 /* SolarCalculatorTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 373EEB0F150D582300493CE8 /* SolarCalculatorTests-Info.plist */; };
+		377480AB150D7511003E139B /* SolarCalculatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 373EEB0D150D580500493CE8 /* SolarCalculatorTests.m */; };
+		377480AD150D7513003E139B /* FESSolarCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 377E29EF14E75EF000FF0388 /* FESSolarCalculator.m */; };
 		377E29B614E75E2700FF0388 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 377E29B514E75E2700FF0388 /* UIKit.framework */; };
 		377E29B814E75E2700FF0388 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 377E29B714E75E2700FF0388 /* Foundation.framework */; };
 		377E29BA14E75E2700FF0388 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 377E29B914E75E2700FF0388 /* CoreGraphics.framework */; };
@@ -394,6 +396,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				377480AB150D7511003E139B /* SolarCalculatorTests.m in Sources */,
+				377480AD150D7513003E139B /* FESSolarCalculator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,7 +586,7 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SolarCalculatorExample/SolarCalculatorExample-Prefix.pch";
+				GCC_PREFIX_HEADER = "SolarCalculatorTests/SolarCalculatorTests-Prefix.pch";
 				INFOPLIST_FILE = "SolarCalculatorTests/SolarCalculatorTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -600,7 +604,7 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SolarCalculatorExample/SolarCalculatorExample-Prefix.pch";
+				GCC_PREFIX_HEADER = "SolarCalculatorTests/SolarCalculatorTests-Prefix.pch";
 				INFOPLIST_FILE = "SolarCalculatorTests/SolarCalculatorTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";

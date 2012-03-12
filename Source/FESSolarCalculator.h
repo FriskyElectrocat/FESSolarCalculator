@@ -42,9 +42,9 @@ typedef NSUInteger FESSolarCalculationType;
 
 @interface FESSolarCalculator : NSObject
 
-@property (nonatomic, readwrite) FESSolarCalculationType operationsMask;  
-@property (nonatomic, readwrite, strong, setter=setStartDate:) NSDate *startDate;
-@property (nonatomic, readwrite, strong, setter=setLocation:) CLLocation *location;
+@property (nonatomic, readonly) FESSolarCalculationType operationsMask;  
+@property (nonatomic, readonly, strong) NSDate *startDate;
+@property (nonatomic, readonly, strong) CLLocation *location;
 @property (nonatomic, readonly, strong) NSDate *sunrise; // AKA Official
 @property (nonatomic, readonly, strong) NSDate *sunset;  // AKA Official
 @property (nonatomic, readonly, strong) NSDate *solarNoon;
@@ -57,7 +57,6 @@ typedef NSUInteger FESSolarCalculationType;
 
 - (id)initWithDate:(NSDate *)inDate location:(CLLocation *)inLocation;
 - (id)initWithDate:(NSDate *)inDate location:(CLLocation *)inLocation mask:(FESSolarCalculationType)inMask;
-- (void)calculate;
 
 // the following conversion methods are provided because of a bug
 // in NSDateFormatter's Julian Day Number converter
