@@ -579,7 +579,7 @@
 		377E29EB14E75E2700FF0388 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SolarCalculatorExample.app/SolarCalculatorExample";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iOS_Example.app/iOS_Example";
 				FESSOLARCALCULATOR_DEBUG = "FESSOLARCALCULATOR_DEBUG=1";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -597,7 +597,7 @@
 		377E29EC14E75E2700FF0388 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SolarCalculatorExample.app/SolarCalculatorExample";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iOS_Example.app/iOS_Example";
 				FESSOLARCALCULATOR_DEBUG = "FESSOLARCALCULATOR_DEBUG=1";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
