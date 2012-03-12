@@ -25,8 +25,6 @@
 //
 
 #import "SolarCalculatorTests.h"
-#import <CoreLocation/CoreLocation.h>
-#import "FESSolarCalculator.h"
 
 @implementation SolarCalculatorTests
 
@@ -115,7 +113,7 @@
     [components setSecond:0];
     NSDate *targetDate = [cal dateFromComponents:components];
     int JDN = [FESSolarCalculator julianDayNumberFromDate:targetDate];
-    STAssertEquals(2455992, JDN, @"Known and computed Julian Dates don't match.");
+    STAssertEquals(2455992, JDN, @"Known and computed dates from Julian don't match.");
 }
 
 - (void)testJulianDayNumber_5
@@ -140,7 +138,6 @@
     NSDate *startDate = [NSDate date];
     CLLocation *startLocation = [[CLLocation alloc] initWithLatitude:37.771667 longitude:-122.223333];
     _solarCalculation = [[FESSolarCalculator alloc] initWithDate:startDate location:startLocation];
-    [[self solarCalculation] calculate];
 
     STAssertNotNil([[self solarCalculation] sunrise], @"sunrise is nil after calculation run");
     STAssertNotNil([[self solarCalculation] sunset], @"sunset is nil after calculation run");
@@ -153,54 +150,11 @@
     STAssertNotNil([[self solarCalculation] astronomicalDusk], @"astronomicalDusk is nil after calculation run");
 }
 
-- (void)testInvalidateResultsByDate
-{
-    NSDate *startDate = [NSDate date];
-    CLLocation *startLocation = [[CLLocation alloc] initWithLatitude:37.771667 longitude:-122.223333];
-    _solarCalculation = [[FESSolarCalculator alloc] initWithDate:startDate location:startLocation];
-    [[self solarCalculation] calculate];
-    // setting the date should invalidate the previous results
-    STAssertNotNil([[self solarCalculation] sunrise], @"sunrise is nil after calculation run");
-    [[self solarCalculation] setStartDate:startDate];
-    
-    STAssertNil([[self solarCalculation] sunrise], @"resetting date did not set sunrise to nil");
-    STAssertNil([[self solarCalculation] sunset], @"resetting date did not set sunset to nil");
-    STAssertNil([[self solarCalculation] solarNoon], @"resetting date did not set solarNoon to nil");
-    STAssertNil([[self solarCalculation] civilDawn],  @"resetting date did not set civilDawn to nil");
-    STAssertNil([[self solarCalculation] civilDusk], @"resetting date did not set civilDusk to nil");
-    STAssertNil([[self solarCalculation] nauticalDawn], @"resetting date did not set nauticalDawn to nil");
-    STAssertNil([[self solarCalculation] nauticalDusk], @"resetting date did not set nauticalDusk to nil");
-    STAssertNil([[self solarCalculation] astronomicalDawn], @"resetting date did not set astronomicalDawn to nil");
-    STAssertNil([[self solarCalculation] astronomicalDusk], @"resetting date did not set astronomicalDusk to nil");
-}
-
-- (void)testInvalidateResultsByLocation
-{
-    NSDate *startDate = [NSDate date];
-    CLLocation *startLocation = [[CLLocation alloc] initWithLatitude:37.771667 longitude:-122.223333];
-    _solarCalculation = [[FESSolarCalculator alloc] initWithDate:startDate location:startLocation];
-    [[self solarCalculation] calculate];
-    // setting the date should invalidate the previous results
-    STAssertNotNil([[self solarCalculation] sunrise], @"sunrise is nil after calculation run");
-    [[self solarCalculation] setLocation:startLocation];
-    
-    STAssertNil([[self solarCalculation] sunrise], @"resetting date did not set sunrise to nil");
-    STAssertNil([[self solarCalculation] sunset], @"resetting date did not set sunset to nil");
-    STAssertNil([[self solarCalculation] solarNoon], @"resetting date did not set solarNoon to nil");
-    STAssertNil([[self solarCalculation] civilDawn],  @"resetting date did not set civilDawn to nil");
-    STAssertNil([[self solarCalculation] civilDusk], @"resetting date did not set civilDusk to nil");
-    STAssertNil([[self solarCalculation] nauticalDawn], @"resetting date did not set nauticalDawn to nil");
-    STAssertNil([[self solarCalculation] nauticalDusk], @"resetting date did not set nauticalDusk to nil");
-    STAssertNil([[self solarCalculation] astronomicalDawn], @"resetting date did not set astronomicalDawn to nil");
-    STAssertNil([[self solarCalculation] astronomicalDusk], @"resetting date did not set astronomicalDusk to nil");
-}
-
 - (void)testMaskAll
 {
     NSDate *startDate = [NSDate date];
     CLLocation *startLocation = [[CLLocation alloc] initWithLatitude:37.771667 longitude:-122.223333];
     _solarCalculation = [[FESSolarCalculator alloc] initWithDate:startDate location:startLocation mask:FESSolarCalculationAll];
-    [[self solarCalculation] calculate];
     
     STAssertNotNil([[self solarCalculation] sunrise], @"sunrise is nil after calculation run");
     STAssertNotNil([[self solarCalculation] sunset], @"sunset is nil after calculation run");
@@ -218,17 +172,16 @@
     NSDate *startDate = [NSDate date];
     CLLocation *startLocation = [[CLLocation alloc] initWithLatitude:37.771667 longitude:-122.223333];
     _solarCalculation = [[FESSolarCalculator alloc] initWithDate:startDate location:startLocation mask:FESSolarCalculationOfficial];
-    [[self solarCalculation] calculate];
     
     STAssertNotNil([[self solarCalculation] sunrise], @"sunrise is nil after calculation run");
     STAssertNotNil([[self solarCalculation] sunset], @"sunset is nil after calculation run");
     STAssertNotNil([[self solarCalculation] solarNoon], @"solarNoon is nil after calculation run");
-    STAssertNil([[self solarCalculation] civilDawn],  @"resetting date did not set civilDawn to nil");
-    STAssertNil([[self solarCalculation] civilDusk], @"resetting date did not set civilDusk to nil");
-    STAssertNil([[self solarCalculation] nauticalDawn], @"resetting date did not set nauticalDawn to nil");
-    STAssertNil([[self solarCalculation] nauticalDusk], @"resetting date did not set nauticalDusk to nil");
-    STAssertNil([[self solarCalculation] astronomicalDawn], @"resetting date did not set astronomicalDawn to nil");
-    STAssertNil([[self solarCalculation] astronomicalDusk], @"resetting date did not set astronomicalDusk to nil");
+    STAssertNil([[self solarCalculation] civilDawn], @"civilDawn is not nil after calculation run");
+    STAssertNil([[self solarCalculation] civilDusk], @"civilDusk is not nil after calculation run");
+    STAssertNil([[self solarCalculation] nauticalDawn], @"nauticalDawn is not nil after calculation run");
+    STAssertNil([[self solarCalculation] nauticalDusk], @"nauticalDusk is not nil after calculation run");
+    STAssertNil([[self solarCalculation] astronomicalDawn], @"astronomicalDawn is not nil after calculation run");
+    STAssertNil([[self solarCalculation] astronomicalDusk], @"astronomicalDusk is not nil after calculation run");
 }
 
 - (void)testMaskCivilOnly
@@ -236,17 +189,16 @@
     NSDate *startDate = [NSDate date];
     CLLocation *startLocation = [[CLLocation alloc] initWithLatitude:37.771667 longitude:-122.223333];
     _solarCalculation = [[FESSolarCalculator alloc] initWithDate:startDate location:startLocation mask:FESSolarCalculationCivil];
-    [[self solarCalculation] calculate];
     
-    STAssertNil([[self solarCalculation] sunrise], @"sunrise is nil after calculation run");
-    STAssertNil([[self solarCalculation] sunset], @"sunset is nil after calculation run");
+    STAssertNil([[self solarCalculation] sunrise], @"sunrise is not nil after calculation run");
+    STAssertNil([[self solarCalculation] sunset], @"sunset is not nil after calculation run");
     STAssertNotNil([[self solarCalculation] solarNoon], @"solarNoon is nil after calculation run");
-    STAssertNotNil([[self solarCalculation] civilDawn],  @"resetting date did not set civilDawn to nil");
-    STAssertNotNil([[self solarCalculation] civilDusk], @"resetting date did not set civilDusk to nil");
-    STAssertNil([[self solarCalculation] nauticalDawn], @"resetting date did not set nauticalDawn to nil");
-    STAssertNil([[self solarCalculation] nauticalDusk], @"resetting date did not set nauticalDusk to nil");
-    STAssertNil([[self solarCalculation] astronomicalDawn], @"resetting date did not set astronomicalDawn to nil");
-    STAssertNil([[self solarCalculation] astronomicalDusk], @"resetting date did not set astronomicalDusk to nil");
+    STAssertNotNil([[self solarCalculation] civilDawn], @"civilDawn is nil after calculation run");
+    STAssertNotNil([[self solarCalculation] civilDusk], @"civilDusk is nil after calculation run");
+    STAssertNil([[self solarCalculation] nauticalDawn], @"nauticalDawn is not nil after calculation run");
+    STAssertNil([[self solarCalculation] nauticalDusk], @"nauticalDusk is not nil after calculation run");
+    STAssertNil([[self solarCalculation] astronomicalDawn], @"astronomicalDawn is not nil after calculation run");
+    STAssertNil([[self solarCalculation] astronomicalDusk], @"astronomicalDusk is not nil after calculation run");
 }
 
 - (void)testMaskNauticalOnly
@@ -254,17 +206,16 @@
     NSDate *startDate = [NSDate date];
     CLLocation *startLocation = [[CLLocation alloc] initWithLatitude:37.771667 longitude:-122.223333];
     _solarCalculation = [[FESSolarCalculator alloc] initWithDate:startDate location:startLocation mask:FESSolarCalculationNautical];
-    [[self solarCalculation] calculate];
     
-    STAssertNil([[self solarCalculation] sunrise], @"sunrise is nil after calculation run");
-    STAssertNil([[self solarCalculation] sunset], @"sunset is nil after calculation run");
+    STAssertNil([[self solarCalculation] sunrise], @"sunrise is not nil after calculation run");
+    STAssertNil([[self solarCalculation] sunset], @"sunset is not nil after calculation run");
     STAssertNotNil([[self solarCalculation] solarNoon], @"solarNoon is nil after calculation run");
-    STAssertNil([[self solarCalculation] civilDawn],  @"resetting date did not set civilDawn to nil");
-    STAssertNil([[self solarCalculation] civilDusk], @"resetting date did not set civilDusk to nil");
-    STAssertNotNil([[self solarCalculation] nauticalDawn], @"resetting date did not set nauticalDawn to nil");
-    STAssertNotNil([[self solarCalculation] nauticalDusk], @"resetting date did not set nauticalDusk to nil");
-    STAssertNil([[self solarCalculation] astronomicalDawn], @"resetting date did not set astronomicalDawn to nil");
-    STAssertNil([[self solarCalculation] astronomicalDusk], @"resetting date did not set astronomicalDusk to nil");
+    STAssertNil([[self solarCalculation] civilDawn], @"civilDawn is not nil after calculation run");
+    STAssertNil([[self solarCalculation] civilDusk], @"civilDusk is not nil after calculation run");
+    STAssertNotNil([[self solarCalculation] nauticalDawn], @"nauticalDawn is nil after calculation run");
+    STAssertNotNil([[self solarCalculation] nauticalDusk], @"nauticalDusk is nil after calculation run");
+    STAssertNil([[self solarCalculation] astronomicalDawn], @"astronomicalDawn is not nil after calculation run");
+    STAssertNil([[self solarCalculation] astronomicalDusk], @"astronomicalDusk is not nil after calculation run");
 }
 
 - (void)testMaskAstronomicalOnly
@@ -272,17 +223,16 @@
     NSDate *startDate = [NSDate date];
     CLLocation *startLocation = [[CLLocation alloc] initWithLatitude:37.771667 longitude:-122.223333];
     _solarCalculation = [[FESSolarCalculator alloc] initWithDate:startDate location:startLocation mask:FESSolarCalculationAstronomical];
-    [[self solarCalculation] calculate];
     
-    STAssertNil([[self solarCalculation] sunrise], @"sunrise is nil after calculation run");
-    STAssertNil([[self solarCalculation] sunset], @"sunset is nil after calculation run");
+    STAssertNil([[self solarCalculation] sunrise], @"sunrise is not nil after calculation run");
+    STAssertNil([[self solarCalculation] sunset], @"sunset is not nil after calculation run");
     STAssertNotNil([[self solarCalculation] solarNoon], @"solarNoon is nil after calculation run");
-    STAssertNil([[self solarCalculation] civilDawn],  @"resetting date did not set civilDawn to nil");
-    STAssertNil([[self solarCalculation] civilDusk], @"resetting date did not set civilDusk to nil");
-    STAssertNil([[self solarCalculation] nauticalDawn], @"resetting date did not set nauticalDawn to nil");
-    STAssertNil([[self solarCalculation] nauticalDusk], @"resetting date did not set nauticalDusk to nil");
-    STAssertNotNil([[self solarCalculation] astronomicalDawn], @"resetting date did not set astronomicalDawn to nil");
-    STAssertNotNil([[self solarCalculation] astronomicalDusk], @"resetting date did not set astronomicalDusk to nil");
+    STAssertNil([[self solarCalculation] civilDawn], @"civilDawn is not nil after calculation run");
+    STAssertNil([[self solarCalculation] civilDusk], @"civilDusk is not nil after calculation run");
+    STAssertNil([[self solarCalculation] nauticalDawn], @"nauticalDawn is not nil after calculation run");
+    STAssertNil([[self solarCalculation] nauticalDusk], @"nauticalDusk is not nil after calculation run");
+    STAssertNotNil([[self solarCalculation] astronomicalDawn], @"astronomicalDawn is nil after calculation run");
+    STAssertNotNil([[self solarCalculation] astronomicalDusk], @"astronomicalDusk is nil after calculation run");
 }
 
 - (void)testMaskCombined_0
@@ -290,17 +240,16 @@
     NSDate *startDate = [NSDate date];
     CLLocation *startLocation = [[CLLocation alloc] initWithLatitude:37.771667 longitude:-122.223333];
     _solarCalculation = [[FESSolarCalculator alloc] initWithDate:startDate location:startLocation mask:FESSolarCalculationOfficial | FESSolarCalculationCivil | FESSolarCalculationNautical | FESSolarCalculationAstronomical];
-    [[self solarCalculation] calculate];
     
     STAssertNotNil([[self solarCalculation] sunrise], @"sunrise is nil after calculation run");
     STAssertNotNil([[self solarCalculation] sunset], @"sunset is nil after calculation run");
     STAssertNotNil([[self solarCalculation] solarNoon], @"solarNoon is nil after calculation run");
-    STAssertNotNil([[self solarCalculation] civilDawn],  @"resetting date did not set civilDawn to nil");
-    STAssertNotNil([[self solarCalculation] civilDusk], @"resetting date did not set civilDusk to nil");
-    STAssertNotNil([[self solarCalculation] nauticalDawn], @"resetting date did not set nauticalDawn to nil");
-    STAssertNotNil([[self solarCalculation] nauticalDusk], @"resetting date did not set nauticalDusk to nil");
-    STAssertNotNil([[self solarCalculation] astronomicalDawn], @"resetting date did not set astronomicalDawn to nil");
-    STAssertNotNil([[self solarCalculation] astronomicalDusk], @"resetting date did not set astronomicalDusk to nil");
+    STAssertNotNil([[self solarCalculation] civilDawn],  @"civilDawn is nil after calculation run");
+    STAssertNotNil([[self solarCalculation] civilDusk], @"civilDusk is nil after calculation run");
+    STAssertNotNil([[self solarCalculation] nauticalDawn], @"nauticalDawn is nil after calculation run");
+    STAssertNotNil([[self solarCalculation] nauticalDusk], @"nauticalDusk is nil after calculation run");
+    STAssertNotNil([[self solarCalculation] astronomicalDawn], @"astronomicalDawn is nil after calculation run");
+    STAssertNotNil([[self solarCalculation] astronomicalDusk], @"astronomicalDusk is nil after calculation run");
 }
 
 - (void)testMaskCombined_1
@@ -308,17 +257,16 @@
     NSDate *startDate = [NSDate date];
     CLLocation *startLocation = [[CLLocation alloc] initWithLatitude:37.771667 longitude:-122.223333];
     _solarCalculation = [[FESSolarCalculator alloc] initWithDate:startDate location:startLocation mask: FESSolarCalculationCivil | FESSolarCalculationAstronomical];
-    [[self solarCalculation] calculate];
     
-    STAssertNil([[self solarCalculation] sunrise], @"sunrise is nil after calculation run");
-    STAssertNil([[self solarCalculation] sunset], @"sunset is nil after calculation run");
+    STAssertNil([[self solarCalculation] sunrise], @"sunrise is not nil after calculation run");
+    STAssertNil([[self solarCalculation] sunset], @"sunset is not nil after calculation run");
     STAssertNotNil([[self solarCalculation] solarNoon], @"solarNoon is nil after calculation run");
-    STAssertNotNil([[self solarCalculation] civilDawn],  @"resetting date did not set civilDawn to nil");
-    STAssertNotNil([[self solarCalculation] civilDusk], @"resetting date did not set civilDusk to nil");
-    STAssertNil([[self solarCalculation] nauticalDawn], @"resetting date did not set nauticalDawn to nil");
-    STAssertNil([[self solarCalculation] nauticalDusk], @"resetting date did not set nauticalDusk to nil");
-    STAssertNotNil([[self solarCalculation] astronomicalDawn], @"resetting date did not set astronomicalDawn to nil");
-    STAssertNotNil([[self solarCalculation] astronomicalDusk], @"resetting date did not set astronomicalDusk to nil");
+    STAssertNotNil([[self solarCalculation] civilDawn], @"civilDawn is nil after calculation run");
+    STAssertNotNil([[self solarCalculation] civilDusk], @"civilDusk is nil after calculation run");
+    STAssertNil([[self solarCalculation] nauticalDawn], @"nauticalDawn is not nil after calculation run");
+    STAssertNil([[self solarCalculation] nauticalDusk], @"nauticalDusk is not nil after calculation run");
+    STAssertNotNil([[self solarCalculation] astronomicalDawn], @"astronomicalDawn is nil after calculation run");
+    STAssertNotNil([[self solarCalculation] astronomicalDusk], @"astronomicalDusk is nil after calculation run");
 }
 
 - (void)testKnownDateLocation_0
@@ -352,7 +300,6 @@
     NSDate *startDate = [gregorian dateFromComponents:components];
 
     _solarCalculation = [[FESSolarCalculator alloc] initWithDate:startDate location:startLocation];
-    [[self solarCalculation] calculate];
     
     NSDate *compareDate;
     
@@ -450,7 +397,6 @@
     NSDate *startDate = [gregorian dateFromComponents:components];
     
     _solarCalculation = [[FESSolarCalculator alloc] initWithDate:startDate location:startLocation];
-    [[self solarCalculation] calculate];
     
     NSDate *compareDate;
     

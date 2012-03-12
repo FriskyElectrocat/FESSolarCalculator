@@ -101,7 +101,6 @@
     [self.locationManager stopUpdatingLocation];
 
     _solarCalculator = [[FESSolarCalculator alloc] initWithDate:[NSDate date] location:newLocation];
-    [self.solarCalculator calculate];
 
     NSDateFormatter *df = [NSDateFormatter new];
     df.dateFormat = @"yyyy-MM-dd HH:mm:ss Z";

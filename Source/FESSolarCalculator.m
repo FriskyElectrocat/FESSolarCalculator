@@ -52,6 +52,7 @@ double const toDegrees = 180 / M_PI;
 @property (nonatomic, readwrite, strong) NSDate *astronomicalDusk;
 
 -(void)invalidateResults;
+-(void)calculate;
 
 @end
 
@@ -89,37 +90,27 @@ double const toDegrees = 180 / M_PI;
 {
     self = [self init];
     if (self) {
-        [self setStartDate:inDate];
-        [self setLocation:inLocation];
+        _startDate = inDate;
+        _location = inLocation;
     }
+    [self calculate];
     return self;
 }
 
 - (id)initWithDate:(NSDate *)inDate location:(CLLocation *)inLocation mask:(FESSolarCalculationType)inMask
 {
-    self = [self initWithDate:inDate location:inLocation];
+    self = [self init];
     if (self) {
-        [self setOperationsMask:inMask];
+        _startDate = inDate;
+        _location = inLocation;
+        _operationsMask = inMask;
     }
+    [self calculate];
     return self;
 }
 
 #pragma mark -
 #pragma mark Property Ops
-
-- (void)setStartDate:(NSDate *)inDate
-{
-    // override the default setter for startDate so that we can invalidate previous results
-    [self invalidateResults];
-    _startDate = inDate;
-}
-
-- (void)setLocation:(CLLocation *)inLocation
-{
-    // override the default setter for location so that we can invalidate previous results
-    [self invalidateResults];
-    _location = inLocation;
-}
 
 - (void)invalidateResults
 {
