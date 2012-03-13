@@ -9,7 +9,6 @@ Calculate sunrise, sunset, and twilight times for a given location and date.
     * Sunset date and time for that location
     * Solar Noon date and time (when the sun is overhead)
     * Dawn and Dusk (twilight) dates and times for that location:
-        * Official
         * Civil
         * Nautical
         * Astronomical
