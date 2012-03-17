@@ -205,10 +205,6 @@
 			isa = PBXGroup;
 			children = (
 				57060E2B150E7C62000D9709 /* CoreLocation.framework */,
-<<<<<<< HEAD
-				3716CA7014F1C49300417EDD /* CoreLocation.framework */,
-=======
->>>>>>> Add CLLocation category to the project
 				377E29B514E75E2700FF0388 /* UIKit.framework */,
 				377E29B714E75E2700FF0388 /* Foundation.framework */,
 				377E29B914E75E2700FF0388 /* CoreGraphics.framework */,
