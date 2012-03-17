@@ -76,7 +76,7 @@
 		377E29BD14E75E2700FF0388 /* iOS_Example-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "iOS_Example-Info.plist"; path = "iOS_Example/iOS_Example-Info.plist"; sourceTree = "<group>"; };
 		377E29C414E75E2700FF0388 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = iOS_Example/AppDelegate.h; sourceTree = "<group>"; };
 		377E29CD14E75E2700FF0388 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = iOS_Example/ViewController.h; sourceTree = "<group>"; };
-		377E29D514E75E2700FF0388 /* SolarCalculatorTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SolarCalculatorTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		377E29D514E75E2700FF0388 /* SolarCalculatorTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = SolarCalculatorTests.octest; path = iOS_Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		377E29D614E75E2700FF0388 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		377E29EE14E75EF000FF0388 /* FESSolarCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FESSolarCalculator.h; path = ../Source/FESSolarCalculator.h; sourceTree = "<group>"; };
 		377E29EF14E75EF000FF0388 /* FESSolarCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FESSolarCalculator.m; path = ../Source/FESSolarCalculator.m; sourceTree = "<group>"; };
@@ -177,8 +177,6 @@
 		377E29A614E75E2600FF0388 = {
 			isa = PBXGroup;
 			children = (
-				57060E2B150E7C62000D9709 /* CoreLocation.framework */,
-				3716CA7014F1C49300417EDD /* CoreLocation.framework */,
 				377E29ED14E75EAC00FF0388 /* FESSolarCalculator */,
 				377E29BB14E75E2700FF0388 /* iOS_Example */,
 				373EEAF7150D574800493CE8 /* MacOS_Example */,
@@ -203,6 +201,8 @@
 		377E29B414E75E2700FF0388 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				57060E2B150E7C62000D9709 /* CoreLocation.framework */,
+				3716CA7014F1C49300417EDD /* CoreLocation.framework */,
 				377E29B514E75E2700FF0388 /* UIKit.framework */,
 				377E29B714E75E2700FF0388 /* Foundation.framework */,
 				377E29B914E75E2700FF0388 /* CoreGraphics.framework */,
@@ -801,6 +801,7 @@
 				57060E28150E7BC6000D9709 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
