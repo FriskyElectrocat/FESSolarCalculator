@@ -242,7 +242,9 @@ double const toDegrees = 180 / M_PI;
 // I debated doing that once I found the "g" format string, but then I discovered the 
 // NSDateFormatter returns and is based off of 08:00 GMT rather than noon/12:00 GMT.
 // A bug report has been filed with Apple, see http://openradar.appspot.com/11023565 
-// for details. These will be revisited when or if that bug is resolved.
+// for details.
+// UPDATE 2012-08-19: Apple has said this works as indended as the 'g' format string
+// is the "modified Julian date", which while correct is useless for us.
 
 + (int)julianDayNumberFromDate:(NSDate *)inDate
 {
