@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "377E29D414E75E2700FF0388"
-               BuildableName = "SolarCalculatorTests.octest"
+               BuildableName = "iOS_Tests.octest"
                BlueprintName = "iOS_Tests"
                ReferencedContainer = "container:SolarCalculatorExample.xcodeproj">
             </BuildableReference>
