@@ -1,1 +1,34 @@
-xcuserdata/
+# Exclude the build directory
+build/*
+ 
+# Exclude temp nibs and swap files
+*~.nib
+*.swp
+ 
+# Exclude OS X folder attributes
+.DS_Store
+ 
+# Exclude user-specific XCode 3 and 4 files
+*.mode1
+*.mode1v3
+*.mode2v3
+*.perspective
+*.perspectivev3
+*.pbxuser
+*.xcuserstate
+project.xcworkspace/
+Reader.xcodeproj/xcuserdata/*
+Reader/Constants.h
+Reader/AirshipConfig.plist
+
+LumberjackUser.h
+LumberjackUser.temp.h
+
+# exclude python virtualenv
+env/
+
+# exclude our secret keys header
+Reader/Keys.h
+
+# exclude AppCode configuration data
+.idea/
