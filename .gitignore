@@ -17,18 +17,10 @@ build/*
 *.pbxuser
 *.xcuserstate
 project.xcworkspace/
-Reader.xcodeproj/xcuserdata/*
-Reader/Constants.h
-Reader/AirshipConfig.plist
-
-LumberjackUser.h
-LumberjackUser.temp.h
+xcuserdata/*
 
 # exclude python virtualenv
 env/
-
-# exclude our secret keys header
-Reader/Keys.h
 
 # exclude AppCode configuration data
 .idea/

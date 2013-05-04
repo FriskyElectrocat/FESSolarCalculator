@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3716CA7114F1C49300417EDD /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3716CA7014F1C49300417EDD /* CoreLocation.framework */; };
-		3716CA7214F1C49A00417EDD /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3716CA7014F1C49300417EDD /* CoreLocation.framework */; };
+		370DDC3B1734ABB000B2C456 /* CLLocation+FESGraticule.m in Sources */ = {isa = PBXBuildFile; fileRef = 370DDC3A1734ABB000B2C456 /* CLLocation+FESGraticule.m */; };
+		370DDC3E1734B29900B2C456 /* CLLocationFESGraticuleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 370DDC3D1734B29900B2C456 /* CLLocationFESGraticuleTest.m */; };
+		370DDC3F1734B34500B2C456 /* CLLocation+FESGraticule.m in Sources */ = {isa = PBXBuildFile; fileRef = 370DDC3A1734ABB000B2C456 /* CLLocation+FESGraticule.m */; };
+		370DDC401734B34C00B2C456 /* CLLocationFESGraticuleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 370DDC3D1734B29900B2C456 /* CLLocationFESGraticuleTest.m */; };
+		370DDC411734BCB600B2C456 /* CLLocation+FESGraticule.m in Sources */ = {isa = PBXBuildFile; fileRef = 370DDC3A1734ABB000B2C456 /* CLLocation+FESGraticule.m */; };
 		373EEAF2150D574800493CE8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373EEAF1150D574800493CE8 /* Cocoa.framework */; };
 		373EEAFC150D574800493CE8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 373EEAFA150D574800493CE8 /* InfoPlist.strings */; };
 		373EEAFE150D574800493CE8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 373EEAFD150D574800493CE8 /* main.m */; };
@@ -52,7 +55,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3716CA7014F1C49300417EDD /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		370DDC391734ABB000B2C456 /* CLLocation+FESGraticule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CLLocation+FESGraticule.h"; path = "../Source/CLLocation+FESGraticule.h"; sourceTree = "<group>"; };
+		370DDC3A1734ABB000B2C456 /* CLLocation+FESGraticule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CLLocation+FESGraticule.m"; path = "../Source/CLLocation+FESGraticule.m"; sourceTree = "<group>"; };
+		370DDC3C1734B29900B2C456 /* CLLocationFESGraticuleTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLLocationFESGraticuleTest.h; path = SolarCalculatorTests/CLLocationFESGraticuleTest.h; sourceTree = SOURCE_ROOT; };
+		370DDC3D1734B29900B2C456 /* CLLocationFESGraticuleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLLocationFESGraticuleTest.m; path = SolarCalculatorTests/CLLocationFESGraticuleTest.m; sourceTree = SOURCE_ROOT; };
 		373EEAEF150D574800493CE8 /* MacOS_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacOS_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		373EEAF1150D574800493CE8 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		373EEAF4150D574800493CE8 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -110,7 +116,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3716CA7214F1C49A00417EDD /* CoreLocation.framework in Frameworks */,
 				377E29B614E75E2700FF0388 /* UIKit.framework in Frameworks */,
 				377E29B814E75E2700FF0388 /* Foundation.framework in Frameworks */,
 				377E29BA14E75E2700FF0388 /* CoreGraphics.framework in Frameworks */,
@@ -121,7 +126,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3716CA7114F1C49300417EDD /* CoreLocation.framework in Frameworks */,
 				377E29D714E75E2700FF0388 /* SenTestingKit.framework in Frameworks */,
 				377E29D814E75E2700FF0388 /* UIKit.framework in Frameworks */,
 				377E29D914E75E2700FF0388 /* Foundation.framework in Frameworks */,
@@ -141,6 +145,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		370DDC381734AA9D00B2C456 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				370DDC391734ABB000B2C456 /* CLLocation+FESGraticule.h */,
+				370DDC3A1734ABB000B2C456 /* CLLocation+FESGraticule.m */,
+			);
+			name = Category;
+			sourceTree = "<group>";
+		};
 		373EEAF3150D574800493CE8 /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +190,7 @@
 		377E29A614E75E2600FF0388 = {
 			isa = PBXGroup;
 			children = (
+				370DDC381734AA9D00B2C456 /* Category */,
 				377E29ED14E75EAC00FF0388 /* FESSolarCalculator */,
 				377E29BB14E75E2700FF0388 /* iOS_Example */,
 				373EEAF7150D574800493CE8 /* MacOS_Example */,
@@ -202,7 +216,10 @@
 			isa = PBXGroup;
 			children = (
 				57060E2B150E7C62000D9709 /* CoreLocation.framework */,
+<<<<<<< HEAD
 				3716CA7014F1C49300417EDD /* CoreLocation.framework */,
+=======
+>>>>>>> Add CLLocation category to the project
 				377E29B514E75E2700FF0388 /* UIKit.framework */,
 				377E29B714E75E2700FF0388 /* Foundation.framework */,
 				377E29B914E75E2700FF0388 /* CoreGraphics.framework */,
@@ -241,6 +258,8 @@
 		377E29DC14E75E2700FF0388 /* SolarCalculatorTests */ = {
 			isa = PBXGroup;
 			children = (
+				370DDC3C1734B29900B2C456 /* CLLocationFESGraticuleTest.h */,
+				370DDC3D1734B29900B2C456 /* CLLocationFESGraticuleTest.m */,
 				373EEB0C150D580500493CE8 /* SolarCalculatorTests.h */,
 				373EEB0D150D580500493CE8 /* SolarCalculatorTests.m */,
 				377E29DD14E75E2700FF0388 /* Supporting Files */,
@@ -463,6 +482,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				370DDC411734BCB600B2C456 /* CLLocation+FESGraticule.m in Sources */,
 				373EEAFE150D574800493CE8 /* main.m in Sources */,
 				37F8088D150D5E40003B8DAA /* FESSolarCalculator.m in Sources */,
 				373EEB05150D574800493CE8 /* AppDelegate.m in Sources */,
@@ -477,6 +497,7 @@
 				37F8087F150D5CCD003B8DAA /* ViewController.m in Sources */,
 				37F80882150D5D04003B8DAA /* main.m in Sources */,
 				37F80883150D5D04003B8DAA /* AppDelegate.m in Sources */,
+				370DDC3B1734ABB000B2C456 /* CLLocation+FESGraticule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +507,7 @@
 			files = (
 				377480AB150D7511003E139B /* SolarCalculatorTests.m in Sources */,
 				377480AD150D7513003E139B /* FESSolarCalculator.m in Sources */,
+				370DDC3E1734B29900B2C456 /* CLLocationFESGraticuleTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,6 +515,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				370DDC401734B34C00B2C456 /* CLLocationFESGraticuleTest.m in Sources */,
+				370DDC3F1734B34500B2C456 /* CLLocation+FESGraticule.m in Sources */,
 				57060E29150E7BEF000D9709 /* FESSolarCalculator.m in Sources */,
 				57060E2A150E7BF8000D9709 /* SolarCalculatorTests.m in Sources */,
 			);
@@ -732,6 +756,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -751,6 +776,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
