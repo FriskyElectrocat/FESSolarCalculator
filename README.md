@@ -65,6 +65,14 @@ Note that dates prior to 01 January 2000 GMT are not guarenteed to return correc
 
 The source code in this repository uses Automatic Reference Counting. No plans exist to support non-ARC code. If your project requires non-ARC code compile these files with -fobjc-arc. See the [clang docs](http://clang.llvm.org/docs/AutomaticReferenceCounting.html) for more details.
 
+## CocoaPods
+
+To use this project with [CocoaPods](http://cocoapods.org) use the following in your podspec file:
+
+    'pod 'FESSolarCalculator', :git=> 'https://github.com/danimal/FESSolarCalculator.git'
+
+Thanks to [iiiyu](https://github.com/iiiyu) for adding CocoaPods support.
+
 ## License
 
 This code is licensed under the MIT license. The license is reproduced below.
