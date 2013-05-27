@@ -67,11 +67,8 @@ The source code in this repository uses Automatic Reference Counting. No plans e
 
 ## CocoaPods
 
-To use this project with [CocoaPods](http://cocoapods.org) use the following in your podspec file:
-
-    'pod 'FESSolarCalculator', :git=> 'https://github.com/danimal/FESSolarCalculator.git'
-
-Thanks to [iiiyu](https://github.com/iiiyu) for adding CocoaPods support.
+`FESSolarCalculator` is available in the [CocoaPods](http://cocoapods.org) system. Just add it to your podfile like any
+other podspec. Thanks to [iiiyu](https://github.com/iiiyu) for adding CocoaPods support.
 
 ## License
 
